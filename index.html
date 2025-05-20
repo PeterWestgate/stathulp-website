@@ -245,6 +245,8 @@
             margin-bottom: 40px;
             color: var(--slate);
             max-width: 800px;
+            margin-left: auto; /* Zorgt voor centrering van de paragraaf */
+            margin-right: auto; /* Zorgt voor centrering van de paragraaf */
         }
 
         .cta-button {
@@ -359,21 +361,7 @@
         }
 
         .step-item .step-number {
-            position: absolute;
-            top: -15px; /* Adjust position */
-            right: -15px; /* Adjust position */
-            background-color: var(--neon-green);
-            color: var(--dark-navy);
-            border-radius: 50%;
-            width: 40px; /* Larger number circle */
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 1.5em; /* Larger number */
-            border: 2px solid var(--dark-navy); /* Border around number */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: none; /* Nummers verwijderd */
         }
 
         .step-item h3 {
@@ -659,7 +647,7 @@
 
         .calendly-widget .calendly-inline-widget {
             width: 100%; /* Make widget fill container */
-            height: 100%; /* Make widget fill container */
+            height: 100%;
         }
 
         .calendly-widget p {
@@ -951,24 +939,21 @@
                     <div class="step-item animate-on-scroll">
                         <div class="icon">
                             <i class="fas fa-calendar-check"></i>
-                            <span class="step-number">1</span>
-                        </div>
+                            </div>
                         <h3>Gratis Intakegesprek</h3>
                         <p>We bespreken jouw specifieke uitdagingen en doelen met statistiek.</p>
                     </div>
                     <div class="step-item animate-on-scroll">
                          <div class="icon">
                             <i class="fas fa-route"></i>
-                            <span class="step-number">2</span>
-                        </div>
+                            </div>
                         <h3>Persoonlijk Leertraject</h3>
                         <p>Op basis van de intake stellen we een op maat gemaakt plan op.</p>
                     </div>
                     <div class="step-item animate-on-scroll">
                          <div class="icon">
                             <i class="fas fa-graduation-cap"></i>
-                            <span class="step-number">3</span>
-                        </div>
+                            </div>
                         <h3>Zelfverzekerd Slagen</h3>
                         <p>Met onze begeleiding ben je klaar om je examen te halen.</p> </div>
                 </div>
