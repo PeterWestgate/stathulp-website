@@ -375,30 +375,8 @@
 
 
         /* Video Section */
-        #video .container {
-            text-align: center;
-        }
+        /* De hele video sectie is verwijderd */
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 900px; /* Wider video container */
-            margin: 0 auto;
-            background-color: #000;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            border: 2px solid var(--border-color);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
 
         /* Testimonials Section */
         #testimonials {
@@ -809,8 +787,8 @@
              h2::after {
                 bottom: -10px;
              }
-            .features-grid, .pricing-grid {
-                grid-template-columns: 1fr;
+            .features-grid {
+                grid-template-columns: 1fr; /* Zorgt ervoor dat op kleine schermen de items onder elkaar komen */
             }
             .process-steps {
                 flex-direction: column;
@@ -881,7 +859,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#features">Kenmerken</a></li>
+                    <li><a href="#features">Begeleiders</a></li>
                     <li><a href="#proces">Proces</a></li>
                     <li><a href="#prijzen">Prijzen</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -911,22 +889,32 @@
 
         <section id="features">
             <div class="container">
-                <h2>Onze Kenmerken</h2>
+                <h2>De StatHulp Standaard: Onze Begeleiders</h2>
                 <div class="features-grid">
                     <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <h3>Persoonlijke begeleiding</h3>
-                        <p>Krijg individuele hulp bij je statistiekopdrachten en bereid je optimaal voor op je tentamen.</p>
+                        <i class="fas fa-brain"></i>
+                        <h3>Diepgaande Expertise</h3>
+                        <p>Onze begeleiders zijn niet alleen topspecialisten in statistiek, maar ook diepgaand bekend met de specifieke behoeften van psychologiestudenten.</p>
                     </div>
                     <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-comments"></i>
-                        <h3>Uitleg in mensentaal</h3>
-                        <p>Wij leggen complexe statistische concepten uit op een manier die jij begrijpt, op jouw tempo.</p>
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Heldere Didactiek</h3>
+                        <p>Complexe concepten worden eenvoudig en begrijpelijk uitgelegd, afgestemd op jouw leertempo en -stijl.</p>
                     </div>
-                     <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-brain"></i>
-                        <h3>Focus op psychologie</h3>
-                        <p>Onze begeleiding is specifiek afgestemd op de statistiekvakken binnen de psychologiestudie.</p>
+                    <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-smile-beam"></i>
+                        <h3>Positieve Motivatie</h3>
+                        <p>Een stimulerende en positieve sfeer tijdens elke sessie om je zelfvertrouwen te boosten.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Volledige Betrokkenheid</h3>
+                        <p>Geen 'automatische piloot', maar maximale persoonlijke aandacht en betrokkenheid bij jouw unieke studietraject.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Passie voor Jouw Succes</h3>
+                        <p>Onze passie en gedrevenheid zorgen ervoor dat we alles op alles zetten voor jouw maximale slaagkansen.</p>
                     </div>
                 </div>
             </div>
@@ -960,16 +948,6 @@
             </div>
         </section>
 
-         <section id="video">
-            <div class="container">
-                <h2>Bekijk Onze Uitlegvideo</h2>
-                <div class="video-container animate-on-scroll">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-
-
         <section id="testimonials">
             <div class="container">
                 <h2>Wat Studenten Zeggen</h2>
@@ -1002,7 +980,7 @@
                             <li><i class="fas fa-check-circle"></i> Geschikt voor losse problemen</li>
                              <li><i class="fas fa-times-circle" style="color: #ff6b6b;"></i> Geen maandelijkse support</li>
                              <li><i class="fas fa-times-circle" style="color: #ff6b6b;"></i> Geen extra functionaliteiten</li> </ul>
-                        <a href="#" class="select-button">Kies Pakket</a>
+                        <a href="package-basic.html" class="select-button">Kies Pakket</a>
                     </div>
                     <div class="pricing-item animate-on-scroll">
                          <i class="fas fa-book-open"></i>
@@ -1014,7 +992,7 @@
                             <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li> <li><i class="fas fa-check-circle"></i> Vragen via e-mail</li>
                              <li><i class="fas fa-times-circle" style="color: #ff6b6b;"></i> Geen prioriteit support</li>
                         </ul>
-                        <a href="#" class="select-button">Kies Pakket</a>
+                        <a href="package-standard.html" class="select-button">Kies Pakket</a>
                     </div>
                     <div class="pricing-item animate-on-scroll">
                         <i class="fas fa-star"></i>
@@ -1026,7 +1004,20 @@
                             <li><i class="fas fa-check-circle"></i> Volledige toegang functionaliteiten</li> <li><i class="fas fa-check-circle"></i> Prioriteit support (e-mail/chat)</li>
                             <li><i class="fas fa-check-circle"></i> Examenvoorbereiding</li>
                         </ul>
-                        <a href="#" class="select-button">Kies Pakket</a>
+                        <a href="package-premium.html" class="select-button">Kies Pakket</a>
+                    </div>
+                    <div class="pricing-item animate-on-scroll">
+                        <i class="fas fa-users"></i>
+                        <h3>Groepslessen</h3>
+                        <div class="price">Op Maat</div>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Vanaf 2 studenten</li>
+                            <li><i class="fas fa-check-circle"></i> €69/uur (vanaf 2 pers.)</li>
+                            <li><i class="fas fa-check-circle"></i> €119/uur (3-5 pers.)</li>
+                            <li><i class="fas fa-check-circle"></i> Samen leren, samen slagen</li>
+                            <li><i class="fas fa-check-circle"></i> Flexibele planning</li>
+                        </ul>
+                        <a href="package-group.html" class="select-button">Meer Info Groepsles</a>
                     </div>
                 </div>
             </div>
