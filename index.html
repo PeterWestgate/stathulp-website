@@ -440,7 +440,7 @@
             overflow-x: auto; /* Voeg horizontale scroll toe indien nodig */
             -webkit-overflow-scrolling: touch; /* Verbeterd scrollen op iOS */
             scroll-behavior: smooth; /* Smooth scrolling */
-            gap: 30px; /* Afstand tussen de items */
+            gap: 20px; /* Afstand tussen de items (minder dan 30px) */
             padding-bottom: 20px; /* Ruimte voor scrollbar */
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none;  /* IE and Edge */
@@ -484,7 +484,7 @@
 
         .pricing-item {
             flex: 0 0 auto; /* Voorkom dat items krimpen of groeien */
-            min-width: 300px; /* Minimale breedte voor elk pakket */
+            min-width: 260px; /* Minimale breedte voor elk pakket (kleiner gemaakt) */
             background-color: var(--card-background);
             padding: 40px 30px;
             border-radius: 10px;
@@ -905,6 +905,118 @@
              }
         }
 
+        /* Styles for the dynamic package detail overlay */
+        #package-detail-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000; /* Above everything else */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #package-detail-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .package-details-card-overlay {
+            background-color: var(--card-background);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--border-color);
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        #package-detail-overlay.visible .package-details-card-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .package-details-card-overlay h1 {
+            font-size: 3em;
+            color: var(--neon-green);
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        .package-details-card-overlay p {
+            font-size: 1.2em;
+            color: var(--slate);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .package-details-card-overlay .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            color: var(--white);
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .package-details-card-overlay .close-button:hover {
+            color: var(--neon-green);
+        }
+
+        .loading-spinner {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid var(--neon-green); /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+            margin: 50px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments for overlay */
+        @media (max-width: 768px) {
+            .package-details-card-overlay {
+                padding: 30px;
+            }
+            .package-details-card-overlay h1 {
+                font-size: 2.5em;
+            }
+            .package-details-card-overlay p {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .package-details-card-overlay {
+                padding: 20px;
+            }
+            .package-details-card-overlay h1 {
+                font-size: 2em;
+            }
+            .package-details-card-overlay p {
+                font-size: 1em;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1046,7 +1158,7 @@
                                 <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li>
                                 <li><i class="fas fa-check-circle"></i> Vragen via e-mail</li>
                             </ul>
-                            <a href="package-basic.html" class="select-button">Kies Pakket</a>
+                            <a href="#" class="select-button" data-package-name="Basis">Kies Pakket</a>
                         </div>
                         <div class="pricing-item animate-on-scroll">
                              <i class="fas fa-book-open"></i>
@@ -1059,7 +1171,7 @@
                                 <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li>
                                 <li><i class="fas fa-check-circle"></i> Vragen via e-mail</li>
                             </ul>
-                            <a href="package-standard.html" class="select-button">Kies Pakket</a>
+                            <a href="#" class="select-button" data-package-name="Standaard">Kies Pakket</a>
                         </div>
                         <div class="pricing-item animate-on-scroll">
                             <i class="fas fa-star"></i>
@@ -1073,21 +1185,33 @@
                                 <li><i class="fas fa-check-circle"></i> Prioriteit support (e-mail/chat)</li>
                                 <li><i class="fas fa-check-circle"></i> Examenvoorbereiding</li>
                             </ul>
-                            <a href="package-premium.html" class="select-button">Kies Pakket</a>
+                            <a href="#" class="select-button" data-package-name="Premium">Kies Pakket</a>
+                        </div>
+                        <div class="pricing-item animate-on-scroll">
+                            <i class="fas fa-user-friends"></i>
+                            <h3>Groepsles (2 pers.)</h3>
+                            <div class="price">€69<small>/uur</small></div>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Begeleiding voor 2 studenten</li>
+                                <li><i class="fas fa-check-circle"></i> Voordelig samen leren</li>
+                                <li><i class="fas fa-check-circle"></i> Hulp bij specifieke vragen</li>
+                                <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li>
+                                <li><i class="fas fa-check-circle"></i> Flexibele planning</li>
+                            </ul>
+                            <a href="#" class="select-button" data-package-name="Groepsles (2 personen)">Kies Pakket</a>
                         </div>
                         <div class="pricing-item animate-on-scroll">
                             <i class="fas fa-users"></i>
-                            <h3>Groepslessen</h3>
-                            <div class="price">Op Maat</div>
+                            <h3>Groepsles (3-5 pers.)</h3>
+                            <div class="price">€119<small>/uur</small></div>
                             <ul>
-                                <li><i class="fas fa-check-circle"></i> Vanaf 2 studenten</li>
-                                <li><i class="fas fa-check-circle"></i> €69/uur (vanaf 2 pers.)</li>
-                                <li><i class="fas fa-check-circle"></i> €119/uur (3-5 pers.)</li>
-                                <li><i class="fas fa-check-circle"></i> Samen leren, samen slagen</li>
-                                <li><i class="fas fa-check-circle"></i> Flexibele planning</li>
+                                <li><i class="fas fa-check-circle"></i> Begeleiding voor 3-5 studenten</li>
+                                <li><i class="fas fa-check-circle"></i> Maximaal rendement per student</li>
                                 <li><i class="fas fa-check-circle"></i> Hulp bij specifieke vragen</li>
+                                <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li>
+                                <li><i class="fas fa-check-circle"></i> Flexibele planning</li>
                             </ul>
-                            <a href="package-group.html" class="select-button">Meer Info Groepsles</a>
+                            <a href="#" class="select-button" data-package-name="Groepsles (3-5 personen)">Kies Pakket</a>
                         </div>
                     </div>
                     <button class="scroll-arrow right" id="scrollRightBtn"><i class="fas fa-chevron-right"></i></button>
@@ -1122,6 +1246,19 @@
     </main>
 
     <button id="back-to-top" title="Ga naar boven"><i class="fas fa-arrow-up"></i></button>
+
+    <div id="package-detail-overlay">
+        <div class="package-details-card-overlay">
+            <button id="closePackageDetail" class="close-button">&times;</button>
+            <h1 id="detailPackageTitle"></h1>
+            <div id="detailPackageDescription">
+                <div class="loading-spinner"></div>
+                <p>Laden van pakketinformatie...</p>
+            </div>
+            <a href="https://calendly.com/your-link" target="_blank" class="cta-button">Boek Intakegesprek</a>
+        </div>
+    </div>
+
 
     <script>
         // JavaScript for Navigation Toggle
@@ -1249,7 +1386,7 @@
         const scrollRightBtn = document.getElementById('scrollRightBtn');
 
         if (pricingGrid && scrollLeftBtn && scrollRightBtn) {
-            const scrollAmount = 330; // Approximate width of one item + gap
+            const scrollAmount = 290; // Approximate width of one item (260px) + gap (20px) + some margin
 
             scrollRightBtn.addEventListener('click', () => {
                 pricingGrid.scrollBy({
@@ -1265,18 +1402,92 @@
                 });
             });
 
-            // Optional: Hide/show arrows based on scroll position
+            // Hide/show arrows based on scroll position
             const updateArrowVisibility = () => {
                 // Show left arrow if not at the beginning
                 scrollLeftBtn.style.display = pricingGrid.scrollLeft > 0 ? 'block' : 'none';
                 // Show right arrow if not at the end (with a small tolerance)
-                scrollRightBtn.style.display = pricingGrid.scrollLeft + pricingGrid.clientWidth < pricingGrid.scrollWidth - 5 ? 'block' : 'none';
+                // Check if scroll position + client width is less than scroll width - tolerance
+                scrollRightBtn.style.display = (pricingGrid.scrollLeft + pricingGrid.clientWidth) < (pricingGrid.scrollWidth - 5) ? 'block' : 'none';
             };
 
             pricingGrid.addEventListener('scroll', updateArrowVisibility);
             window.addEventListener('resize', updateArrowVisibility); // Re-evaluate on resize
             window.addEventListener('load', updateArrowVisibility); // Initial check on load
         }
+
+        // JavaScript for Dynamic Package Detail Overlay
+        const packageDetailOverlay = document.getElementById('package-detail-overlay');
+        const closePackageDetailBtn = document.getElementById('closePackageDetail');
+        const detailPackageTitle = document.getElementById('detailPackageTitle');
+        const detailPackageDescription = document.getElementById('detailPackageDescription');
+        const selectButtons = document.querySelectorAll('.select-button');
+
+        // Function to generate package description using LLM
+        async function generatePackageDescription(packageName) {
+            detailPackageDescription.innerHTML = '<div class="loading-spinner"></div><p>Laden van pakketinformatie...</p>';
+
+            let prompt = `Genereer een aantrekkelijke, overtuigende en motiverende beschrijving voor het "${packageName}" pakket van StatHulp, gericht op psychologiestudenten die hulp zoeken bij statistiek. Gebruik nudging-technieken om de student te stimuleren dit pakket te kiezen. Focus op de voordelen en hoe dit pakket hen helpt slagen. Houd het beknopt maar informatief.`;
+
+            if (packageName.includes("Groepsles")) {
+                prompt += ` Vermeld specifiek de prijsvoordelen voor groepen.`;
+            }
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // Canvas zal dit automatisch invullen
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    detailPackageDescription.innerHTML = `<p>${text}</p>`;
+                } else {
+                    detailPackageDescription.innerHTML = '<p>Kon de pakketinformatie niet laden. Probeer het later opnieuw.</p>';
+                    console.error("LLM response structure unexpected:", result);
+                }
+            } catch (error) {
+                detailPackageDescription.innerHTML = '<p>Er is een fout opgetreden bij het laden van de pakketinformatie. Controleer uw internetverbinding.</p>';
+                console.error("Error fetching LLM response:", error);
+            }
+        }
+
+        // Event listeners for "Kies Pakket" buttons
+        selectButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const packageName = e.target.dataset.packageName;
+                detailPackageTitle.textContent = packageName;
+                generatePackageDescription(packageName);
+                packageDetailOverlay.classList.add('visible');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling on main page
+            });
+        });
+
+        // Event listener for close button
+        closePackageDetailBtn.addEventListener('click', () => {
+            packageDetailOverlay.classList.remove('visible');
+            document.body.style.overflow = ''; // Restore scrolling on main page
+        });
+
+        // Close overlay when clicking outside the card
+        packageDetailOverlay.addEventListener('click', (e) => {
+            if (e.target === packageDetailOverlay) {
+                packageDetailOverlay.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
     </script>
 
 </body>
