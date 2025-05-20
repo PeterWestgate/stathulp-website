@@ -440,7 +440,7 @@
             overflow-x: auto; /* Voeg horizontale scroll toe indien nodig */
             -webkit-overflow-scrolling: touch; /* Verbeterd scrollen op iOS */
             scroll-behavior: smooth; /* Smooth scrolling */
-            gap: 20px; /* Afstand tussen de items (minder dan 30px) */
+            gap: 15px; /* Afstand tussen de items (nog kleiner) */
             padding-bottom: 20px; /* Ruimte voor scrollbar */
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none;  /* IE and Edge */
@@ -456,9 +456,9 @@
             color: var(--dark-navy);
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5em;
+            width: 40px; /* Smaller arrows */
+            height: 40px; /* Smaller arrows */
+            font-size: 1.2em; /* Smaller icon */
             cursor: pointer;
             position: absolute;
             top: 50%;
@@ -475,18 +475,18 @@
         }
 
         .scroll-arrow.left {
-            left: -20px; /* Position outside the grid slightly */
+            left: -10px; /* Position outside the grid slightly */
         }
 
         .scroll-arrow.right {
-            right: -20px; /* Position outside the grid slightly */
+            right: -10px; /* Position outside the grid slightly */
         }
 
         .pricing-item {
             flex: 0 0 auto; /* Voorkom dat items krimpen of groeien */
-            min-width: 260px; /* Minimale breedte voor elk pakket (kleiner gemaakt) */
+            min-width: 130px; /* Minimale breedte voor elk pakket (gehalveerd) */
             background-color: var(--card-background);
-            padding: 40px 30px;
+            padding: 20px 15px; /* Minder padding */
             border-radius: 10px;
             text-align: center;
             border: 2px solid transparent;
@@ -510,42 +510,42 @@
         }
 
         .pricing-item i {
-            font-size: 4em; /* Larger icons */
+            font-size: 2.5em; /* Smaller icons */
             color: var(--accent-color);
-            margin-bottom: 20px;
-             text-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
+            margin-bottom: 15px; /* Minder margin */
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
         }
 
         .pricing-item h3 {
-            font-size: 2em; /* Larger heading */
-            margin-bottom: 10px;
+            font-size: 1.4em; /* Smaller heading */
+            margin-bottom: 8px; /* Minder margin */
             color: var(--heading-color);
         }
 
         .price {
-            font-size: 3em; /* Larger price */
+            font-size: 2em; /* Smaller price */
             font-weight: bold;
             color: var(--neon-green);
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* Minder margin */
         }
 
         .price small {
-            font-size: 0.5em; /* Smaller '/sessie' or '/maand' */
+            font-size: 0.4em; /* Smaller '/sessie' or '/maand' */
             color: var(--slate);
         }
 
         .pricing-item ul {
             list-style: none;
             padding: 0;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Minder margin */
             text-align: left;
         }
 
         .pricing-item ul li {
-            margin-bottom: 12px; /* Increased spacing */
-            padding-left: 25px; /* Space for icon */
+            margin-bottom: 8px; /* Minder spacing */
+            padding-left: 20px; /* Minder space for icon */
             position: relative;
-            font-size: 1.1em;
+            font-size: 0.9em; /* Smaller font */
         }
 
         .pricing-item ul li::before {
@@ -563,11 +563,11 @@
             display: inline-block;
             background-color: var(--neon-green);
             color: var(--dark-navy);
-            padding: 15px 30px; /* Larger button */
+            padding: 12px 20px; /* Smaller button */
             border: none;
             border-radius: 50px; /* Pill shape */
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1em; /* Smaller font */
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
              box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
@@ -853,7 +853,8 @@
                 justify-content: flex-start; /* Behoud start alignment */
             }
             .pricing-item {
-                min-width: 280px; /* Zorg voor een minimale breedte zodat scrollen nodig is */
+                min-width: 180px; /* Aangepast voor kleinere schermen */
+                padding: 25px 15px; /* Aangepast voor kleinere schermen */
             }
             .scroll-arrow.left {
                 left: 5px; /* Adjust for smaller screens */
@@ -878,13 +879,28 @@
                 font-size: 1.5em;
              }
             .pricing-item {
-                padding: 30px 20px;
+                padding: 20px 10px; /* Nog kleiner op mobiel */
+                min-width: 120px; /* Nog kleiner op mobiel */
+            }
+            .pricing-item i {
+                font-size: 2em; /* Nog kleinere iconen */
+            }
+            .pricing-item h3 {
+                font-size: 1.2em; /* Nog kleinere titel */
             }
             .price {
-                font-size: 2em;
+                font-size: 1.8em; /* Nog kleinere prijs */
             }
              .pricing-item ul li {
-                 font-size: 1em;
+                 font-size: 0.8em; /* Nog kleinere lijstitems */
+                 padding-left: 15px;
+             }
+             .pricing-item ul li::before {
+                 top: 0px;
+             }
+             .pricing-item .select-button {
+                 padding: 10px 15px;
+                 font-size: 0.9em;
              }
              .contact-form form {
                  padding: 30px;
@@ -905,76 +921,55 @@
              }
         }
 
-        /* Styles for the dynamic package detail overlay */
-        #package-detail-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000; /* Above everything else */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        #package-detail-overlay.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .package-details-card-overlay {
+        /* Styles for the integrated package detail section */
+        #selected-package-info {
             background-color: var(--card-background);
             padding: 50px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 2px solid var(--border-color);
-            max-width: 800px;
-            width: 90%;
-            position: relative;
+            max-width: 900px;
+            margin: 80px auto 0 auto; /* Margin top to separate from pricing, center horizontally */
+            text-align: center;
+            opacity: 0; /* Hidden by default */
             transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
 
-        #package-detail-overlay.visible .package-details-card-overlay {
-            transform: translateY(0);
+        #selected-package-info.visible {
             opacity: 1;
+            transform: translateY(0);
         }
 
-        .package-details-card-overlay h1 {
+        #selected-package-info h2 {
             font-size: 3em;
             color: var(--neon-green);
             margin-bottom: 25px;
             text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+            position: relative; /* For the ::after pseudo-element */
         }
 
-        .package-details-card-overlay p {
+        #selected-package-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--neon-green);
+            border-radius: 2px;
+        }
+
+        #selected-package-info p {
             font-size: 1.2em;
             color: var(--slate);
             margin-bottom: 30px;
             text-align: left;
         }
 
-        .package-details-card-overlay .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 2em;
-            color: var(--white);
-            cursor: pointer;
-            padding: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .package-details-card-overlay .close-button:hover {
-            color: var(--neon-green);
+        #selected-package-info .cta-button {
+            margin-top: 20px;
         }
 
         .loading-spinner {
@@ -990,31 +985,6 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive adjustments for overlay */
-        @media (max-width: 768px) {
-            .package-details-card-overlay {
-                padding: 30px;
-            }
-            .package-details-card-overlay h1 {
-                font-size: 2.5em;
-            }
-            .package-details-card-overlay p {
-                font-size: 1.1em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .package-details-card-overlay {
-                padding: 20px;
-            }
-            .package-details-card-overlay h1 {
-                font-size: 2em;
-            }
-            .package-details-card-overlay p {
-                font-size: 1em;
-            }
         }
 
     </style>
@@ -1219,6 +1189,14 @@
             </div>
         </section>
 
+        <section id="selected-package-info" class="container">
+            <h2 id="detailPackageTitle">Pakket Informatie</h2>
+            <div id="detailPackageDescription">
+                <p>Selecteer een pakket hierboven om meer details te zien en direct een intakegesprek te boeken!</p>
+            </div>
+            <a href="https://calendly.com/your-link" target="_blank" class="cta-button">Boek Intakegesprek</a>
+        </section>
+
         <section id="contact">
             <div class="container">
                 <h2>Neem Contact Op</h2>
@@ -1246,19 +1224,6 @@
     </main>
 
     <button id="back-to-top" title="Ga naar boven"><i class="fas fa-arrow-up"></i></button>
-
-    <div id="package-detail-overlay">
-        <div class="package-details-card-overlay">
-            <button id="closePackageDetail" class="close-button">&times;</button>
-            <h1 id="detailPackageTitle"></h1>
-            <div id="detailPackageDescription">
-                <div class="loading-spinner"></div>
-                <p>Laden van pakketinformatie...</p>
-            </div>
-            <a href="https://calendly.com/your-link" target="_blank" class="cta-button">Boek Intakegesprek</a>
-        </div>
-    </div>
-
 
     <script>
         // JavaScript for Navigation Toggle
@@ -1292,11 +1257,6 @@
             } else {
                 body.classList.remove('light-mode');
             }
-            // Optional: Attempt to sync Calendly theme if possible via its API or data attributes
-            // This depends heavily on Calendly's embed options.
-            // You might need to reload the widget or pass parameters.
-            // Refer to Calendly documentation for advanced theme customization.
-            // syncCalendlyTheme(isLight); // Uncomment if you implement this
         }
 
         // Check local storage for theme preference on load
@@ -1305,7 +1265,6 @@
             themeToggle.checked = true;
             applyTheme(true);
         } else {
-             // Ensure dark mode is applied by default or if preference is dark
              applyTheme(false);
         }
 
@@ -1386,7 +1345,7 @@
         const scrollRightBtn = document.getElementById('scrollRightBtn');
 
         if (pricingGrid && scrollLeftBtn && scrollRightBtn) {
-            const scrollAmount = 290; // Approximate width of one item (260px) + gap (20px) + some margin
+            const scrollAmount = 145; // Approximate width of one item (130px) + gap (15px)
 
             scrollRightBtn.addEventListener('click', () => {
                 pricingGrid.scrollBy({
@@ -1404,21 +1363,17 @@
 
             // Hide/show arrows based on scroll position
             const updateArrowVisibility = () => {
-                // Show left arrow if not at the beginning
                 scrollLeftBtn.style.display = pricingGrid.scrollLeft > 0 ? 'block' : 'none';
-                // Show right arrow if not at the end (with a small tolerance)
-                // Check if scroll position + client width is less than scroll width - tolerance
                 scrollRightBtn.style.display = (pricingGrid.scrollLeft + pricingGrid.clientWidth) < (pricingGrid.scrollWidth - 5) ? 'block' : 'none';
             };
 
             pricingGrid.addEventListener('scroll', updateArrowVisibility);
-            window.addEventListener('resize', updateArrowVisibility); // Re-evaluate on resize
-            window.addEventListener('load', updateArrowVisibility); // Initial check on load
+            window.addEventListener('resize', updateArrowVisibility);
+            window.addEventListener('load', updateArrowVisibility);
         }
 
-        // JavaScript for Dynamic Package Detail Overlay
-        const packageDetailOverlay = document.getElementById('package-detail-overlay');
-        const closePackageDetailBtn = document.getElementById('closePackageDetail');
+        // JavaScript for Dynamic Package Detail Section
+        const selectedPackageInfoSection = document.getElementById('selected-package-info');
         const detailPackageTitle = document.getElementById('detailPackageTitle');
         const detailPackageDescription = document.getElementById('detailPackageDescription');
         const selectButtons = document.querySelectorAll('.select-button');
@@ -1469,23 +1424,14 @@
                 const packageName = e.target.dataset.packageName;
                 detailPackageTitle.textContent = packageName;
                 generatePackageDescription(packageName);
-                packageDetailOverlay.classList.add('visible');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling on main page
+
+                // Show the section and scroll to it
+                selectedPackageInfoSection.classList.add('visible');
+                selectedPackageInfoSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             });
-        });
-
-        // Event listener for close button
-        closePackageDetailBtn.addEventListener('click', () => {
-            packageDetailOverlay.classList.remove('visible');
-            document.body.style.overflow = ''; // Restore scrolling on main page
-        });
-
-        // Close overlay when clicking outside the card
-        packageDetailOverlay.addEventListener('click', (e) => {
-            if (e.target === packageDetailOverlay) {
-                packageDetailOverlay.classList.remove('visible');
-                document.body.style.overflow = '';
-            }
         });
 
     </script>
