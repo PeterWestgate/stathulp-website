@@ -659,7 +659,7 @@
 
         /* Contact Sectie */
         #contact .container {
-            display: flex;
+            display: flex; /* Behoud flexbox voor algemene lay-out */
             flex-wrap: wrap;
             gap: 40px;
             align-items: flex-start;
@@ -672,37 +672,13 @@
         }
 
         .contact-form {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
+            flex: 1 100%; /* Maak het contactformulier de volledige breedte */
+            max-width: 700px; /* Optioneel: maximale breedte voor het formulier */
+            margin: 0 auto; /* Centreer het formulier als het niet de volledige breedte inneemt */
         }
 
-        .cal-widget {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            border-radius: 10px;
-            overflow: hidden;
-            min-height: 900px; /* Verhoogde minimum hoogte voor de widget */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--heading-color);
-            font-size: 1.5em;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        /* Verwijder .cal-widget specifieke stijlen, aangezien de div is verwijderd */
 
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            }
-        }
-
-        .cal-widget iframe {
-            width: 100%;
-            height: 100%; /* Zorgt ervoor dat de iframe de volledige hoogte van zijn container vult */
-            border: none;
-        }
 
         .contact-form form {
             background-color: var(--card-background);
@@ -754,7 +730,8 @@
         }
 
 
-        .contact-form button {
+        .contact-form button,
+        .contact-form .cta-button-small { /* Nieuwe stijl voor de extra knop */
             background-color: var(--accent-color);
             color: var(--card-background); /* Past zich aan de card background kleur aan */
             padding: 15px 25px;
@@ -765,13 +742,13 @@
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 163, 163, 0.3);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 5px 15px rgba(0, 163, 163, 0.2);
-            }
+            margin-right: 15px; /* Ruimte tussen knoppen */
+            display: inline-block; /* Zodat ze naast elkaar staan */
+            text-align: center; /* Tekst centreren in de knop */
         }
 
-        .contact-form button:hover {
+        .contact-form button:hover,
+        .contact-form .cta-button-small:hover {
             background-color: var(--hover-color);
              transform: translateY(-3px);
              box-shadow: 0 8px 20px rgba(0, 163, 163, 0.5);
@@ -1024,8 +1001,8 @@
                 min-width: auto;
                 max-width: 100%;
             }
-             .contact-form, .cal-widget {
-                flex: 1 100%;
+             .contact-form {
+                flex: 1 100%; /* Maak het contactformulier de volledige breedte */
             }
              #contact .container {
                 gap: 40px;
@@ -1092,9 +1069,11 @@
                  padding: 12px;
                  margin-bottom: 20px;
              }
-             .contact-form button {
+             .contact-form button,
+             .contact-form .cta-button-small {
                  padding: 12px 20px;
                  font-size: 1.1em;
+                 margin-right: 10px; /* Kleinere marge op mobiel */
              }
              #back-to-top {
                  bottom: 20px;
@@ -1624,11 +1603,9 @@
                         <textarea id="message" name="message" rows="6" required></textarea>
 
                         <button type="submit">Verstuur Bericht</button>
+                        <a href="https://cal.com/stathulp-itul5g/15min" class="cta-button-small">Plan Intakegesprek</a>
                         <div id="formSubmissionMessage" style="margin-top: 15px; font-weight: bold;"></div>
                     </form>
-                </div>
-                <div class="cal-widget animate-on-scroll">
-                    <iframe src="https://cal.com/stathulp-itul5g/15min?embed=true" style="width:100%;height:100%;overflow:hidden;"></iframe>
                 </div>
             </div>
         </section>
