@@ -3,36 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StatHulp - Statistiek hoeft geen nachtmerrie te zijn</title>
+    <title>StatHulp - Statistiek hoeft GEEN nachtmerrie te zijn</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* CSS Variables for Theme */
+        /* CSS Variabelen voor Donkere Modus (Standaard) */
         :root {
-            --dark-navy: #0a192f;
-            --neon-green: #64ffda;
-            --white: #ffffff;
-            --slate: #8892b0;
-            --background-color: var(--dark-navy);
-            --text-color: var(--slate);
-            --heading-color: var(--white);
-            --accent-color: var(--neon-green);
-            --card-background: #112240; /* Slightly lighter dark */
-            --border-color: #233554; /* Border color */
-            --hover-color: #3a5778; /* Slightly lighter dark for hover */
+            --background-color: #0a192f;
+            --text-color: #8892b0;
+            --heading-color: #ffffff;
+            --accent-color: #00A3A3; /* Turquoise */
+            --card-background: #112240;
+            --border-color: #233554;
+            --hover-color: #3a5778;
         }
 
-        .light-mode {
-            --background-color: var(--white);
-            --text-color: #333;
-            --heading-color: #0a192f;
-            --accent-color: #007bff; /* A standard blue for contrast */
-            --card-background: #f4f4f4;
-            --border-color: #ddd;
-            --hover-color: #e2e6ea;
+        /* CSS Variabelen voor Lichte Modus (Systeemvoorkeur) */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --background-color: #f8f9fa; /* Zeer lichtgrijs */
+                --text-color: #343a40; /* Donkergrijs */
+                --heading-color: #212529; /* Nog donkerder grijs */
+                --accent-color: #00A3A3; /* Turquoise */
+                --card-background: #ffffff; /* Wit */
+                --border-color: #e9ecef; /* Lichtgrijze rand */
+                --hover-color: #e0f2f2; /* Zeer lichte turquoise tint */
+            }
         }
 
-        /* Global Styles */
+        /* Globale Stijlen */
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
@@ -41,7 +40,7 @@
             color: var(--text-color);
             transition: background-color 0.5s ease, color 0.5s ease;
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            overflow-x: hidden; /* Voorkom horizontaal scrollen door animaties */
         }
 
         h1, h2, h3 {
@@ -77,7 +76,7 @@
         }
 
         a:hover {
-            color: var(--white);
+            color: var(--heading-color); /* Past zich aan de heading kleur aan */
         }
 
         .container {
@@ -87,14 +86,14 @@
         }
 
         section {
-            padding: 100px 0; /* Increased padding */
-            position: relative; /* Needed for background images/effects */
+            padding: 100px 0; /* Standaard sectie padding */
+            position: relative;
             z-index: 1;
         }
 
         /* Header */
         header {
-            background-color: rgba(10, 25, 47, 0.9); /* Slightly transparent dark navy */
+            background-color: rgba(10, 25, 47, 0.9); /* Donkere modus */
             padding: 15px 0;
             position: fixed;
             width: 100%;
@@ -102,7 +101,12 @@
             left: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px); /* Frosted glass effect */
+            backdrop-filter: blur(5px);
+
+            @media (prefers-color-scheme: light) {
+                background-color: rgba(255, 255, 255, 0.9); /* Lichte modus */
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
         }
 
         header .container {
@@ -112,15 +116,15 @@
         }
 
         .logo {
-            display: flex; /* Use flexbox for centering image */
+            display: flex;
             align-items: center;
         }
 
         .logo img {
-            height: 80px; /* Logo groter gemaakt */
+            height: 80px;
             width: auto;
-            filter: drop-shadow(0 0 5px var(--neon-green)); /* Add shadow to image */
-            border-radius: 15px; /* Afgeronde hoeken toegevoegd */
+            filter: drop-shadow(0 0 5px var(--accent-color));
+            border-radius: 15px;
         }
 
 
@@ -136,10 +140,10 @@
         }
 
         nav ul li a {
-            color: var(--white);
+            color: var(--heading-color); /* Past zich aan de heading kleur aan */
             font-weight: 600;
             position: relative;
-            padding-bottom: 5px; /* Space for underline */
+            padding-bottom: 5px;
         }
 
         nav ul li a::after {
@@ -149,7 +153,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--neon-green);
+            background-color: var(--accent-color);
             transition: width 0.3s ease;
         }
 
@@ -161,11 +165,11 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 10px; /* Increase touch area */
+            padding: 10px;
             span {
                 height: 3px;
                 width: 25px;
-                background-color: var(--white);
+                background-color: var(--heading-color); /* Past zich aan de heading kleur aan */
                 margin-bottom: 4px;
                 border-radius: 5px;
                 transition: all 0.3s ease-in-out;
@@ -184,18 +188,24 @@
             transform: rotate(45deg) translate(-5px, -6px);
         }
 
-        /* Mobile Nav */
+        /* Mobiele Navigatie */
         @media (max-width: 768px) {
             nav ul {
+                background-color: rgba(10, 25, 47, 0.95); /* Donkere modus */
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+
+                @media (prefers-color-scheme: light) {
+                    background-color: rgba(255, 255, 255, 0.95); /* Lichte modus */
+                    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                }
+
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 70px; /* Adjust based on header height */
+                top: 70px;
                 left: 0;
                 width: 100%;
-                background-color: rgba(10, 25, 47, 0.95); /* Slightly less transparent */
                 text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
                 padding: 20px 0;
             }
 
@@ -204,7 +214,7 @@
             }
 
             nav ul li {
-                margin: 15px 0; /* Increased spacing */
+                margin: 15px 0;
             }
 
             .hamburger {
@@ -212,62 +222,73 @@
             }
         }
 
-        /* Hero Section */
+        /* Hero Sectie */
         #hero {
-            background-color: var(--dark-navy); /* Use background color instead of image */
-            color: var(--white);
+            background-color: var(--background-color);
+            color: var(--heading-color); /* Past zich aan de heading kleur aan */
             text-align: center;
-            padding: 200px 20px 150px; /* Adjust padding for fixed header */
-            min-height: 100vh;
+            padding: 120px 20px 80px;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             position: relative;
-            overflow: hidden; /* For potential background animations */
+            overflow: hidden;
         }
 
         #hero::before {
-             /* Removed the overlay if no background image */
              content: none;
         }
 
 
         #hero h1 {
-            font-size: 4em; /* Larger headline */
+            font-size: 4em;
             margin-bottom: 20px;
-            color: var(--neon-green);
-            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 163, 163, 0.5);
+
+            @media (prefers-color-scheme: light) {
+                text-shadow: 0 0 10px rgba(0, 163, 163, 0.3);
+            }
         }
 
         #hero p {
-            font-size: 1.8em; /* Larger subheadline */
+            font-size: 1.8em;
             margin-bottom: 40px;
-            color: var(--slate);
+            color: var(--text-color);
             max-width: 800px;
-            margin-left: auto; /* Zorgt voor centrering van de paragraaf */
-            margin-right: auto; /* Zorgt voor centrering van de paragraaf */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: var(--neon-green);
-            color: var(--dark-navy);
-            padding: 18px 35px; /* Larger button */
-            border-radius: 50px; /* Pill shape */
+            background-color: var(--accent-color);
+            color: var(--card-background); /* Past zich aan de card background kleur aan */
+            padding: 18px 35px;
+            border-radius: 50px;
             font-size: 1.3em;
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 163, 163, 0.3);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 163, 163, 0.2);
+            }
         }
 
         .cta-button:hover {
-            background-color: var(--white);
+            background-color: var(--hover-color);
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(100, 255, 218, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 163, 163, 0.5);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 8px 20px rgba(0, 163, 163, 0.4);
+            }
         }
 
-        /* Features Section */
+        /* Kenmerken Sectie */
         #features .container {
             text-align: center;
         }
@@ -281,25 +302,37 @@
 
         .feature-item {
             background-color: var(--card-background);
-            padding: 40px; /* Increased padding */
+            padding: 40px;
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             border: 1px solid var(--border-color);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
         }
 
         .feature-item:hover {
             transform: translateY(-15px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             background-color: var(--hover-color);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
         }
 
         .feature-item i {
-            font-size: 4em; /* Larger icons */
+            font-size: 4em;
             color: var(--accent-color);
             margin-bottom: 25px;
-            text-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
+            text-shadow: 0 0 8px rgba(0, 163, 163, 0.4);
+
+            @media (prefers-color-scheme: light) {
+                text-shadow: 0 0 8px rgba(0, 163, 163, 0.2);
+            }
         }
 
         .feature-item h3 {
@@ -313,7 +346,7 @@
         }
 
 
-        /* Process Section */
+        /* Proces Sectie */
         #proces {
             background-color: var(--card-background);
         }
@@ -327,7 +360,7 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 40px; /* Increased gap */
+            gap: 40px;
         }
 
         .step-item {
@@ -335,14 +368,18 @@
             min-width: 280px;
             max-width: 350px;
             text-align: center;
-            padding: 30px; /* Increased padding */
-            opacity: 0; /* For scroll animation */
-            transform: translateY(30px); /* For scroll animation */
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            background-color: var(--dark-navy); /* Background for steps */
+            background-color: var(--background-color); /* Gebruik de algemene achtergrondkleur */
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             border: 1px solid var(--border-color);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
         }
 
          .step-item.is-visible {
@@ -352,16 +389,20 @@
 
 
         .step-item .icon {
-            font-size: 4em; /* Larger icons */
+            font-size: 4em;
             color: var(--accent-color);
             margin-bottom: 20px;
             position: relative;
             display: inline-block;
-            text-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
+            text-shadow: 0 0 8px rgba(0, 163, 163, 0.4);
+
+            @media (prefers-color-scheme: light) {
+                text-shadow: 0 0 8px rgba(0, 163, 163, 0.2);
+            }
         }
 
         .step-item .step-number {
-            display: none; /* Nummers verwijderd */
+            display: none;
         }
 
         .step-item h3 {
@@ -374,7 +415,7 @@
         }
 
 
-        /* Testimonials Section */
+        /* Getuigenissen Sectie */
         #testimonials {
              background-color: var(--card-background);
         }
@@ -385,7 +426,7 @@
 
 
         .testimonial-item {
-            background-color: var(--dark-navy);
+            background-color: var(--background-color); /* Gebruik de algemene achtergrondkleur */
             padding: 30px;
             border-radius: 8px;
             margin-bottom: 30px;
@@ -393,10 +434,14 @@
             font-style: italic;
             border-left: 5px solid var(--accent-color);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            opacity: 0; /* For scroll animation */
-            transform: translateX(-50px); /* For scroll animation */
+            opacity: 0;
+            transform: translateX(-50px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
              border: 1px solid var(--border-color);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            }
         }
          .testimonial-item.is-visible {
             opacity: 1;
@@ -416,9 +461,9 @@
             font-size: 1em;
         }
 
-        /* Pricing Section */
+        /* Prijzen Sectie */
         #prijzen {
-             background-color: var(--dark-navy); /* Darker background for contrast */
+             background-color: var(--background-color);
         }
 
         #prijzen .container {
@@ -429,72 +474,83 @@
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center the carousel wrapper itself */
+            justify-content: center;
             margin: 0 auto;
             max-width: 100%;
         }
 
         .pricing-grid {
-            display: flex; /* Gebruik flexbox voor horizontale lay-out */
-            flex-wrap: nowrap; /* Voorkom dat items ombreken naar een nieuwe regel */
-            overflow-x: auto; /* Voeg horizontale scroll toe indien nodig */
-            -webkit-overflow-scrolling: touch; /* Verbeterd scrollen op iOS */
-            scroll-behavior: smooth; /* Smooth scrolling */
-            gap: 15px; /* Afstand tussen de items (nog kleiner) */
-            padding-bottom: 20px; /* Ruimte voor scrollbar */
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* IE and Edge */
-            justify-content: flex-start; /* Items starten aan de linkerkant */
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            gap: 15px;
+            padding-bottom: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            justify-content: flex-start;
         }
 
         .pricing-grid::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            display: none;
         }
 
         .scroll-arrow {
-            background-color: var(--neon-green);
-            color: var(--dark-navy);
+            background-color: var(--accent-color);
+            color: var(--card-background); /* Past zich aan de card background kleur aan */
             border: none;
             border-radius: 50%;
-            width: 40px; /* Smaller arrows */
-            height: 40px; /* Smaller arrows */
-            font-size: 1.2em; /* Smaller icon */
+            width: 40px;
+            height: 40px;
+            font-size: 1.2em;
             cursor: pointer;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
         }
 
         .scroll-arrow:hover {
-            background-color: var(--white);
+            background-color: var(--hover-color);
             transform: translateY(-50%) scale(1.05);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            }
         }
 
         .scroll-arrow.left {
-            left: -10px; /* Position outside the grid slightly */
+            left: -10px;
         }
 
         .scroll-arrow.right {
-            right: -10px; /* Position outside the grid slightly */
+            right: -10px;
         }
 
         .pricing-item {
-            flex: 0 0 auto; /* Voorkom dat items krimpen of groeien */
-            min-width: 130px; /* Minimale breedte voor elk pakket (gehalveerd) */
+            flex: 0 0 auto;
+            min-width: 130px;
             background-color: var(--card-background);
-            padding: 20px 15px; /* Minder padding */
+            padding: 20px 15px;
             border-radius: 10px;
             text-align: center;
             border: 2px solid transparent;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            opacity: 0; /* For scroll animation */
-            transform: translateY(50px); /* For scroll animation */
+            opacity: 0;
+            transform: translateY(50px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
         }
 
         .pricing-item.is-visible {
@@ -504,107 +560,144 @@
 
         .pricing-item:hover {
             transform: translateY(-15px);
-            border-color: var(--neon-green);
+            border-color: var(--accent-color);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             background-color: var(--hover-color);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
         }
 
         .pricing-item i {
-            font-size: 2.5em; /* Smaller icons */
+            font-size: 2.5em;
             color: var(--accent-color);
-            margin-bottom: 15px; /* Minder margin */
-            text-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(0, 163, 163, 0.4);
+
+            @media (prefers-color-scheme: light) {
+                text-shadow: 0 0 8px rgba(0, 163, 163, 0.2);
+            }
         }
 
         .pricing-item h3 {
-            font-size: 1.4em; /* Smaller heading */
-            margin-bottom: 8px; /* Minder margin */
+            font-size: 1.4em;
+            margin-bottom: 8px;
             color: var(--heading-color);
         }
 
         .price {
-            font-size: 2em; /* Smaller price */
+            font-size: 2em;
             font-weight: bold;
-            color: var(--neon-green);
-            margin-bottom: 15px; /* Minder margin */
+            color: var(--accent-color);
+            margin-bottom: 15px;
         }
 
         .price small {
-            font-size: 0.4em; /* Smaller '/sessie' or '/maand' */
-            color: var(--slate);
+            font-size: 0.4em;
+            color: var(--text-color);
         }
 
         .pricing-item ul {
             list-style: none;
             padding: 0;
-            margin-bottom: 20px; /* Minder margin */
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .pricing-item ul li {
-            margin-bottom: 8px; /* Minder spacing */
-            padding-left: 20px; /* Minder space for icon */
+            margin-bottom: 8px;
+            padding-left: 20px;
             position: relative;
-            font-size: 0.9em; /* Smaller font */
+            font-size: 0.9em;
         }
 
         .pricing-item ul li::before {
-            content: "\f00c"; /* Font Awesome check icon */
+            content: "\f00c";
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
-            color: var(--neon-green);
+            color: var(--accent-color);
             position: absolute;
             left: 0;
-            top: 2px; /* Adjust vertical alignment */
+            top: 2px;
+        }
+
+        .pricing-item ul li:first-child {
+            font-weight: bold;
+            text-decoration: underline;
         }
 
 
         .pricing-item .select-button {
             display: inline-block;
-            background-color: var(--neon-green);
-            color: var(--dark-navy);
-            padding: 12px 20px; /* Smaller button */
+            background-color: var(--accent-color);
+            color: var(--card-background); /* Past zich aan de card background kleur aan */
+            padding: 12px 20px;
             border: none;
-            border-radius: 50px; /* Pill shape */
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1em; /* Smaller font */
+            font-size: 1em;
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-             box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 163, 163, 0.3);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 163, 163, 0.2);
+            }
         }
 
         .pricing-item .select-button:hover {
-            background-color: var(--white);
-             transform: translateY(-3px);
-             box-shadow: 0 8px 20px rgba(100, 255, 218, 0.5);
+            background-color: var(--hover-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 163, 163, 0.5);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 8px 20px rgba(0, 163, 163, 0.4);
+            }
         }
 
 
-        /* Contact Section */
+        /* Contact Sectie */
         #contact .container {
             display: flex;
             flex-wrap: wrap;
-            gap: 60px; /* Increased gap */
-            align-items: flex-start; /* Align items to the top */
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
         }
 
+        #contact h2 {
+            width: 100%;
+            margin-bottom: 40px;
+        }
 
-        .contact-form, .calendly-widget {
+        .contact-form {
             flex: 1;
             min-width: 300px;
+            max-width: 500px;
+        }
+
+        .calendly-widget {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
         }
 
         .contact-form form {
             background-color: var(--card-background);
-            padding: 40px; /* Increased padding */
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             border: 1px solid var(--border-color);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
         }
 
         .contact-form label {
             display: block;
-            margin-bottom: 10px; /* Increased spacing */
+            margin-bottom: 10px;
             font-weight: bold;
             color: var(--heading-color);
             font-size: 1.1em;
@@ -613,49 +706,65 @@
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            padding: 15px; /* Increased padding */
-            margin-bottom: 25px; /* Increased spacing */
+            padding: 15px;
+            margin-bottom: 25px;
             border: 1px solid var(--border-color);
             border-radius: 5px;
-            background-color: var(--dark-navy);
+            background-color: var(--background-color); /* Gebruik de algemene achtergrondkleur */
             color: var(--text-color);
             box-sizing: border-box;
             font-size: 1em;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+            @media (prefers-color-scheme: light) {
+                background-color: var(--background-color);
+            }
         }
 
          .contact-form input:focus,
         .contact-form textarea:focus {
             outline: none;
-            border-color: var(--neon-green);
-            box-shadow: 0 0 8px rgba(100, 255, 218, 0.6);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(0, 163, 163, 0.6);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 0 8px rgba(0, 163, 163, 0.4);
+            }
         }
 
 
         .contact-form button {
-            background-color: var(--neon-green);
-            color: var(--dark-navy);
-            padding: 15px 25px; /* Increased padding */
+            background-color: var(--accent-color);
+            color: var(--card-background); /* Past zich aan de card background kleur aan */
+            padding: 15px 25px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1.2em;
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-             box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 163, 163, 0.3);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 163, 163, 0.2);
+            }
         }
 
         .contact-form button:hover {
-            background-color: var(--white);
+            background-color: var(--hover-color);
              transform: translateY(-3px);
-             box-shadow: 0 8px 20px rgba(100, 255, 218, 0.5);
+             box-shadow: 0 8px 20px rgba(0, 163, 163, 0.5);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 8px 20px rgba(0, 163, 163, 0.4);
+            }
         }
 
         .calendly-widget {
-             background-color: var(--card-background); /* Match theme */
+             background-color: var(--card-background);
              border-radius: 10px;
-             overflow: hidden; /* Ensure embedded content stays within bounds */
-             min-height: 600px; /* Give it a default height */
+             overflow: hidden;
+             min-height: 600px;
              display: flex;
              justify-content: center;
              align-items: center;
@@ -664,11 +773,14 @@
              text-align: center;
              border: 1px solid var(--border-color);
              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-             position: relative; /* Needed for placeholder text */
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
         }
 
         .calendly-widget .calendly-inline-widget {
-            width: 100%; /* Make widget fill container */
+            width: 100%;
             height: 100%;
         }
 
@@ -677,92 +789,48 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 0; /* Ensure it's behind the widget if loaded */
-             color: var(--slate);
+            z-index: 0;
+             color: var(--text-color);
         }
 
 
-        /* Back-to-Top Button */
+        /* Terug naar boven knop */
         #back-to-top {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
-            bottom: 30px; /* Increased distance from bottom */
-            right: 30px; /* Increased distance from right */
+            bottom: 30px;
+            right: 30px;
             z-index: 99;
             border: none;
             outline: none;
-            background-color: var(--neon-green);
-            color: var(--dark-navy);
+            background-color: var(--accent-color);
+            color: var(--card-background); /* Past zich aan de card background kleur aan */
             cursor: pointer;
-            padding: 18px; /* Larger button */
+            padding: 18px;
             border-radius: 50%;
-            font-size: 1.3em; /* Larger icon */
+            font-size: 1.3em;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
         }
 
         #back-to-top:hover {
-            background-color: var(--white);
+            background-color: var(--hover-color);
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            }
         }
 
-        /* Theme Toggle */
-        .theme-switch-wrapper {
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-             z-index: 1001; /* Ensure it's above mobile nav */
-        }
-
-        .theme-switch {
-            display: inline-block;
-            height: 34px;
-            position: relative;
-            width: 60px;
-        }
-
-        .theme-switch input {
-            display: none;
-        }
-
-        .slider {
-            background-color: var(--border-color); /* Match theme */
-            bottom: 0;
-            cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            background-color: var(--white);
-            bottom: 4px;
-            content: "";
-            height: 26px;
-            left: 4px;
-            position: absolute;
-            transition: .4s;
-            width: 26px;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: var(--neon-green);
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        /* Scroll Animation Styles (Initial state) */
+        /* Scroll Animaties Stijlen (Initiële staat) */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(30px); /* Increased initial translateY */
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Slower transition */
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         .animate-on-scroll.is-visible {
@@ -770,7 +838,136 @@
             transform: translateY(0);
         }
 
-        /* Responsive Adjustments */
+        /* Begeleiders Section */
+        #begeleiders {
+            background-color: var(--card-background);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        #begeleiders .begeleiders-carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        #begeleiders .begeleiders-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            gap: 25px;
+            padding-bottom: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            justify-content: flex-start;
+        }
+
+        #begeleiders .begeleiders-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        #begeleiders .scroll-arrow {
+            background-color: var(--accent-color);
+            color: var(--card-background); /* Past zich aan de card background kleur aan */
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.4em;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        #begeleiders .scroll-arrow:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        #begeleiders .scroll-arrow.left {
+            left: -15px;
+        }
+
+        #begeleiders .scroll-arrow.right {
+            right: -15px;
+        }
+
+        .begeleider-item {
+            flex: 0 0 auto;
+            min-width: 280px;
+            max-width: 320px;
+            background-color: var(--background-color); /* Gebruik de algemene achtergrondkleur */
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .begeleider-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .begeleider-item:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--hover-color);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .begeleider-item i {
+            font-size: 4em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(0, 163, 163, 0.4);
+
+            @media (prefers-color-scheme: light) {
+                text-shadow: 0 0 8px rgba(0, 163, 163, 0.2);
+            }
+        }
+
+        .begeleider-item h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: var(--heading-color);
+        }
+
+        .begeleider-item p {
+            font-size: 1em;
+            color: var(--text-color);
+        }
+
+        /* Responsieve Aanpassingen */
         @media (max-width: 992px) {
             #hero h1 {
                 font-size: 3em;
@@ -796,19 +993,16 @@
             header .container {
                  flex-wrap: wrap;
             }
-             .logo, .theme-switch-wrapper {
+             .logo {
                 flex-basis: auto;
-             }
-             .theme-switch-wrapper {
-                 margin-left: auto;
              }
             nav {
                  flex-basis: 100%;
                  order: 1;
-                 margin-top: 10px; /* Space below logo/toggle */
+                 margin-top: 10px;
             }
              nav ul {
-                top: 80px; /* Adjust based on header height */
+                top: 80px;
              }
 
             #hero {
@@ -832,7 +1026,7 @@
                 bottom: -10px;
              }
             .features-grid {
-                grid-template-columns: 1fr; /* Zorgt ervoor dat op kleine schermen de items onder elkaar komen */
+                grid-template-columns: 1fr;
             }
             .process-steps {
                 flex-direction: column;
@@ -848,19 +1042,20 @@
              #contact .container {
                 gap: 40px;
              }
-             /* Zorg dat pricing-grid nog steeds horizontaal scrollt op kleinere schermen */
-            .pricing-grid {
-                justify-content: flex-start; /* Behoud start alignment */
+            .pricing-grid,
+            #begeleiders .begeleiders-grid {
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
             }
-            .pricing-item {
-                min-width: 180px; /* Aangepast voor kleinere schermen */
-                padding: 25px 15px; /* Aangepast voor kleinere schermen */
+            .pricing-item,
+            .begeleider-item {
+                scroll-snap-align: start;
             }
-            .scroll-arrow.left {
-                left: 5px; /* Adjust for smaller screens */
-            }
-            .scroll-arrow.right {
-                right: 5px; /* Adjust for smaller screens */
+            /* Hide arrows on mobile */
+            .pricing-carousel-wrapper .scroll-arrow,
+            #begeleiders .scroll-arrow {
+                display: none;
             }
         }
 
@@ -879,20 +1074,20 @@
                 font-size: 1.5em;
              }
             .pricing-item {
-                padding: 20px 10px; /* Nog kleiner op mobiel */
-                min-width: 120px; /* Nog kleiner op mobiel */
+                padding: 20px 10px;
+                min-width: 120px;
             }
             .pricing-item i {
-                font-size: 2em; /* Nog kleinere iconen */
+                font-size: 2em;
             }
             .pricing-item h3 {
-                font-size: 1.2em; /* Nog kleinere titel */
+                font-size: 1.2em;
             }
             .price {
-                font-size: 1.8em; /* Nog kleinere prijs */
+                font-size: 1.8em;
             }
              .pricing-item ul li {
-                 font-size: 0.8em; /* Nog kleinere lijstitems */
+                 font-size: 0.8em;
                  padding-left: 15px;
              }
              .pricing-item ul li::before {
@@ -921,7 +1116,7 @@
              }
         }
 
-        /* Styles for the integrated package detail section */
+        /* Stijlen voor de geïntegreerde pakketdetail sectie */
         #selected-package-info {
             background-color: var(--card-background);
             padding: 50px;
@@ -929,11 +1124,15 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 2px solid var(--border-color);
             max-width: 900px;
-            margin: 80px auto 0 auto; /* Margin top to separate from pricing, center horizontally */
+            margin: 60px auto 0 auto;
             text-align: center;
-            opacity: 0; /* Hidden by default */
+            opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
         }
 
         #selected-package-info.visible {
@@ -943,10 +1142,13 @@
 
         #selected-package-info h2 {
             font-size: 3em;
-            color: var(--neon-green);
+            color: var(--accent-color);
             margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
-            position: relative; /* For the ::after pseudo-element */
+            text-shadow: 0 0 10px rgba(0, 163, 163, 0.5);
+
+            @media (prefers-color-scheme: light) {
+                text-shadow: 0 0 10px rgba(0, 163, 163, 0.3);
+            }
         }
 
         #selected-package-info h2::after {
@@ -957,13 +1159,13 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background-color: var(--neon-green);
+            background-color: var(--accent-color);
             border-radius: 2px;
         }
 
         #selected-package-info p {
             font-size: 1.2em;
-            color: var(--slate);
+            color: var(--text-color);
             margin-bottom: 30px;
             text-align: left;
         }
@@ -973,8 +1175,8 @@
         }
 
         .loading-spinner {
-            border: 8px solid #f3f3f3; /* Light grey */
-            border-top: 8px solid var(--neon-green); /* Blue */
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid var(--accent-color);
             border-radius: 50%;
             width: 60px;
             height: 60px;
@@ -987,6 +1189,187 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* FAQ Sectie Stijlen */
+        #faq {
+            background-color: var(--background-color);
+            padding: 100px 0;
+        }
+
+        #faq .faq-item {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        #faq .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            cursor: pointer;
+            background-color: var(--card-background);
+            color: var(--heading-color);
+            font-size: 1.3em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        #faq .faq-question:hover {
+            background-color: var(--hover-color);
+        }
+
+        #faq .faq-question i {
+            font-size: 1em;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        #faq .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        #faq .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            color: var(--text-color);
+            font-size: 1.1em;
+        }
+
+        #faq .faq-answer.open {
+            max-height: 500px;
+            padding: 20px 30px 30px;
+        }
+
+        #faq .faq-answer p {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        #faq .faq-button-wrapper {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        footer .footer-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        footer .footer-links a {
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Cookie Consent Pop-up Styles */
+        #cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-background);
+            color: var(--text-color);
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            z-index: 2000;
+            transform: translateY(100%);
+            transition: transform 0.5s ease-out;
+        }
+
+        #cookie-consent-banner.show {
+            transform: translateY(0);
+        }
+
+        #cookie-consent-banner p {
+            margin: 0;
+            font-size: 1em;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        #cookie-consent-banner .cookie-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #cookie-consent-banner button {
+            background-color: var(--accent-color);
+            color: var(--card-background);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #cookie-consent-banner button:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        #cookie-consent-banner .more-info-link {
+            color: var(--accent-color);
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            #cookie-consent-banner {
+                padding: 15px;
+            }
+            #cookie-consent-banner p {
+                font-size: 0.9em;
+            }
+            #cookie-consent-banner button {
+                padding: 8px 15px;
+                font-size: 0.8em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -998,18 +1381,14 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#features">Begeleiders</a></li>
+                    <li><a href="#features">Over Ons</a></li>
                     <li><a href="#proces">Proces</a></li>
                     <li><a href="#prijzen">Prijzen</a></li>
+                    <li><a href="#begeleiders">Onze Begeleiders</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
-             <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                </label>
-            </div>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -1021,9 +1400,9 @@
     <main>
         <section id="hero">
             <div class="container">
-                <h1>Statistiek hoeft geen nachtmerrie te zijn.</h1>
-                <p>Ontvang 1-op-1 begeleiding, speciaal voor psychologiestudenten. Ontdek ook onze voordelige <a href="#prijzen" style="color: var(--neon-green); text-decoration: underline;">groepslessen</a>!</p>
-                <a href="https://calendly.com/your-link" target="_blank" class="cta-button">Plan gratis intakegesprek</a>
+                <h1>Statistiek hoeft <span style="text-decoration: underline;">GEEN</span> nachtmerrie te zijn.</h1>
+                <p>Ontvang 1-op-1 begeleiding, speciaal voor psychologiestudenten. We bieden ook voordelige groepslessen en gerichte studiecoaching aan.</p>
+                <a href="https://calendly.com/stathulp" target="_blank" class="cta-button">Plan gratis intakegesprek</a>
             </div>
         </section>
 
@@ -1031,6 +1410,16 @@
             <div class="container">
                 <h2>De StatHulp Standaard</h2>
                 <div class="features-grid">
+                    <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-user-friends"></i>
+                        <h3>Begeleiding door Studenten voor Studenten</h3>
+                        <p>Ervaar bijles van oudere ervaren studenten die jouw uitdagingen begrijpen en je effectief kunnen helpen.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-university"></i>
+                        <h3>Dichtbij de Bron: Actuele Leerstof & Professoren</h3>
+                        <p>Onze begeleiders staan in nauw contact met de professoren en de meest recente leerstof, zodat je altijd de meest relevante hulp krijgt.</p>
+                    </div>
                     <div class="feature-item animate-on-scroll">
                         <i class="fas fa-brain"></i>
                         <h3>Diepgaande Expertise</h3>
@@ -1050,16 +1439,6 @@
                         <i class="fas fa-hands-helping"></i>
                         <h3>Volledige Betrokkenheid</h3>
                         <p>Geen 'automatische piloot', maar maximale persoonlijke aandacht en betrokkenheid bij jouw unieke studietraject.</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-rocket"></i>
-                        <h3>Passie voor Jouw Succes</h3>
-                        <p>Onze passie en gedrevenheid zorgen ervoor dat we alles op alles zetten voor jouw maximale slaagkansen.</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Voortdurende Groei</h3>
-                        <p>We evalueren en optimaliseren onze methoden continu om de meest effectieve begeleiding te garanderen, afgestemd op de nieuwste inzichten.</p>
                     </div>
                 </div>
             </div>
@@ -1120,68 +1499,68 @@
                         <div class="pricing-item animate-on-scroll">
                             <i class="fas fa-user"></i>
                             <h3>Basis</h3>
-                            <div class="price">€49<small>/sessie</small></div>
+                            <div class="price">€39<small>/sessie</small></div>
                             <ul>
-                                <li><i class="fas fa-check-circle"></i> 1-op-1 sessie (60 min)</li>
-                                <li><i class="fas fa-check-circle"></i> Hulp bij specifieke vragen</li>
-                                <li><i class="fas fa-check-circle"></i> Geschikt voor losse problemen</li>
-                                <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li>
-                                <li><i class="fas fa-check-circle"></i> Vragen via e-mail</li>
+                                <li><b><u>1-op-1 sessie (60 min)</u></b></li>
+                                <li>Hulp bij specifieke vragen</li>
+                                <li>Geschikt voor losse problemen</li>
+                                <li>Online of fysiek (+€5/sessie)</li>
+                                <li>Vragen via e-mail</li>
                             </ul>
-                            <a href="#" class="select-button" data-package-name="Basis">Kies Pakket</a>
+                            <a href="#" class="select-button" data-package-name="Basis">Meer Info</a>
                         </div>
                         <div class="pricing-item animate-on-scroll">
                              <i class="fas fa-book-open"></i>
                             <h3>Standaard</h3>
-                            <div class="price">€129<small>/maand</small></div>
+                            <div class="price">€69<small>/maand</small></div>
                              <ul>
-                                <li><i class="fas fa-check-circle"></i> 2 sessies per maand</li>
-                                <li><i class="fas fa-check-circle"></i> Doorlopende begeleiding</li>
-                                <li><i class="fas fa-check-circle"></i> Hulp bij specifieke vragen</li>
-                                <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li>
-                                <li><i class="fas fa-check-circle"></i> Vragen via e-mail</li>
+                                <li><b><u>2 sessies per maand</u></b></li>
+                                <li>Doorlopende begeleiding</li>
+                                <li>Hulp bij specifieke vragen</li>
+                                <li>Online of fysiek (+€5/sessie)</li>
+                                <li>Vragen via e-mail</li>
                             </ul>
-                            <a href="#" class="select-button" data-package-name="Standaard">Kies Pakket</a>
+                            <a href="#" class="select-button" data-package-name="Standaard">Meer Info</a>
                         </div>
                         <div class="pricing-item animate-on-scroll">
                             <i class="fas fa-star"></i>
                             <h3>Premium</h3>
-                            <div class="price">€249<small>/maand</small></div>
+                            <div class="price">€119<small>/maand</small></div>
                              <ul>
-                                <li><i class="fas fa-check-circle"></i> 4 sessies per maand</li>
-                                <li><i class="fas fa-check-circle"></i> Intensieve begeleiding</li>
-                                <li><i class="fas fa-check-circle"></i> Hulp bij specifieke vragen</li>
-                                <li><i class="fas fa-check-circle"></i> Volledige toegang functionaliteiten</li>
-                                <li><i class="fas fa-check-circle"></i> Prioriteit support (e-mail/chat)</li>
-                                <li><i class="fas fa-check-circle"></i> Examenvoorbereiding</li>
+                                <li><b><u>4 sessies per maand</u></b></li>
+                                <li>Intensieve begeleiding</li>
+                                <li>Hulp bij specifieke vragen</li>
+                                <li>Online of fysiek (+€5/sessie)</li>
+                                <li>Prioriteit support (e-mail/chat)</li>
+                                <li>Examenvoorbereiding</li>
                             </ul>
-                            <a href="#" class="select-button" data-package-name="Premium">Kies Pakket</a>
+                            <a href="#" class="select-button" data-package-name="Premium">Meer Info</a>
                         </div>
                         <div class="pricing-item animate-on-scroll">
                             <i class="fas fa-user-friends"></i>
-                            <h3>Groepsles (2 pers.)</h3>
-                            <div class="price">€69<small>/uur</small></div>
+                            <h3>Groepsles (2-5 pers.)</h3>
+                            <div class="price">€29<small>/persoon/uur</small></div>
                             <ul>
-                                <li><i class="fas fa-check-circle"></i> Begeleiding voor 2 studenten</li>
-                                <li><i class="fas fa-check-circle"></i> Voordelig samen leren</li>
-                                <li><i class="fas fa-check-circle"></i> Hulp bij specifieke vragen</li>
-                                <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li>
-                                <li><i class="fas fa-check-circle"></i> Flexibele planning</li>
+                                <li><b><u>Begeleiding voor 2-5 studenten</u></b></li>
+                                <li>Voordelig samen leren</li>
+                                <li>Hulp bij specifieke vragen</li>
+                                <li>Online of fysiek (+€5/sessie)</li>
+                                <li>Flexibele planning</li>
                             </ul>
-                            <a href="#" class="select-button" data-package-name="Groepsles (2 personen)">Kies Pakket</a>
+                            <a href="#" class="select-button" data-package-name="Groepsles (2-5 personen)">Meer Info</a>
                         </div>
-                        <div class="pricing-item animate-on-scroll">
-                            <i class="fas fa-users"></i>
-                            <h3>Groepsles (3-5 pers.)</h3>
-                            <div class="price">€119<small>/uur</small></div>
+                         <div class="pricing-item animate-on-scroll">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Studiecoaching</h3>
+                            <div class="price">€34<small>/sessie</small></div>
                             <ul>
-                                <li><i class="fas fa-check-circle"></i> Begeleiding voor 3-5 studenten</li>
-                                <li><i class="fas fa-check-circle"></i> Maximaal rendement per student</li>
-                                <li><i class="fas fa-check-circle"></i> Hulp bij specifieke vragen</li>
-                                <li><i class="fas fa-check-circle"></i> Toegang tot basis functionaliteiten</li>
-                                <li><i class="fas fa-check-circle"></i> Flexibele planning</li>
+                                <li><b><u>Hulp met studiemethoden</u></b></li>
+                                <li>Examenplanning opstellen</li>
+                                <li>Examentypes aanpakken</li>
+                                <li>Focus op strategie, niet inhoud</li>
+                                <li>Exclusief online beschikbaar</li>
                             </ul>
-                            <a href="#" class="select-button" data-package-name="Groepsles (3-5 personen)">Kies Pakket</a>
+                            <a href="#" class="select-button" data-package-name="Studiecoaching">Meer Info</a>
                         </div>
                     </div>
                     <button class="scroll-arrow right" id="scrollRightBtn"><i class="fas fa-chevron-right"></i></button>
@@ -1189,19 +1568,64 @@
             </div>
         </section>
 
-        <section id="selected-package-info" class="container">
+        <section id="selected-package-info" class="container" style="padding-top: 50px; padding-bottom: 50px; margin-top: 60px;">
             <h2 id="detailPackageTitle">Pakket Informatie</h2>
             <div id="detailPackageDescription">
                 <p>Selecteer een pakket hierboven om meer details te zien en direct een intakegesprek te boeken!</p>
             </div>
-            <a href="https://calendly.com/your-link" target="_blank" class="cta-button">Boek Intakegesprek</a>
+            <a href="https://calendly.com/stathulp" target="_blank" class="cta-button">Boek Intakegesprek</a>
         </section>
 
-        <section id="contact">
+        <section id="begeleiders" style="padding-top: 80px; padding-bottom: 100px;">
+            <div class="container">
+                <h2>Onze Begeleiders</h2>
+                <div class="begeleiders-carousel-wrapper">
+                    <button class="scroll-arrow left" id="scrollBegeleidersLeftBtn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="begeleiders-grid" id="begeleidersGrid">
+                        <div class="begeleider-item animate-on-scroll">
+                            <i class="fas fa-user-graduate"></i>
+                            <h3>Dr. Elias De Vries</h3>
+                            <p>Elias is een ervaren statisticus met een passie voor het vereenvoudigen van complexe materie. Zijn specialiteit ligt in regressieanalyse en multivariate statistiek.</p>
+                        </div>
+                        <div class="begeleider-item animate-on-scroll">
+                            <i class="fas fa-user-tie"></i>
+                            <h3>Prof. Lena Mertens</h3>
+                            <p>Lena combineert haar diepgaande kennis van psychologie met statistische expertise. Ze helpt studenten graag met methodologie en onderzoeksdesign.</p>
+                        </div>
+                        <div class="begeleider-item animate-on-scroll">
+                            <i class="fas fa-user-alt"></i>
+                            <h3>Sarah Janssen</h3>
+                            <p>Sarah is gespecialiseerd in SPSS en RStudio en helpt studenten met praktische data-analyse. Ze legt de focus op heldere interpretatie van resultaten.</p>
+                        </div>
+                        <div class="begeleider-item animate-on-scroll">
+                            <i class="fas fa-user-secret"></i>
+                            <h3>Tom Van Dijk</h3>
+                            <p>Tom heeft een achtergrond in cognitieve psychologie en is expert in experimenteel design en de bijbehorende statistiek. Hij maakt abstracte concepten tastbaar.</p>
+                        </div>
+                        <div class="begeleider-item animate-on-scroll">
+                            <i class="fas fa-user-md"></i>
+                            <h3>Dr. Kim Peeters</h3>
+                            <p>Kim richt zich op de klinische psychologie en de toepassing van statistiek in diagnostiek en behandelingsevaluatie. Ze biedt gerichte begeleiding voor specifieke vraagstukken.</p>
+                        </div>
+                        <div class="begeleider-item animate-on-scroll">
+                            <i class="fas fa-user-astronaut"></i>
+                            <h3>Max Vermeulen</h3>
+                            <p>Max is onze studiecoach die je helpt met het ontwikkelen van effectieve studiestrategieën, examenplanning en het overwinnen van studiestress, specifiek voor psychologievakken.</p>
+                        </div>
+                    </div>
+                    <button class="scroll-arrow right" id="scrollBegeleidersRightBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="padding-top: 80px;">
             <div class="container">
                 <h2>Neem Contact Op</h2>
                 <div class="contact-form animate-on-scroll">
-                    <form action="#" method="post">
+                    <form action="https://submit-form.com/Kq5jXJsUA" method="post" id="contactForm">
+                        <p style="color: var(--text-color); font-size: 0.9em; margin-bottom: 20px;">
+                            We bieden zowel online begeleiding als fysieke bijlessen aan huis/op kot in Leuven.
+                        </p>
                         <label for="name">Naam:</label>
                         <input type="text" id="name" name="name" required>
 
@@ -1215,18 +1639,194 @@
                     </form>
                 </div>
                 <div class="calendly-widget animate-on-scroll">
-                    <div class="calendly-inline-widget" data-url="https://calendly.com/your-link" style="min-width:320px;height:700px;"></div>
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/stathulp" style="min-width:320px;height:700px;"></div>
                     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
                     <p>Laadt Calendly widget...</p>
                 </div>
             </div>
         </section>
+
+        <section id="faq">
+            <div class="container">
+                <h2>Veelgestelde Vragen</h2>
+                <div class="faq-list">
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Wat is StatHulp precies?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>StatHulp biedt gespecialiseerde 1-op-1 bijles en studiecoaching in statistiek en psychologie, specifiek afgestemd op de behoeften van psychologiestudenten. Ons doel is om complexe materie begrijpelijk te maken en je te helpen excelleren in je studies.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Voor wie is StatHulp bedoeld?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>StatHulp is er voor alle psychologiestudenten die worstelen met statistiek, methodologie, of andere psychologievakken. Of je nu specifieke hulp nodig hebt met een opdracht, je voorbereidt op een examen, of je studiemethode wilt verbeteren, wij staan voor je klaar.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Hoe werkt de gratis intake?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tijdens een vrijblijvend intakegesprek bespreken we jouw specifieke uitdagingen, leertraject en doelen. Dit helpt ons om een gepersonaliseerd plan op te stellen dat perfect aansluit bij jouw behoeften. Het is de ideale manier om kennis te maken en te zien hoe StatHulp jou kan helpen.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Kan ik zowel online als fysiek les krijgen?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absoluut! Wij bieden zowel flexibele online lessen aan via videobellen, als fysieke bijlessen bij jou thuis of op kot in Leuven. Voor fysieke lessen geldt een kleine toeslag van €5 per sessie om de reiskosten te dekken. De keuze is aan jou, afhankelijk van wat het beste past bij jouw situatie.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Welke software wordt er gebruikt tijdens de statistieklessen?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Onze begeleiders zijn ervaren in het werken met de meest gangbare statistische softwarepakketten die binnen de psychologie worden gebruikt, zoals SPSS en RStudio. We passen onze uitleg aan op de software die jij nodig hebt voor je studie of onderzoek.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Hoeveel sessies heb ik nodig?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Het aantal benodigde sessies is volledig afhankelijk van jouw persoonlijke doelen en de complexiteit van de materie. Tijdens het intakegesprek kunnen we een inschatting maken en een passend pakket adviseren. We streven altijd naar efficiënte en effectieve begeleiding.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Kan ik ook hulp krijgen bij mijn bachelor- of masterproef?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Jazeker! Veel studenten ervaren uitdagingen bij het statistische deel van hun scriptie. Wij kunnen je begeleiden bij data-analyse, interpretatie van resultaten, en het correct rapporteren ervan, zodat je scriptie op een solide basis staat.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Wat als ik een les moet verplaatsen of annuleren?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Wij begrijpen dat je studentenleven druk kan zijn. Je kunt een geplande sessie kosteloos verplaatsen of annuleren tot 24 uur voor aanvang. Neem hiervoor tijdig contact met ons op.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Bieden jullie ook hulp bij specifieke psychologievakken buiten statistiek?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Hoewel onze hoofdfocus op statistiek ligt, hebben onze begeleiders ook expertise in andere psychologiegerelateerde vakken. Neem contact op om te bespreken of we je kunnen helpen met jouw specifieke vak.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Wat is het verschil tussen bijles en studiecoaching?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Bijles richt zich op de inhoudelijke uitleg van specifieke leerstof (bijv. statistische concepten). Studiecoaching daarentegen focust op het verbeteren van je studiemethoden, planning, examentypes en algemene aanpak van je vakken, zonder diep in de inhoud te duiken.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Hoe lang duurt een sessie?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Een standaard 1-op-1 bijlessessie duurt 60 minuten. De duur van groepssessies en studiecoachingsessies kan variëren, afhankelijk van het gekozen pakket en de specifieke afspraken.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Hoe kan ik betalen?</span>
+                            <i class="fas fa fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Betalingen verlopen eenvoudig en veilig na elke sessie of maandelijks, afhankelijk van het gekozen pakket. Meer details over de betaalmethoden worden tijdens het intakegesprek besproken.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Leren uit fouten is het allerbelangrijkste bij het leerproces. Hoe helpt StatHulp hierbij?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Bij StatHulp omarmen we fouten als essentiële leermomenten. Net zoals je leert fietsen door te vallen, leer je statistiek door oefeningen te maken en je fouten te begrijpen. Onze lesgevers zijn getraind om jouw specifieke valkuilen snel te herkennen en je gericht te begeleiden. Door samen die tekortkomingen weg te werken, ontwikkel je snel inzicht en leer je hoe je fouten in de toekomst kunt vermijden, waardoor je vlotter met de leerstof overweg kunt.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Hoe verwerk ik een vak zoals statistiek of psychologie efficiënt?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Het efficiënt verwerken van een vak vraagt expertise: waar leg je de focus? Wat is cruciaal en wat minder? Hoe hangen de verschillende onderdelen van de leerstof samen? Onze experts wijzen je direct de weg, waardoor je enorm veel tijd bespaart. Je leert niet alleen uit hun kennis, maar ook uit de valkuilen die zij eerder al tegenkwamen. Een begeleider van StatHulp helpt je sneller diepgaand inzicht in het vak te krijgen.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Hoe kan ik leerstof beter memoriseren?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Memoriseren is een persoonlijke reis, waarbij de ene student visueel sterker is en de andere auditief. Toch zijn er vier universele pijlers die we je leren toepassen: structuur, herhaling, visualisatie en controle. We begeleiden je bij het structureel aanpakken van leerstof, het inplannen van effectieve herhalingen, het leggen van verbanden tussen concepten, en het controleren van je begrip. Zo ontwikkel je je eigen, meest effectieve memorisatiestrategie.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item animate-on-scroll">
+                        <div class="faq-question">
+                            <span>Hoe weet ik of ik op het juiste studieniveau zit?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Om te zorgen dat je op het verwachte niveau studeert, integreren we "stepstones" in je traject. Dit zijn korte checkpoints of tests die we samen doorlopen om je voortgang nauwlettend te volgen. Dit geeft je direct houvast en motivatie, en stelt je in staat om te controleren of je op de goede weg bent. Het is een effectieve manier om te garanderen dat je de leerstof niet alleen begrijpt, maar ook beheerst op het niveau dat van je verwacht wordt.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-button-wrapper">
+                    <a href="#contact" class="cta-button">Nog een vraag? Neem contact op!</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <button id="back-to-top" title="Ga naar boven"><i class="fas fa-arrow-up"></i></button>
 
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacybeleid.html" target="_blank">Privacybeleid</a>
+                <a href="cookieverklaring.html" target="_blank">Cookieverklaring</a>
+                <a href="terms-conditions.html" target="_blank">Algemene Voorwaarden</a>
+            </div>
+            <p>&copy; 2024 StatHulp. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
+
+    <div id="cookie-consent-banner">
+        <p>Wij gebruiken cookies om je ervaring op onze website te verbeteren en om te analyseren hoe onze site wordt gebruikt. Door verder te gaan, ga je akkoord met ons <a href="cookieverklaring.html" class="more-info-link" target="_blank">cookiebeleid</a>.</p>
+        <div class="cookie-buttons">
+            <button id="accept-cookies">Accepteren</button>
+            <button id="decline-cookies">Weigeren</button>
+        </div>
+    </div>
+
+    <script src="cookie-consent.js"></script>
     <script>
-        // JavaScript for Navigation Toggle
+        // JavaScript voor Navigatie Toggle
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('nav ul');
 
@@ -1235,7 +1835,7 @@
             hamburger.classList.toggle('active');
         });
 
-        // Close nav when a link is clicked (for mobile)
+        // Sluit navigatie wanneer op een link wordt geklikt (voor mobiel)
         document.querySelectorAll('nav ul li a').forEach(link => {
             link.addEventListener('click', () => {
                 if (navUl.classList.contains('active')) {
@@ -1246,46 +1846,11 @@
         });
 
 
-        // JavaScript for Theme Toggle
-        const themeToggle = document.getElementById('checkbox');
-        const body = document.body;
-
-        // Function to apply theme
-        function applyTheme(isLight) {
-            if (isLight) {
-                body.classList.add('light-mode');
-            } else {
-                body.classList.remove('light-mode');
-            }
-        }
-
-        // Check local storage for theme preference on load
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            themeToggle.checked = true;
-            applyTheme(true);
-        } else {
-             applyTheme(false);
-        }
-
-
-        // Save theme preference to local storage and apply theme
-        themeToggle.addEventListener('change', () => {
-            const isLightMode = themeToggle.checked;
-            if (isLightMode) {
-                localStorage.setItem('theme', 'light');
-            } else {
-                localStorage.setItem('theme', 'dark');
-            }
-            applyTheme(isLightMode);
-        });
-
-
-        // JavaScript for Back-to-Top Button
+        // JavaScript voor Terug naar Boven Knop
         const backToTopButton = document.getElementById('back-to-top');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) { // Show button after scrolling down 400px
+            if (window.scrollY > 400) { // Toon knop na 400px naar beneden scrollen
                 backToTopButton.style.display = 'block';
             } else {
                 backToTopButton.style.display = 'none';
@@ -1295,27 +1860,27 @@
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Smooth scroll
+                behavior: 'smooth' // Vloeiend scrollen
             });
         });
 
-        // JavaScript for Scroll Animations
+        // JavaScript voor Scroll Animaties
         const animateElements = document.querySelectorAll('.animate-on-scroll');
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Optional: Stop observing once visible if animation only happens once
+                    // Optioneel: Stop met observeren zodra zichtbaar als animatie slechts één keer plaatsvindt
                     // observer.unobserve(entry.target);
                 } else {
-                    // Optional: Remove class when out of view if animation should repeat
+                    // Optioneel: Verwijder klasse wanneer uit beeld als animatie moet herhalen
                     // entry.target.classList.remove('is-visible');
                 }
             });
         }, {
-            threshold: 0.1, // Trigger when 10% of the element is visible
-            rootMargin: "0px 0px -50px 0px" // Adjust when element is considered in view
+            threshold: 0.1, // Trigger wanneer 10% van het element zichtbaar is
+            rootMargin: "0px 0px -50px 0px" // Aanpassen wanneer element in beeld wordt beschouwd
         });
 
         animateElements.forEach(element => {
@@ -1323,7 +1888,7 @@
         });
 
 
-         // Smooth scroll for navigation links
+         // Vloeiend scrollen voor navigatielinks
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1331,7 +1896,7 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-                 // Close mobile nav if open
+                 // Sluit mobiele navigatie indien open
                  if (navUl.classList.contains('active')) {
                     navUl.classList.remove('active');
                     hamburger.classList.remove('active');
@@ -1339,53 +1904,92 @@
             });
         });
 
-        // JavaScript for Pricing Carousel Arrows
-        const pricingGrid = document.getElementById('pricingGrid');
-        const scrollLeftBtn = document.getElementById('scrollLeftBtn');
-        const scrollRightBtn = document.getElementById('scrollRightBtn');
+        // JavaScript voor Carrousel Pijlen (Algemeen)
+        const setupCarousel = (gridElement, leftBtn, rightBtn, itemSelector, gapSize) => {
+            if (!gridElement || !leftBtn || !rightBtn) return;
 
-        if (pricingGrid && scrollLeftBtn && scrollRightBtn) {
-            const scrollAmount = 145; // Approximate width of one item (130px) + gap (15px)
+            const getScrollToEndPosition = (grid) => {
+                const totalWidth = grid.scrollWidth;
+                const visibleWidth = grid.clientWidth;
+                const item = grid.querySelector(itemSelector);
+                const itemWidth = item ? item.offsetWidth : 0;
+                const numItems = grid.querySelectorAll(itemSelector).length;
+                const desiredVisibleItems = 3;
+                let targetScroll = 0;
 
-            scrollRightBtn.addEventListener('click', () => {
-                pricingGrid.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            });
-
-            scrollLeftBtn.addEventListener('click', () => {
-                pricingGrid.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Hide/show arrows based on scroll position
-            const updateArrowVisibility = () => {
-                scrollLeftBtn.style.display = pricingGrid.scrollLeft > 0 ? 'block' : 'none';
-                scrollRightBtn.style.display = (pricingGrid.scrollLeft + pricingGrid.clientWidth) < (pricingGrid.scrollWidth - 5) ? 'block' : 'none';
+                if (numItems > desiredVisibleItems && itemWidth > 0) {
+                    targetScroll = totalWidth - visibleWidth;
+                    if (targetScroll < 0) targetScroll = 0;
+                }
+                return targetScroll;
             };
 
-            pricingGrid.addEventListener('scroll', updateArrowVisibility);
-            window.addEventListener('resize', updateArrowVisibility);
-            window.addEventListener('load', updateArrowVisibility);
-        }
+            rightBtn.addEventListener('click', () => {
+                const targetScroll = getScrollToEndPosition(gridElement);
+                gridElement.scrollTo({
+                    left: targetScroll,
+                    behavior: 'smooth'
+                });
+            });
 
-        // JavaScript for Dynamic Package Detail Section
+            leftBtn.addEventListener('click', () => {
+                gridElement.scrollTo({
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            const updateArrowVisibility = (grid, leftB, rightB) => {
+                const isMobile = window.innerWidth <= 768; // Define mobile breakpoint
+                if (isMobile) {
+                    leftB.style.display = 'none';
+                    rightB.style.display = 'none';
+                } else {
+                    leftB.style.display = grid.scrollLeft > 0 ? 'block' : 'none';
+                    rightB.style.display = (grid.scrollLeft + grid.clientWidth) < (grid.scrollWidth - 5) ? 'block' : 'none';
+                }
+            };
+
+            gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
+            window.addEventListener('resize', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
+            window.addEventListener('load', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
+        };
+
+        // Setup for Pricing Carousel
+        setupCarousel(
+            document.getElementById('pricingGrid'),
+            document.getElementById('scrollLeftBtn'),
+            document.getElementById('scrollRightBtn'),
+            '.pricing-item',
+            15
+        );
+
+        // Setup for Begeleiders Carousel
+        setupCarousel(
+            document.getElementById('begeleidersGrid'),
+            document.getElementById('scrollBegeleidersLeftBtn'),
+            document.getElementById('scrollBegeleidersRightBtn'),
+            '.begeleider-item',
+            25
+        );
+
+
+        // JavaScript voor Dynamische Pakket Detail Sectie
         const selectedPackageInfoSection = document.getElementById('selected-package-info');
         const detailPackageTitle = document.getElementById('detailPackageTitle');
         const detailPackageDescription = document.getElementById('detailPackageDescription');
         const selectButtons = document.querySelectorAll('.select-button');
 
-        // Function to generate package description using LLM
+        // Functie om pakketbeschrijving te genereren met LLM
         async function generatePackageDescription(packageName) {
             detailPackageDescription.innerHTML = '<div class="loading-spinner"></div><p>Laden van pakketinformatie...</p>';
 
-            let prompt = `Genereer een aantrekkelijke, overtuigende en motiverende beschrijving voor het "${packageName}" pakket van StatHulp, gericht op psychologiestudenten die hulp zoeken bij statistiek. Gebruik nudging-technieken om de student te stimuleren dit pakket te kiezen. Focus op de voordelen en hoe dit pakket hen helpt slagen. Houd het beknopt maar informatief.`;
+            let prompt = `Genereer een aantrekkelijke, overtuigende en motiverende beschrijving voor het "${packageName}" pakket van StatHulp, gericht op psychologiestudenten die hulp zoeken bij statistiek. De beschrijving moet een doorlopende tekst zijn, opgedeeld in korte paragrafen met witregels ertussen, zonder gebruik van opsommingstekens of asterisken. Gebruik nudging-technieken om de student te stimuleren dit pakket te kiezen. Focus op de unieke voordelen van dit pakket en hoe het hen helpt slagen. Houd het beknopt maar informatief.`;
 
             if (packageName.includes("Groepsles")) {
-                prompt += ` Vermeld specifiek de prijsvoordelen voor groepen.`;
+                prompt += ` Vermeld specifiek de prijsvoordelen voor groepen. Voor Groepsles (2-5 pers.) benadruk dat het voordelig is en geschikt voor kleine groepen om samen te leren.`;
+            } else if (packageName === "Studiecoaching") {
+                prompt += ` Benadruk dat dit pakket zich richt op studiemethoden, examenvoorbereiding en planning, en niet op inhoudelijke bijles. Vermeld ook dat het alleen online beschikbaar is.`;
             }
 
             let chatHistory = [];
@@ -1405,19 +2009,21 @@
                 if (result.candidates && result.candidates.length > 0 &&
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    detailPackageDescription.innerHTML = `<p>${text}</p>`;
+                    const rawText = result.candidates[0].content.parts[0].text;
+                    // Split by double newlines to create paragraphs
+                    const paragraphs = rawText.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('\n');
+                    detailPackageDescription.innerHTML = paragraphs;
                 } else {
                     detailPackageDescription.innerHTML = '<p>Kon de pakketinformatie niet laden. Probeer het later opnieuw.</p>';
                     console.error("LLM response structure unexpected:", result);
                 }
             } catch (error) {
-                detailPackageDescription.innerHTML = '<p>Er is een fout opgetreden bij het laden van de pakketinformatie. Controleer uw internetverbinding.</p>';
+                detailPackageDescription.innerHTML = '<p>Er is een fout opgetreden bij het laden van de pakketinfo. Controleer uw internetverbinding.</p>';
                 console.error("Error fetching LLM response:", error);
             }
         }
 
-        // Event listeners for "Kies Pakket" buttons
+        // Event listeners voor "Meer Info" knoppen
         selectButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1425,7 +2031,7 @@
                 detailPackageTitle.textContent = packageName;
                 generatePackageDescription(packageName);
 
-                // Show the section and scroll to it
+                // Toon de sectie en scroll ernaartoe
                 selectedPackageInfoSection.classList.add('visible');
                 selectedPackageInfoSection.scrollIntoView({
                     behavior: 'smooth',
@@ -1434,6 +2040,49 @@
             });
         });
 
+        // Contact Formulier Verzending (Alleen client-side, geen daadwerkelijke e-mailverzending)
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Voorkom daadwerkelijke formulierverzending
+
+                // Simuleer verzending succes
+                formMessage.textContent = 'Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.';
+                contactForm.reset(); // Leeg het formulier
+
+                // Optioneel: Verberg bericht na een paar seconden
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000);
+            });
+        }
+
+
+        // FAQ Accordion Logica
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+
+                // Sluit alle andere open antwoorden
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
+                        otherQuestion.classList.remove('active');
+                        otherQuestion.nextElementSibling.classList.remove('open');
+                        otherQuestion.querySelector('i').classList.remove('active');
+                    }
+                });
+
+                // Wissel huidig antwoord
+                question.classList.toggle('active');
+                answer.classList.toggle('open');
+                icon.classList.toggle('active');
+            });
+        });
     </script>
 
 </body>
