@@ -1552,7 +1552,7 @@
         <section id="hero">
             <div class="container">
                 <h1 class="animate-on-scroll fade-in-up">Statistiek hoeft <span style="text-decoration: underline;">GEEN</span> nachtmerrie te zijn.</h1>
-                <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Ontdek hoe **StatHulp** je helpt om complexe statistiek te doorgronden en je academische doelen te bereiken. Jouw succes begint hier!</p>
+                <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Ontdek hoe <strong>StatHulp</strong> je helpt om complexe statistiek te doorgronden en je academische doelen te bereiken. Jouw succes begint hier!</p>
                 <a href="https://cal.com/stathulp-itul5g/15min" class="cta-button animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">Plan jouw gratis intakegesprek</a>
             </div>
         </section>
@@ -2170,55 +2170,29 @@
         const detailPackageDescription = document.getElementById('detailPackageDescription');
         const selectButtons = document.querySelectorAll('.select-button');
 
-        // Functie om pakketbeschrijving te genereren met LLM
-        async function generatePackageDescription(packageName) {
-            detailPackageDescription.innerHTML = '<div class="loading-spinner"></div><p style="text-align: center;">Laden van pakketinformatie...</p>'; // Centered loading message
-
-            let prompt = `Genereer een aantrekkelijke, overtuigende en motiverende beschrijving voor het "${packageName}" pakket van StatHulp, gericht op psychologiestudenten die hulp zoeken bij statistiek. De beschrijving moet een doorlopende tekst zijn, opgedeeld in korte paragrafen met witregels ertussen, zonder gebruik van opsommingstekens of asterisken. Gebruik nudging-technieken om de student te stimuleren dit pakket te kiezen, zoals "Wacht niet langer!", "Zet de volgende stap!", "Jouw succes begint hier!". Focus op de unieke voordelen van dit pakket en hoe het hen helpt slagen. Houd het beknopt maar informatief.`;
-
-            if (packageName.includes("Groepsles")) {
-                prompt += ` Vermeld specifiek de prijsvoordelen voor groepen en hoe samen leren effectiever kan zijn.`;
-            } else if (packageName === "Studiecoaching") {
-                prompt += ` Benadruk dat dit pakket zich richt op studiemethoden, examenvoorbereiding en planning, en niet op inhoudelijke bijles. Vermeld ook dat het alleen online beschikbaar is en hoe het studenten helpt hun studie-efficiëntie te maximaliseren.`;
-            } else if (packageName === "1u-pakket") { // Changed from Basis
-                prompt += ` Benadruk de flexibiliteit en de mogelijkheid om snel specifieke problemen op te lossen.`;
-            } else if (packageName === "2-uur pakket") { // Changed from Standaard
-                prompt += ` Benadruk de doorlopende ondersteuning en de balans tussen flexibiliteit en regelmaat.`;
-            } else if (packageName === "4-uur pakket") { // Changed from Premium
-                prompt += ` Benadruk de intensieve, complete begeleiding en de prioriteitssupport voor de meest ambitieuze studenten.`;
-            }
-
-
-            let chatHistory = [];
-            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-            const payload = { contents: chatHistory };
-            const apiKey = ""; // Canvas zal dit automatisch invullen
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const rawText = result.candidates[0].content.parts[0].text;
-                    // Split by double newlines to create paragraphs, ensuring proper spacing
-                    const paragraphs = rawText.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('\n');
-                    detailPackageDescription.innerHTML = paragraphs;
-                } else {
-                    detailPackageDescription.innerHTML = '<p style="text-align: center;">Kon de pakketinformatie niet laden. Probeer het later opnieuw.</p>';
-                    console.error("LLM response structure unexpected:", result);
-                }
-            } catch (error) {
-                detailPackageDescription.innerHTML = '<p style="text-align: center;">Er is een fout opgetreden bij het laden van de pakketinfo. Controleer uw internetverbinding.</p>';
-                console.error("Error fetching LLM response:", error);
-            }
-        }
+        // Hardcoded pakketbeschrijvingen
+        const packageDescriptions = {
+            "1u-pakket": `
+                <p>Het <strong>1u-pakket</strong> is perfect voor jou als je snel en gericht hulp nodig hebt bij specifieke statistiekvragen. Denk aan een lastige formule, een onbegrijpelijke grafiek, of een korte vraag over SPSS of RStudio. Met een intensieve 1-op-1 sessie van 60 minuten krijg je direct de helderheid die je zoekt.</p>
+                <p>Deze flexibele optie is ideaal voor studenten die af en toe een boost nodig hebben zonder vast te zitten aan een maandelijks abonnement. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij het nodig hebt. Wacht niet langer met die ene vraag die je dwarszit, zet de volgende stap naar inzicht en boek vandaag nog je sessie!</p>
+            `,
+            "2-uur pakket": `
+                <p>Met het <strong>2-uur pakket</strong> kies je voor doorlopende ondersteuning en een gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat twee sessies van elk 60 minuten per maand, wat neerkomt op slechts €34 per uur – een aanzienlijk voordeel ten opzichte van losse sessies!</p>
+                <p>Dit pakket is ontworpen voor studenten die behoefte hebben aan regelmatige begeleiding om de leerstof consistent bij te houden en dieper in te gaan op complexere onderwerpen. Door de maandelijkse structuur bouw je gestaag aan je kennis en zelfvertrouwen. Neem de controle over je statistiekstudie en kies voor de zekerheid van doorlopende, betaalbare hulp. Jouw academische succes is binnen handbereik!</p>
+            `,
+            "4-uur pakket": `
+                <p>Het <strong>4-uur pakket</strong> is de ultieme keuze voor de ambitieuze psychologiestudent die intensieve, complete begeleiding zoekt en maximale slaagkansen wil creëren. Met vier sessies van elk 60 minuten per maand (€29 per uur!) profiteer je van de meest voordelige en diepgaande ondersteuning die StatHulp biedt.</p>
+                <p>Dit premium pakket biedt niet alleen uitgebreide hulp bij al je statistiekvragen, maar ook prioriteitssupport via e-mail en chat, en gerichte examenvoorbereiding. We duiken diep in de materie, verfijnen je begrip en zorgen ervoor dat je met het volste vertrouwen je tentamens tegemoet gaat. Investeer in je toekomst, kies voor het 4-uur pakket en excelleer in je studie!</p>
+            `,
+            "Groepsles (2-5 personen)": `
+                <p>De <strong>Groepsles (2-5 personen)</strong> is de slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor slechts €29 per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is perfect als je liever samen leert, discussieert en elkaar motiveert.</p>
+                <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe leuk en leerzaam statistiek kan zijn als je het samen aanpakt!</p>
+            `,
+            "Studiecoaching": `
+                <p>Met <strong>Studiecoaching</strong> richt je je op het optimaliseren van je studiemethoden en examenstrategieën, specifiek voor psychologievakken. Dit pakket van €34 per sessie is exclusief online beschikbaar en focust niet op inhoudelijke bijles, maar op hoe je leert, plant en presteert.</p>
+                <p>Onze studiecoaches helpen je met het opstellen van een realistische examenplanning, het aanpakken van verschillende examentypes, en het ontwikkelen van effectieve memorisatiestrategieën. Dit is dé manier om je studie-efficiëntie te maximaliseren en studiestress te verminderen. Zet de volgende stap in je academische ontwikkeling en ontdek hoe je slimmer kunt studeren, niet harder!</p>
+            `
+        };
 
         // Event listeners voor "Meer Info" knoppen
         selectButtons.forEach(button => {
@@ -2226,7 +2200,7 @@
                 e.preventDefault();
                 const packageName = e.target.dataset.packageName;
                 detailPackageTitle.textContent = packageName;
-                generatePackageDescription(packageName);
+                detailPackageDescription.innerHTML = packageDescriptions[packageName] || '<p style="text-align: center;">Geen informatie beschikbaar voor dit pakket.</p>';
 
                 // Toon de sectie en scroll ernaartoe
                 selectedPackageInfoSection.classList.add('visible');
