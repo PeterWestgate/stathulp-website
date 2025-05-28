@@ -139,7 +139,7 @@
         .logo img {
             height: 70px; /* Iets kleiner logo */
             width: auto;
-            filter: drop-shadow(0 0 8px rgba(0, 139, 139, 0.6)); /* Sterkere schaduw */
+            filter: drop_shadow(0 0 8px rgba(0, 139, 139, 0.6)); /* Sterkere schaduw */
             border-radius: 10px; /* Minder afgerond */
         }
 
@@ -267,7 +267,8 @@
         }
 
         #hero p {
-            font-size: 1.9em; /* Grotere paragraaf */
+            font-size: 1.2em; /* KLEINER font */
+            font-style: italic; /* SCHUINGEDRUKT */
             margin-bottom: 50px; /* Meer ruimte */
             color: var(--text-color);
             max-width: 850px; /* Breder */
@@ -845,9 +846,13 @@
             background-color: var(--accent-color);
             color: var(--card-background);
             cursor: pointer;
-            padding: 20px; /* Groter */
-            border-radius: 50%;
+            width: 60px; /* Vaste breedte */
+            height: 60px; /* Vaste hoogte */
+            border-radius: 50%; /* Zorgt ervoor dat de knop rond is */
             font-size: 1.4em;
+            display: flex; /* Gebruik flexbox om icoon te centreren */
+            justify-content: center;
+            align-items: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 
             @media (prefers-color-scheme: light) {
@@ -868,6 +873,7 @@
         /* Scroll Animaties Stijlen (Initiële staat) */
         .animate-on-scroll {
             opacity: 0;
+            transform: translateY(40px); /* Meer initiële translateY */
             transition: opacity 0.9s ease-out, transform 0.9s ease-out; /* Langere, soepelere animatie */
         }
 
@@ -1006,7 +1012,7 @@
                 font-size: 3.5em;
             }
             #hero p {
-                font-size: 1.6em;
+                font-size: 1.3em; /* Aangepast voor mobiel */
             }
             h2 {
                 font-size: 2.2em;
@@ -1046,7 +1052,7 @@
                 font-size: 2.8em; /* Kleinere titel */
             }
             #hero p {
-                font-size: 1.3em; /* Kleinere paragraaf */
+                font-size: 1.1em; /* Kleinere paragraaf */
             }
             .cta-button {
                 padding: 18px 35px;
@@ -1106,7 +1112,7 @@
                 font-size: 2.2em;
             }
             #hero p {
-                font-size: 1.1em;
+                font-size: 0.9em; /* Aangepast voor mobiel */
             }
              .cta-button {
                 padding: 15px 30px;
@@ -1155,8 +1161,10 @@
              #back-to-top {
                  bottom: 30px;
                  right: 30px;
-                 padding: 18px;
-                 font-size: 1.3em;
+                 width: 50px; /* Kleinere vaste breedte */
+                 height: 50px; /* Kleinere vaste hoogte */
+                 padding: 0; /* Geen padding, breedte/hoogte bepalen grootte */
+                 font-size: 1.2em;
              }
 
              /* Mobiele vaste CTA knop - kleinere aanpassingen */
@@ -1183,6 +1191,12 @@
             opacity: 0;
             transform: translateY(30px); /* Meer initiële translateY */
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            /* Added min-height to prevent collapse during loading */
+            min-height: 200px; /* Adjust as needed */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
             @media (prefers-color-scheme: light) {
                 box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
@@ -1217,11 +1231,12 @@
             border-radius: 2px;
         }
 
-        #selected-package-info p {
+        #selected-package-info #detailPackageDescription {
             font-size: 1.3em; /* Groter */
             color: var(--text-color);
             margin-bottom: 35px;
             text-align: left;
+            padding: 0 25px; /* Add padding for content */
         }
 
         #selected-package-info .cta-button {
@@ -1310,6 +1325,53 @@
         #faq .faq-button-wrapper {
             text-align: center;
             margin-top: 70px; /* Meer marge */
+        }
+
+        /* Recruitment Section Styles */
+        #recruitment {
+            background-color: var(--background-color); /* Use main background for contrast */
+            padding: 70px 0; /* Moderate padding */
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        #recruitment h2 {
+            font-size: 2.5em; /* Slightly smaller than main H2 */
+            margin-bottom: 30px; /* Less margin */
+            color: var(--heading-color);
+        }
+
+        #recruitment h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; /* Adjusted position */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px; /* Slightly narrower */
+            height: 3px; /* Thinner line */
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        #recruitment p {
+            font-size: 1.1em;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto 30px auto; /* Centered, with margin below */
+            line-height: 1.6;
+        }
+
+        #recruitment .email-link { /* New class for the email link */
+            display: inline-block; /* Allows padding and margin */
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2em; /* Slightly larger for emphasis */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        #recruitment .email-link:hover {
+            color: var(--heading-color);
         }
 
         /* Footer Styles */
@@ -1473,7 +1535,7 @@
                     <li><a href="#features">Over Ons</a></li>
                     <li><a href="#proces">Proces</a></li>
                     <li><a href="#prijzen">Prijzen</a></li>
-                    <li><a href="#begeleiders">Ontmoet Onze Experts</a></li>
+                    <li><a href="#begeleiders">Onze Experts</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
@@ -1490,7 +1552,7 @@
         <section id="hero">
             <div class="container">
                 <h1 class="animate-on-scroll fade-in-up">Statistiek hoeft <span style="text-decoration: underline;">GEEN</span> nachtmerrie te zijn.</h1>
-                <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Ontdek hoe StatHulp je helpt om complexe statistiek te doorgronden en je academische doelen te bereiken. Jouw succes begint hier!</p>
+                <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Ontdek hoe **StatHulp** je helpt om complexe statistiek te doorgronden en je academische doelen te bereiken. Jouw succes begint hier!</p>
                 <a href="https://cal.com/stathulp-itul5g/15min" class="cta-button animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">Plan jouw gratis intakegesprek</a>
             </div>
         </section>
@@ -1735,6 +1797,13 @@
             </div>
         </section>
 
+        <section id="recruitment" class="animate-on-scroll fade-in-up">
+            <div class="container">
+                <h2>Word Bijlesgever bij StatHulp!</h2>
+                <p>Ben jij een gemotiveerde student met een passie voor statistiek en psychologie? Wil je andere studenten helpen slagen en je eigen kennis verdiepen? Stuur je motivatiebrief en CV naar <a href="mailto:stathulp@gmail.com" class="email-link">stathulp@gmail.com</a>. We streven ernaar je zo snel mogelijk te antwoorden!</p>
+            </div>
+        </section>
+
         <section id="faq">
             <div class="container">
                 <h2 class="animate-on-scroll fade-in-up">Veelgestelde Vragen</h2>
@@ -1944,7 +2013,7 @@
         window.addEventListener('scroll', () => {
             // Logica voor Terug naar Boven Knop
             if (window.scrollY > 400) { // Toon knop na 400px naar beneden scrollen
-                backToTopButton.style.display = 'block';
+                backToTopButton.style.display = 'flex'; // Changed to flex to center content
             } else {
                 backToTopButton.style.display = 'none';
             }
@@ -2103,7 +2172,7 @@
 
         // Functie om pakketbeschrijving te genereren met LLM
         async function generatePackageDescription(packageName) {
-            detailPackageDescription.innerHTML = '<div class="loading-spinner"></div><p>Laden van pakketinformatie...</p>';
+            detailPackageDescription.innerHTML = '<div class="loading-spinner"></div><p style="text-align: center;">Laden van pakketinformatie...</p>'; // Centered loading message
 
             let prompt = `Genereer een aantrekkelijke, overtuigende en motiverende beschrijving voor het "${packageName}" pakket van StatHulp, gericht op psychologiestudenten die hulp zoeken bij statistiek. De beschrijving moet een doorlopende tekst zijn, opgedeeld in korte paragrafen met witregels ertussen, zonder gebruik van opsommingstekens of asterisken. Gebruik nudging-technieken om de student te stimuleren dit pakket te kiezen, zoals "Wacht niet langer!", "Zet de volgende stap!", "Jouw succes begint hier!". Focus op de unieke voordelen van dit pakket en hoe het hen helpt slagen. Houd het beknopt maar informatief.`;
 
@@ -2138,15 +2207,15 @@
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
                     const rawText = result.candidates[0].content.parts[0].text;
-                    // Split by double newlines to create paragraphs
+                    // Split by double newlines to create paragraphs, ensuring proper spacing
                     const paragraphs = rawText.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('\n');
                     detailPackageDescription.innerHTML = paragraphs;
                 } else {
-                    detailPackageDescription.innerHTML = '<p>Kon de pakketinformatie niet laden. Probeer het later opnieuw.</p>';
+                    detailPackageDescription.innerHTML = '<p style="text-align: center;">Kon de pakketinformatie niet laden. Probeer het later opnieuw.</p>';
                     console.error("LLM response structure unexpected:", result);
                 }
             } catch (error) {
-                detailPackageDescription.innerHTML = '<p>Er is een fout opgetreden bij het laden van de pakketinfo. Controleer uw internetverbinding.</p>';
+                detailPackageDescription.innerHTML = '<p style="text-align: center;">Er is een fout opgetreden bij het laden van de pakketinfo. Controleer uw internetverbinding.</p>';
                 console.error("Error fetching LLM response:", error);
             }
         }
