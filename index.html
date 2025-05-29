@@ -1816,42 +1816,58 @@
         });
 
         // JavaScript voor Carrousel Pijlen (Algemeen)
-        const setupCarousel = (gridElement, leftBtn, rightBtn, itemSelector, gapSize) => {
+        const setupCarousel = (gridElement, leftBtn, rightBtn, itemSelector, scrollType = 'end', scrollAmount = 1) => {
             if (!gridElement || !leftBtn || !rightBtn) return;
 
-            const getScrollToEndPosition = (grid) => {
-                const totalWidth = grid.scrollWidth;
-                const visibleWidth = grid.clientWidth;
-                const item = grid.querySelector(itemSelector);
-                const itemWidth = item ? item.offsetWidth : 0;
-                const numItems = grid.querySelectorAll(itemSelector).length;
-                const desiredVisibleItems = 3;
-                let targetScroll = 0;
+            const scrollLogic = (direction) => {
+                if (scrollType === 'end') {
+                    if (direction === 'right') {
+                        const totalWidth = gridElement.scrollWidth;
+                        const visibleWidth = gridElement.clientWidth;
+                        gridElement.scrollTo({
+                            left: totalWidth - visibleWidth,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        gridElement.scrollTo({
+                            left: 0,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else if (scrollType === 'items') {
+                    const item = gridElement.querySelector(itemSelector);
+                    if (!item) return;
+                    const itemWidth = item.offsetWidth;
+                    // Dynamically determine gap based on computed style or hardcode if consistent
+                    // For simplicity, hardcoding based on current CSS values.
+                    let gap = 0;
+                    if (itemSelector === '.pricing-item') {
+                        gap = 20;
+                    } else if (itemSelector === '.begeleider-item') {
+                        gap = 30;
+                    }
 
-                if (numItems > desiredVisibleItems && itemWidth > 0) {
-                    targetScroll = totalWidth - visibleWidth;
-                    if (targetScroll < 0) targetScroll = 0;
+                    const scrollDistance = (itemWidth + gap) * scrollAmount;
+
+                    if (direction === 'right') {
+                        gridElement.scrollBy({
+                            left: scrollDistance,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        gridElement.scrollBy({
+                            left: -scrollDistance,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
-                return targetScroll;
             };
 
-            rightBtn.addEventListener('click', () => {
-                const targetScroll = getScrollToEndPosition(gridElement);
-                gridElement.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            });
-
-            leftBtn.addEventListener('click', () => {
-                gridElement.scrollTo({
-                    left: 0,
-                    behavior: 'smooth'
-                });
-            });
+            rightBtn.addEventListener('click', () => scrollLogic('right'));
+            leftBtn.addEventListener('click', () => scrollLogic('left'));
 
             const updateArrowVisibility = (grid, leftB, rightB) => {
-                const isMobile = window.innerWidth <= 768; // Define mobile breakpoint
+                const isMobile = window.innerWidth <= 768;
                 if (isMobile) {
                     leftB.style.display = 'none';
                     rightB.style.display = 'none';
@@ -1866,22 +1882,23 @@
             window.addEventListener('load', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
         };
 
-        // Setup for Pricing Carousel
+        // Setup for Pricing Carousel (scrolls to end/start)
         setupCarousel(
             document.getElementById('pricingGrid'),
             document.getElementById('scrollLeftBtn'),
             document.getElementById('scrollRightBtn'),
             '.pricing-item',
-            15
+            'end'
         );
 
-        // Setup for Begeleiders Carousel
+        // Setup for Begeleiders Carousel (scrolls by 2 items)
         setupCarousel(
             document.getElementById('begeleidersGrid'),
             document.getElementById('scrollBegeleidersLeftBtn'),
             document.getElementById('scrollBegeleidersRightBtn'),
             '.begeleider-item',
-            25
+            'items',
+            2
         );
 
 
