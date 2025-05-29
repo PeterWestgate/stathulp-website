@@ -54,7 +54,7 @@
             color: var(--text-color);
             transition: background-color 0.5s ease, color 0.5s ease;
             line-height: 1.7; /* Iets meer regelafstand */
-            overflow-x: hidden;
+            overflow-x: hidden; /* Voorkom horizontaal scrollen */
         }
 
         h1, h2, h3 {
@@ -700,15 +700,16 @@
             box-shadow: 0 8px 20px rgba(0, 139, 139, 0.5);
         }
 
+        /* Study Coaching button now matches group button */
         .pricing-item .select-button.study-coaching-button {
-            background-color: var(--accent-color); /* Terug naar accentkleur */
-            color: var(--card-background);
-            box-shadow: 0 5px 15px rgba(0, 139, 139, 0.3);
+            background-color: var(--light-accent-color);
+            color: var(--background-color);
+            box-shadow: 0 5px 15px rgba(64, 191, 191, 0.3);
         }
 
         .pricing-item .select-button.study-coaching-button:hover {
-            background-color: var(--hover-color);
-            color: var(--heading-color);
+            background-color: var(--accent-color);
+            color: var(--card-background);
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 139, 139, 0.5);
         }
@@ -1122,28 +1123,36 @@
                 font-size: 1.8em;
              }
             .pricing-item {
-                padding: 25px 15px;
-                min-width: 100%; /* Volledige breedte */
+                padding: 20px 10px; /* Smaller padding on mobile */
+                min-width: 180px; /* Smaller min-width for mobile */
+                max-width: 200px; /* Max width to ensure it doesn't get too big */
             }
             .pricing-item i {
-                font-size: 2.5em;
+                font-size: 2.2em; /* Smaller icons */
             }
             .pricing-item h3 {
-                font-size: 1.4em;
+                font-size: 1.2em; /* Smaller font */
             }
             .price {
-                font-size: 2.2em;
+                font-size: 2em; /* Smaller price */
             }
+             .price small {
+                font-size: 0.4em; /* Smaller price unit */
+             }
+             .pricing-item ul {
+                margin-bottom: 15px; /* Less margin */
+             }
              .pricing-item ul li {
-                 font-size: 0.9em;
+                 margin-bottom: 8px; /* Less margin */
                  padding-left: 20px;
+                 font-size: 0.85em; /* Smaller font */
              }
              .pricing-item ul li::before {
                  top: 2px;
              }
              .pricing-item .select-button {
-                 padding: 12px 20px;
-                 font-size: 1em;
+                 padding: 10px 18px; /* Smaller button */
+                 font-size: 0.9em; /* Smaller font */
              }
              .contact-form form {
                  padding: 35px;
@@ -1152,12 +1161,19 @@
                  padding: 15px;
                  margin-bottom: 25px;
              }
+             /* Stack contact form buttons vertically */
              .contact-form button,
              .contact-form .cta-button-small {
-                 padding: 15px 25px;
-                 font-size: 1.1em;
-                 margin-right: 15px;
+                 display: block;
+                 width: 100%;
+                 margin-right: 0;
+                 margin-bottom: 15px; /* Add space between stacked buttons */
+                 box-sizing: border-box; /* Include padding/border in width */
              }
+             .contact-form .cta-button-small:last-child {
+                margin-bottom: 0; /* No margin for the last button */
+             }
+
              #back-to-top {
                  bottom: 30px;
                  right: 30px;
@@ -1653,7 +1669,7 @@
                         <div class="pricing-item animate-on-scroll scale-in">
                             <i class="fas fa-user"></i>
                             <h3>1u-pakket</h3>
-                            <div class="price">€39<small>/sessie</small></div>
+                            <div class="price">€39<small>/uur</small></div>
                             <ul>
                                 <li><b><u>1-op-1 sessie (60 min)</u></b></li>
                                 <li>Hulp bij specifieke vragen</li>
@@ -1665,35 +1681,35 @@
                         </div>
                         <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.1s;">
                              <i class="fas fa-book-open"></i>
-                            <h3>2-uur pakket</h3>
-                            <div class="price">€69<small>/maand</small></div>
+                            <h3>5-uur pakket</h3>
+                            <div class="price">€34<small>/uur</small></div>
                              <ul>
-                                <li><b><u>2 sessies per maand (€34/uur)</u></b></li>
+                                <li><b><u>5 sessies (€34/uur)</u></b></li>
                                 <li>Doorlopende begeleiding</li>
                                 <li>Hulp bij specifieke vragen</li>
                                 <li>Online of fysiek (+€5/sessie)</li>
                                 <li>Vragen via e-mail</li>
                             </ul>
-                            <a href="#" class="select-button" data-package-name="2-uur pakket">Meer Info</a>
+                            <a href="#" class="select-button" data-package-name="5-uur pakket">Meer Info</a>
                         </div>
                         <div class="pricing-item animate-on-scroll scale-in premium-item" style="transition-delay: 0.2s;">
                             <i class="fas fa-star"></i>
-                            <h3>4-uur pakket</h3>
-                            <div class="price">€119<small>/maand</small></div>
+                            <h3>10-uur pakket</h3>
+                            <div class="price">€29<small>/uur</small></div>
                              <ul>
-                                <li><b><u>4 sessies per maand (€29/uur)</u></b></li>
+                                <li><b><u>10 sessies (€29/uur)</u></b></li>
                                 <li>Intensieve begeleiding</li>
                                 <li>Hulp bij specifieke vragen</li>
                                 <li>Online of fysiek (+€5/sessie)</li>
                                 <li>Prioriteit support (e-mail/chat)</li>
                                 <li>Examenvoorbereiding</li>
                             </ul>
-                            <a href="#" class="select-button premium-button" data-package-name="4-uur pakket">Meer Info</a>
+                            <a href="#" class="select-button premium-button" data-package-name="10-uur pakket">Meer Info</a>
                         </div>
                         <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.3s;">
                             <i class="fas fa-user-friends"></i>
                             <h3>Groepsles (2-5 pers.)</h3>
-                            <div class="price">€29<small>/persoon/uur</small></div>
+                            <div class="price">€24<small>pp/uur</small></div>
                             <ul>
                                 <li><b><u>Begeleiding voor 2-5 studenten</u></b></li>
                                 <li>Voordelig samen leren</li>
@@ -2176,16 +2192,16 @@
                 <p>Het <strong>1u-pakket</strong> is perfect voor jou als je snel en gericht hulp nodig hebt bij specifieke statistiekvragen. Denk aan een lastige formule, een onbegrijpelijke grafiek, of een korte vraag over SPSS of RStudio. Met een intensieve 1-op-1 sessie van 60 minuten krijg je direct de helderheid die je zoekt.</p>
                 <p>Deze flexibele optie is ideaal voor studenten die af en toe een boost nodig hebben zonder vast te zitten aan een maandelijks abonnement. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij het nodig hebt. Wacht niet langer met die ene vraag die je dwarszit, zet de volgende stap naar inzicht en boek vandaag nog je sessie!</p>
             `,
-            "2-uur pakket": `
-                <p>Met het <strong>2-uur pakket</strong> kies je voor doorlopende ondersteuning en een gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat twee sessies van elk 60 minuten per maand, wat neerkomt op slechts €34 per uur – een aanzienlijk voordeel ten opzichte van losse sessies!</p>
+            "5-uur pakket": `
+                <p>Met het <strong>5-uur pakket</strong> kies je voor doorlopende ondersteuning en een gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 5 sessies van elk 60 minuten, wat neerkomt op slechts €34 per uur – een aanzienlijk voordeel ten opzichte van losse sessies!</p>
                 <p>Dit pakket is ontworpen voor studenten die behoefte hebben aan regelmatige begeleiding om de leerstof consistent bij te houden en dieper in te gaan op complexere onderwerpen. Door de maandelijkse structuur bouw je gestaag aan je kennis en zelfvertrouwen. Neem de controle over je statistiekstudie en kies voor de zekerheid van doorlopende, betaalbare hulp. Jouw academische succes is binnen handbereik!</p>
             `,
-            "4-uur pakket": `
-                <p>Het <strong>4-uur pakket</strong> is de ultieme keuze voor de ambitieuze psychologiestudent die intensieve, complete begeleiding zoekt en maximale slaagkansen wil creëren. Met vier sessies van elk 60 minuten per maand (€29 per uur!) profiteer je van de meest voordelige en diepgaande ondersteuning die StatHulp biedt.</p>
-                <p>Dit premium pakket biedt niet alleen uitgebreide hulp bij al je statistiekvragen, maar ook prioriteitssupport via e-mail en chat, en gerichte examenvoorbereiding. We duiken diep in de materie, verfijnen je begrip en zorgen ervoor dat je met het volste vertrouwen je tentamens tegemoet gaat. Investeer in je toekomst, kies voor het 4-uur pakket en excelleer in je studie!</p>
+            "10-uur pakket": `
+                <p>Het <strong>10-uur pakket</strong> is de ultieme keuze voor de ambitieuze psychologiestudent die intensieve, complete begeleiding zoekt en maximale slaagkansen wil creëren. Met 10 sessies van elk 60 minuten (€29 per uur!) profiteer je van de meest voordelige en diepgaande ondersteuning die StatHulp biedt.</p>
+                <p>Dit premium pakket biedt niet alleen uitgebreide hulp bij al je statistiekvragen, maar ook prioriteitssupport via e-mail en chat, en gerichte examenvoorbereiding. We duiken diep in de materie, verfijnen je begrip en zorgen ervoor dat je met het volste vertrouwen je tentamens tegemoet gaat. Investeer in je toekomst, kies voor het 10-uur pakket en excelleer in je studie!</p>
             `,
             "Groepsles (2-5 personen)": `
-                <p>De <strong>Groepsles (2-5 personen)</strong> is de slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor slechts €29 per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is perfect als je liever samen leert, discussieert en elkaar motiveert.</p>
+                <p>De <strong>Groepsles (2-5 personen)</strong> is de slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor slechts €24 per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is perfect als je liever samen leert, discussieert en elkaar motiveert.</p>
                 <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe leuk en leerzaam statistiek kan zijn als je het samen aanpakt!</p>
             `,
             "Studiecoaching": `
