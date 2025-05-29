@@ -98,6 +98,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 25px; /* Iets meer padding aan de zijkanten */
+            box-sizing: border-box; /* Zorg ervoor dat padding binnen de breedte valt */
         }
 
         section {
@@ -410,18 +411,18 @@
         .step-item .step-number {
             display: block;
             position: absolute;
-            top: -20px; /* Lager gepositioneerd */
+            top: -14px; /* Aangepast voor 30% kleiner */
             left: 50%;
             transform: translateX(-50%);
             background-color: var(--accent-color);
             color: var(--card-background);
             border-radius: 50%;
-            width: 50px; /* Groter nummer */
-            height: 50px;
+            width: 35px; /* 30% kleiner */
+            height: 35px; /* 30% kleiner */
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.8em; /* Groter font */
+            font-size: 1.26em; /* 30% kleiner */
             font-weight: bold;
             border: 3px solid var(--border-color); /* Dikkere rand */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Sterkere schaduw */
@@ -1192,349 +1193,53 @@
                 transform: translateX(-50%);
                 width: calc(100% - 40px);
             }
-        }
 
-        /* Stijlen voor de geïntegreerde pakketdetail sectie */
-        #selected-package-info {
-            background-color: var(--card-background);
-            padding: 50px 0; /* Meer padding */
-            border-radius: 15px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35); /* Diepere schaduw */
-            border: 2px solid var(--border-color);
-            max-width: 950px; /* Breder */
-            margin: 0 auto;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px); /* Meer initiële translateY */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            /* Added min-height to prevent collapse during loading */
-            min-height: 200px; /* Adjust as needed */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            /* Mobile specific adjustments for feature-item */
+            .feature-item {
+                padding: 30px; /* Smaller padding */
+                font-size: 0.9em; /* Smaller text */
             }
-        }
-
-        #selected-package-info.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #selected-package-info h2 {
-            font-size: 3.2em; /* Groter */
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            text-shadow: 0 0 12px rgba(0, 139, 139, 0.6);
-
-            @media (prefers-color-scheme: light) {
-                text-shadow: 0 0 12px rgba(0, 139, 139, 0.35);
+            .feature-item i {
+                font-size: 3.5em; /* Smaller icons */
             }
-        }
-
-        #selected-package-info h2::after {
-            content: '';
-            position: absolute;
-            bottom: -18px; /* Lager */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px; /* Breder */
-            height: 4px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        #selected-package-info #detailPackageDescription {
-            font-size: 1.3em; /* Groter */
-            color: var(--text-color);
-            margin-bottom: 35px;
-            text-align: left;
-            padding: 0 25px; /* Add padding for content */
-        }
-
-        #selected-package-info .cta-button {
-            margin-top: 25px;
-        }
-
-        .loading-spinner {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid var(--accent-color);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 2s linear infinite;
-            margin: 50px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* FAQ Sectie Stijlen */
-        #faq {
-            background-color: var(--card-background);
-        }
-
-        #faq .faq-item {
-            background-color: var(--background-color);
-            border: 1px solid var(--border-color);
-            border-radius: 10px; /* Meer afgerond */
-            margin-bottom: 25px;
-            overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            .feature-item h3 {
+                font-size: 1.4em; /* Smaller heading */
             }
-        }
 
-        #faq .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 22px 35px; /* Meer padding */
-            cursor: pointer;
-            background-color: var(--background-color);
-            color: var(--heading-color);
-            font-size: 1.4em; /* Groter font */
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        #faq .faq-question:hover {
-            background-color: var(--hover-color);
-        }
-
-        #faq .faq-question i {
-            font-size: 1.1em;
-            color: var(--accent-color);
-            transition: transform 0.3s ease;
-        }
-
-        #faq .faq-question.active i {
-            transform: rotate(180deg);
-        }
-
-        #faq .faq-answer {
-            padding: 0 35px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s ease-out, padding 0.6s ease-out; /* Langere, soepelere animatie */
-            color: var(--text-color);
-            font-size: 1.15em;
-        }
-
-        #faq .faq-answer.open {
-            max-height: 600px; /* Grotere max-height */
-            padding: 25px 35px 35px; /* Meer padding */
-        }
-
-        #faq .faq-answer p {
-            margin-top: 0;
-            margin-bottom: 12px;
-        }
-
-        #faq .faq-button-wrapper {
-            text-align: center;
-            margin-top: 70px; /* Meer marge */
-        }
-
-        /* Recruitment Section Styles */
-        #recruitment {
-            background-color: var(--background-color); /* Use main background for contrast */
-            padding: 70px 0; /* Moderate padding */
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        #recruitment h2 {
-            font-size: 2.5em; /* Slightly smaller than main H2 */
-            margin-bottom: 30px; /* Less margin */
-            color: var(--heading-color);
-        }
-
-        #recruitment h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px; /* Adjusted position */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px; /* Slightly narrower */
-            height: 3px; /* Thinner line */
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        #recruitment p {
-            font-size: 1.1em;
-            color: var(--text-color);
-            max-width: 800px;
-            margin: 0 auto 30px auto; /* Centered, with margin below */
-            line-height: 1.6;
-        }
-
-        #recruitment .email-link { /* New class for the email link */
-            display: inline-block; /* Allows padding and margin */
-            color: var(--accent-color);
-            font-weight: bold;
-            font-size: 1.2em; /* Slightly larger for emphasis */
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-
-        #recruitment .email-link:hover {
-            color: var(--heading-color);
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            padding: 50px 0; /* Meer padding */
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        footer .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-        }
-
-        footer .footer-links {
-            display: flex;
-            gap: 30px; /* Meer ruimte */
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        footer .footer-links a {
-            color: var(--text-color);
-            font-weight: 600;
-            transition: color 0.3s ease;
-            font-size: 1em;
-        }
-
-        footer .footer-links a:hover {
-            color: var(--accent-color);
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 0.95em;
-        }
-
-        /* Cookie Consent Pop-up Styles */
-        #cookie-consent-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--card-background);
-            color: var(--text-color);
-            padding: 25px; /* Meer padding */
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.25); /* Diepere schaduw */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            z-index: 2000;
-            transform: translateY(100%);
-            transition: transform 0.5s ease-out;
-        }
-
-        #cookie-consent-banner.show {
-            transform: translateY(0);
-        }
-
-        #cookie-consent-banner p {
-            margin: 0;
-            font-size: 1.05em;
-            text-align: center;
-            max-width: 850px;
-        }
-
-        #cookie-consent-banner .cookie-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        #cookie-consent-banner button {
-            background-color: var(--accent-color);
-            color: var(--card-background);
-            padding: 12px 25px; /* Meer padding */
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        #cookie-consent-banner button:hover {
-            background-color: var(--hover-color);
-            transform: translateY(-3px);
-        }
-
-        #cookie-consent-banner .more-info-link {
-            color: var(--accent-color);
-            text-decoration: underline;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            #cookie-consent-banner {
-                padding: 20px;
+            /* Mobile specific adjustments for begeleider-item */
+            .begeleider-item {
+                padding: 25px; /* Smaller padding */
+                min-width: 220px; /* Smaller min-width */
+                max-width: 280px; /* Smaller max-width */
             }
-            #cookie-consent-banner p {
-                font-size: 1em;
+            .begeleider-item i {
+                font-size: 3.5em; /* Smaller icons */
             }
-            #cookie-consent-banner button {
-                padding: 10px 20px;
-                font-size: 0.9em;
+            .begeleider-item h3 {
+                font-size: 1.4em; /* Smaller heading */
             }
-        }
+            .begeleider-item p {
+                font-size: 0.9em; /* Smaller text */
+            }
 
-        /* Nieuwe CSS voor de mobiele CTA knop */
-        #mobile-cta-button {
-            display: none;
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            background-color: var(--premium-button-color); /* Gebruik de premium kleur */
-            color: var(--card-background);
-            padding: 18px 30px; /* Meer padding */
-            border-radius: 50px;
-            font-size: 1.25em;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 6px 18px rgba(255, 140, 0, 0.4);
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            opacity: 0;
-            visibility: hidden;
-            text-decoration: none;
-        }
-
-        #mobile-cta-button.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        #mobile-cta-button:hover {
-            background-color: #CC7000;
-            transform: translateX(-50%) translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.6);
+            /* Mobile specific adjustments for selected-package-info */
+            #selected-package-info {
+                padding: 30px 15px; /* Smaller padding */
+                max-width: calc(100% - 40px); /* Ensure it fits within viewport with margins */
+                margin-left: 20px; /* Add left margin */
+                margin-right: 20px; /* Add right margin */
+            }
+            #selected-package-info h2 {
+                font-size: 2.2em; /* Smaller heading */
+            }
+            #selected-package-info #detailPackageDescription {
+                font-size: 1em; /* Smaller text */
+                padding: 0 10px; /* Adjust inner padding */
+            }
+            #selected-package-info .cta-button {
+                padding: 15px 25px; /* Smaller button */
+                font-size: 1.1em; /* Smaller font */
+            }
         }
 
     </style>
@@ -1578,19 +1283,19 @@
                 <h2 class="animate-on-scroll fade-in-up">Over Ons</h2>
                 <div class="features-grid">
                     <div class="feature-item animate-on-scroll fade-in-up">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Voor Psychologiestudenten</h3>
+                        <p>Wij bieden gerichte hulp bij Statistiek voor Psychologen 1, 2, 3 en 4, en ondersteunen je ook bij andere psychologievakken. Onze begeleiders begrijpen jouw specifieke leerbehoeften.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
                         <i class="fas fa-user-friends"></i>
                         <h3>Begeleiding door Studenten voor Studenten</h3>
                         <p>Ervaar bijles van oudere ervaren studenten die jouw uitdagingen begrijpen en je effectief kunnen helpen. Wij spreken jouw taal!</p>
                     </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
                         <i class="fas fa-university"></i>
                         <h3>Dichtbij de Bron: Actuele Leerstof & Professoren</h3>
                         <p>Onze begeleiders staan in nauw contact met de professoren en de meest recente leerstof, zodat je altijd de meest relevante en up-to-date hulp krijgt.</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
-                        <i class="fas fa-brain"></i>
-                        <h3>Diepgaande Expertise</h3>
-                        <p>Niet alleen topspecialisten in statistiek, maar ook diepgaand bekend met de specifieke behoeften van psychologiestudenten. Wij weten wat jij nodig hebt!</p>
                     </div>
                     <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
                         <i class="fas fa-lightbulb"></i>
@@ -2189,24 +1894,24 @@
         // Hardcoded pakketbeschrijvingen
         const packageDescriptions = {
             "1u-pakket": `
-                <p>Het <strong>1u-pakket</strong> is perfect voor jou als je snel en gericht hulp nodig hebt bij specifieke statistiekvragen. Denk aan een lastige formule, een onbegrijpelijke grafiek, of een korte vraag over SPSS of RStudio. Met een intensieve 1-op-1 sessie van 60 minuten krijg je direct de helderheid die je zoekt.</p>
-                <p>Deze flexibele optie is ideaal voor studenten die af en toe een boost nodig hebben zonder vast te zitten aan een maandelijks abonnement. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij het nodig hebt. Wacht niet langer met die ene vraag die je dwarszit, zet de volgende stap naar inzicht en boek vandaag nog je sessie!</p>
+                <p>Het <strong>1u-pakket</strong> is ontworpen voor studenten die behoefte hebben aan snelle, gerichte ondersteuning bij specifieke statistiekvragen. Of het nu gaat om een lastige formule, een onbegrijpelijke grafiek, of een korte vraag over SPSS of RStudio, deze intensieve 1-op-1 sessie van 60 minuten biedt direct helderheid.</p>
+                <p>Deze flexibele optie is ideaal voor wie af en toe een boost nodig heeft zonder zich vast te leggen op een langer traject. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij die nodig hebt. Neem de controle over die ene vraag die je dwarszit en zet de volgende stap naar inzicht.</p>
             `,
             "5-uur pakket": `
-                <p>Met het <strong>5-uur pakket</strong> kies je voor doorlopende ondersteuning en een gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 5 sessies van elk 60 minuten, wat neerkomt op slechts €34 per uur – een aanzienlijk voordeel ten opzichte van losse sessies!</p>
-                <p>Dit pakket is ontworpen voor studenten die behoefte hebben aan regelmatige begeleiding om de leerstof consistent bij te houden en dieper in te gaan op complexere onderwerpen. Door de maandelijkse structuur bouw je gestaag aan je kennis en zelfvertrouwen. Neem de controle over je statistiekstudie en kies voor de zekerheid van doorlopende, betaalbare hulp. Jouw academische succes is binnen handbereik!</p>
+                <p>Met het <strong>5-uur pakket</strong> investeer je in doorlopende begeleiding en gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 5 sessies van elk 60 minuten, wat neerkomt op een voordelige prijs per uur. Het is perfect voor studenten die de leerstof consistent willen bijhouden en dieper willen ingaan op complexere onderwerpen.</p>
+                <p>De structuur van dit pakket helpt je om gestaag aan je kennis en zelfvertrouwen te bouwen. Je ontvangt regelmatige ondersteuning die je helpt om de materie echt te doorgronden, waardoor je je academische doelen met meer gemak bereikt. Kies voor de zekerheid van doorlopende, betaalbare hulp.</p>
             `,
             "10-uur pakket": `
-                <p>Het <strong>10-uur pakket</strong> is de ultieme keuze voor de ambitieuze psychologiestudent die intensieve, complete begeleiding zoekt en maximale slaagkansen wil creëren. Met 10 sessies van elk 60 minuten (€29 per uur!) profiteer je van de meest voordelige en diepgaande ondersteuning die StatHulp biedt.</p>
-                <p>Dit premium pakket biedt niet alleen uitgebreide hulp bij al je statistiekvragen, maar ook prioriteitssupport via e-mail en chat, en gerichte examenvoorbereiding. We duiken diep in de materie, verfijnen je begrip en zorgen ervoor dat je met het volste vertrouwen je tentamens tegemoet gaat. Investeer in je toekomst, kies voor het 10-uur pakket en excelleer in je studie!</p>
+                <p>Het <strong>10-uur pakket</strong> is de meest complete keuze voor de ambitieuze psychologiestudent die intensieve begeleiding zoekt en maximale slaagkansen wil benutten. Met 10 sessies van elk 60 minuten profiteer je van de meest voordelige uurprijs en de meest diepgaande ondersteuning die StatHulp biedt.</p>
+                <p>Dit premium pakket omvat uitgebreide hulp bij al je statistiekvragen, prioriteitssupport via e-mail en chat, en gerichte examenvoorbereiding. We duiken samen diep in de materie, verfijnen je begrip en zorgen ervoor dat je met het volste vertrouwen je tentamens tegemoet gaat. Dit is een investering in jouw academische succes.</p>
             `,
             "Groepsles (2-5 personen)": `
-                <p>De <strong>Groepsles (2-5 personen)</strong> is de slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor slechts €24 per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is perfect als je liever samen leert, discussieert en elkaar motiveert.</p>
-                <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe leuk en leerzaam statistiek kan zijn als je het samen aanpakt!</p>
+                <p>De <strong>Groepsles (2-5 personen)</strong> biedt een slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor een aantrekkelijke prijs per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is ideaal als je liever samen leert, discussieert en elkaar motiveert.</p>
+                <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe waardevol en leerzaam statistiek kan zijn als je het samen aanpakt.</p>
             `,
             "Studiecoaching": `
-                <p>Met <strong>Studiecoaching</strong> richt je je op het optimaliseren van je studiemethoden en examenstrategieën, specifiek voor psychologievakken. Dit pakket van €34 per sessie is exclusief online beschikbaar en focust niet op inhoudelijke bijles, maar op hoe je leert, plant en presteert.</p>
-                <p>Onze studiecoaches helpen je met het opstellen van een realistische examenplanning, het aanpakken van verschillende examentypes, en het ontwikkelen van effectieve memorisatiestrategieën. Dit is dé manier om je studie-efficiëntie te maximaliseren en studiestress te verminderen. Zet de volgende stap in je academische ontwikkeling en ontdek hoe je slimmer kunt studeren, niet harder!</p>
+                <p>Met <strong>Studiecoaching</strong> richt je je op het optimaliseren van je studiemethoden en examenstrategieën, specifiek voor psychologievakken. Dit pakket is exclusief online beschikbaar en focust niet op inhoudelijke bijles, maar op hoe je leert, plant en presteert.</p>
+                <p>Onze studiecoaches helpen je met het opstellen van een realistische examenplanning, het aanpakken van verschillende examentypes, en het ontwikkelen van effectieve memorisatiestrategieën. Dit is dé manier om je studie-efficiëntie te maximaliseren en studiestress te verminderen. Zet de volgende stap in je academische ontwikkeling en ontdek hoe je slimmer kunt studeren, niet harder.</p>
             `
         };
 
