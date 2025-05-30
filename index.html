@@ -325,6 +325,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Iets grotere min-width */
             gap: 50px; /* Meer ruimte */
+            justify-items: center; /* Center items within their grid cells */
         }
 
         .feature-item {
@@ -561,7 +562,7 @@
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
 
             @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+                box-shadow: 0 8px 18px rgba(0, 139, 139, 0.25);
             }
         }
 
@@ -1449,7 +1450,7 @@
                 <div class="pricing-carousel-wrapper">
                     <button class="scroll-arrow left" id="scrollLeftBtn"><i class="fas fa-chevron-left"></i></button>
                     <div class="pricing-grid" id="pricingGrid">
-                        <div class="pricing-item animate-on-scroll scale-in">
+                        <div class="pricing-item animate-on-scroll scale-in" data-package-name="1u-pakket">
                             <i class="fas fa-user"></i>
                             <h3>1u-pakket</h3>
                             <div class="price">€39<small>/uur</small></div>
@@ -1462,7 +1463,7 @@
                             </ul>
                             <a href="#" class="select-button" data-package-name="1u-pakket">Meer Info</a>
                         </div>
-                        <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.1s;">
+                        <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.1s;" data-package-name="5-uur pakket">
                              <i class="fas fa-book-open"></i>
                             <h3>5-uur pakket</h3>
                             <div class="price">€34<small>/uur</small></div>
@@ -1475,7 +1476,7 @@
                             </ul>
                             <a href="#" class="select-button" data-package-name="5-uur pakket">Meer Info</a>
                         </div>
-                        <div class="pricing-item animate-on-scroll scale-in premium-item" style="transition-delay: 0.2s;">
+                        <div class="pricing-item animate-on-scroll scale-in premium-item" style="transition-delay: 0.2s;" data-package-name="10-uur pakket">
                             <i class="fas fa-star"></i>
                             <h3>10-uur pakket</h3>
                             <div class="price">€29<small>/uur</small></div>
@@ -1489,7 +1490,7 @@
                             </ul>
                             <a href="#" class="select-button premium-button" data-package-name="10-uur pakket">Meer Info</a>
                         </div>
-                        <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.3s;">
+                        <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.3s;" data-package-name="Groepsles (2-5 personen)">
                             <i class="fas fa-user-friends"></i>
                             <h3>Groepsles (2-5 pers.)</h3>
                             <div class="price">€24<small>pp/uur</small></div>
@@ -1502,7 +1503,7 @@
                             </ul>
                             <a href="#" class="select-button group-button" data-package-name="Groepsles (2-5 personen)">Meer Info</a>
                         </div>
-                         <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.4s;">
+                         <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.4s;" data-package-name="Studiecoaching">
                             <i class="fas fa-graduation-cap"></i>
                             <h3>Studiecoaching</h3>
                             <div class="price">€59<small>/sessie</small></div>
@@ -1874,9 +1875,21 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const headerHeight = document.querySelector('header').offsetHeight; // Dynamisch de header hoogte ophalen
+                const offset = headerHeight + 10; // Offset van headerhoogte + 10px extra padding
+
+                if (targetElement) {
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+
                  // Sluit mobiele navigatie indien open
                  if (navUl.classList.contains('active')) {
                     navUl.classList.remove('active');
@@ -2095,6 +2108,50 @@
                 icon.classList.toggle('active');
             });
         });
+
+        // Function to reorder pricing items for mobile
+        function reorderPricingItems() {
+            const pricingGrid = document.getElementById('pricingGrid');
+            if (!pricingGrid) return;
+
+            // Get all pricing items and their original order
+            const allPricingItems = Array.from(pricingGrid.children);
+            const originalOrder = ["1u-pakket", "5-uur pakket", "10-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
+
+            // Define the desired order for mobile
+            const desiredOrderMobile = ["10-uur pakket", "1u-pakket", "5-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
+
+            let currentOrderNames = [];
+            allPricingItems.forEach(item => {
+                currentOrderNames.push(item.dataset.packageName);
+            });
+
+            const isMobile = window.innerWidth <= 768;
+
+            let targetOrder = isMobile ? desiredOrderMobile : originalOrder;
+
+            // Check if current order matches target order
+            const orderMatches = currentOrderNames.length === targetOrder.length &&
+                                 currentOrderNames.every((value, index) => value === targetOrder[index]);
+
+            if (!orderMatches) {
+                const sortedItems = [];
+                targetOrder.forEach(packageName => {
+                    const item = allPricingItems.find(i => i.dataset.packageName === packageName);
+                    if (item) {
+                        sortedItems.push(item);
+                    }
+                });
+
+                // Clear existing items and append sorted items
+                pricingGrid.innerHTML = ''; // Clear existing
+                sortedItems.forEach(item => pricingGrid.appendChild(item));
+            }
+        }
+
+        // Call on load and resize
+        window.addEventListener('DOMContentLoaded', reorderPricingItems);
+        window.addEventListener('resize', reorderPricingItems);
     </script>
 
 </body>
