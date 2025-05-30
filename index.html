@@ -7,6 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Universele Box Sizing voor consistente lay-out */
+        * {
+            box-sizing: border-box;
+        }
+
         /* CSS Variabelen voor Donkere Modus (Standaard) */
         :root {
             --background-color: #0a192f; /* Diepblauw */
@@ -46,6 +51,11 @@
         }
 
         /* Globale Stijlen */
+        html, body {
+            width: 100%;
+            overflow-x: hidden; /* Voorkom horizontaal scrollen */
+        }
+
         body {
             font-family: 'Inter', sans-serif; /* Nieuw font */
             margin: 0;
@@ -54,7 +64,6 @@
             color: var(--text-color);
             transition: background-color 0.5s ease, color 0.5s ease;
             line-height: 1.7; /* Iets meer regelafstand */
-            overflow-x: hidden; /* Voorkom horizontaal scrollen */
         }
 
         h1, h2, h3 {
@@ -1242,6 +1251,75 @@
             }
         }
 
+        /* FAQ Sectie Stijlen from Code landingspage.docx */
+        #faq {
+            background-color: var(--background-color);
+            padding: 100px 0;
+        }
+
+        #faq .faq-item {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+            @media (prefers-color-scheme: light) {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        #faq .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            cursor: pointer;
+            background-color: var(--card-background);
+            color: var(--heading-color);
+            font-size: 1.3em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        #faq .faq-question:hover {
+            background-color: var(--hover-color);
+        }
+
+        #faq .faq-question i {
+            font-size: 1em;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        #faq .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        #faq .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            color: var(--text-color);
+            font-size: 1.1em;
+        }
+
+        #faq .faq-answer.open {
+            max-height: 500px; /* This is a fixed value, might be an issue with very long answers */
+            padding: 20px 30px 30px;
+        }
+
+        #faq .faq-answer p {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        #faq .faq-button-wrapper {
+            text-align: center;
+            margin-top: 60px;
+        }
     </style>
 </head>
 <body>
@@ -1427,9 +1505,10 @@
                          <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.4s;">
                             <i class="fas fa-graduation-cap"></i>
                             <h3>Studiecoaching</h3>
-                            <div class="price">€34<small>/sessie</small></div>
+                            <div class="price">€59<small>/sessie</small></div>
                             <ul>
                                 <li><b><u>Hulp met studiemethoden</u></b></li>
+                                <li>Sessie duur: 2 uur</li>
                                 <li>Examenplanning opstellen</li>
                                 <li>Examentypes aanpakken</li>
                                 <li>Focus op strategie, niet inhoud</li>
@@ -1631,7 +1710,7 @@
                     <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.55s;">
                         <div class="faq-question">
                             <span>Hoe kan ik betalen?</span>
-                            <i class="fas fa fa-chevron-down"></i>
+                            <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
                             <p>Betalingen verlopen eenvoudig en veilig na elke sessie of maandelijks, afhankelijk van het gekozen pakket. Meer details over de betaalmethoden worden tijdens het intakegesprek besproken.</p>
@@ -1912,11 +1991,11 @@
         const packageDescriptions = {
             "1u-pakket": `
                 <p>Het <strong>1u-pakket</strong> is ontworpen voor studenten die behoefte hebben aan snelle, gerichte ondersteuning bij specifieke statistiekvragen. Of het nu gaat om een lastige formule, een onbegrijpelijke grafiek, of een korte vraag over SPSS of RStudio, deze intensieve 1-op-1 sessie van 60 minuten biedt direct helderheid.</p>
-                <p>Deze flexibele optie is ideaal voor wie af en toe een boost nodig heeft zonder zich vast te leggen op een langer traject. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij die nodig hebt. Neem de controle over die ene vraag die je dwarszit en zet de volgende stap naar inzicht.</p>
+                <p>Deze flexibele optie is ideaal voor wie af en toe een korte, intensieve boost nodig heeft zonder zich vast te leggen op een langer traject. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij die nodig hebt. Neem de controle over die ene vraag die je dwarszit en zet de volgende stap naar inzicht.</p>
             `,
             "5-uur pakket": `
-                <p>Met het <strong>5-uur pakket</strong> investeer je in doorlopende begeleiding en gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 5 sessies van elk 60 minuten, wat neerkomt op een voordelige prijs per uur. Het is perfect voor studenten die de leerstof consistent willen bijhouden en dieper willen ingaan op complexere onderwerpen.</p>
-                <p>De structuur van dit pakket helpt je om gestaag aan je kennis en zelfvertrouwen te bouwen. Je ontvangt regelmatige ondersteuning die je helpt om de materie echt te doorgronden, waardoor je je academische doelen met meer gemak bereikt. Kies voor de zekerheid van doorlopende, betaalbare hulp.</p>
+                <p>Met het <strong>5-uur pakket</strong> investeer je in doorlopende begeleiding en gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 5 sessies van elk 60 minuten, wat neerkomt op een voordelige prijs per uur. Het is ontworpen voor studenten die de leerstof consistent willen bijhouden en dieper willen ingaan op complexere onderwerpen.</p>
+                <p>De structuur van dit pakket helpt je om gestaag aan je kennis en zelfvertrouwen te bouwen. Je ontvangt regelmatige ondersteuning die je helpt de materie echt te doorgronden, waardoor je je academische doelen met meer gemak bereikt. Kies voor de zekerheid van doorlopende, betaalbare hulp.</p>
             `,
             "10-uur pakket": `
                 <p>Het <strong>10-uur pakket</strong> is de meest complete keuze voor de ambitieuze psychologiestudent die intensieve begeleiding zoekt en maximale slaagkansen wil benutten. Met 10 sessies van elk 60 minuten profiteer je van de meest voordelige uurprijs en de meest diepgaande ondersteuning die StatHulp biedt.</p>
@@ -1924,10 +2003,10 @@
             `,
             "Groepsles (2-5 personen)": `
                 <p>De <strong>Groepsles (2-5 personen)</strong> biedt een slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor een aantrekkelijke prijs per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is ideaal als je liever samen leert, discussieert en elkaar motiveert.</p>
-                <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe waardevol en leerzaam statistiek kan zijn als je het samen aanpakt.</p>
+                <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe waardevol en leerzaam statistiek kan zijn als het samen aanpakt.</p>
             `,
             "Studiecoaching": `
-                <p>Met <strong>Studiecoaching</strong> richt je je op het optimaliseren van je studiemethoden en examenstrategieën, specifiek voor psychologievakken. Dit pakket is exclusief online beschikbaar en focust niet op inhoudelijke bijles, maar op hoe je leert, plant en presteert.</p>
+                <p>Met <strong>Studiecoaching</strong> richt je je op het optimaliseren van je studiemethoden en examenstrategieën, specifiek voor psychologievakken. Een sessie duurt <strong>2 uur</strong> en focust niet op inhoudelijke bijles, maar op hoe je leert, plant en presteert. Dit pakket is exclusief online beschikbaar.</p>
                 <p>Onze studiecoaches helpen je met het opstellen van een realistische examenplanning, het aanpakken van verschillende examentypes, en het ontwikkelen van effectieve memorisatiestrategieën. Dit is dé manier om je studie-efficiëntie te maximaliseren en studiestress te verminderen. Zet de volgende stap in je academische ontwikkeling en ontdek hoe je slimmer kunt studeren, niet harder.</p>
             `
         };
@@ -1966,10 +2045,7 @@
                 try {
                     const response = await fetch('https://submit-form.com/Kq5jXJsUA', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(formProps)
                     });
 
@@ -1996,7 +2072,7 @@
         }
 
 
-        // FAQ Accordion Logica
+        // FAQ Accordion Logica (from Code landingspage.docx)
         const faqQuestions = document.querySelectorAll('.faq-question');
 
         faqQuestions.forEach(question => {
