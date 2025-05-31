@@ -2109,16 +2109,13 @@
             });
         });
 
-        // Function to reorder pricing items for mobile
+        // Function to reorder pricing items for mobile and ensure scroll position
         function reorderPricingItems() {
             const pricingGrid = document.getElementById('pricingGrid');
             if (!pricingGrid) return;
 
-            // Get all pricing items and their original order
             const allPricingItems = Array.from(pricingGrid.children);
             const originalOrder = ["1u-pakket", "5-uur pakket", "10-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
-
-            // Define the desired order for mobile
             const desiredOrderMobile = ["10-uur pakket", "1u-pakket", "5-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
 
             let currentOrderNames = [];
@@ -2127,10 +2124,8 @@
             });
 
             const isMobile = window.innerWidth <= 768;
-
             let targetOrder = isMobile ? desiredOrderMobile : originalOrder;
 
-            // Check if current order matches target order
             const orderMatches = currentOrderNames.length === targetOrder.length &&
                                  currentOrderNames.every((value, index) => value === targetOrder[index]);
 
@@ -2143,9 +2138,16 @@
                     }
                 });
 
-                // Clear existing items and append sorted items
-                pricingGrid.innerHTML = ''; // Clear existing
+                pricingGrid.innerHTML = '';
                 sortedItems.forEach(item => pricingGrid.appendChild(item));
+
+                // Scroll to the beginning if on mobile after reordering
+                if (isMobile) {
+                    pricingGrid.scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                }
             }
         }
 
