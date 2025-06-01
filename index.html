@@ -21,6 +21,7 @@
             --card-background: #112240; /* Donkerder blauw voor kaarten */
             --border-color: #233554; /* Subtiele rand */
             --hover-color: #1c3350; /* Donkerder blauw bij hover */
+            --dynamic-word-tint: #40BFBF; /* Lichtere turquoise voor dynamische woorden */
 
             /* Button colors - Dark Mode */
             --premium-button-color: #FF8C00; /* Diep oranje/goud */
@@ -40,6 +41,7 @@
                 --card-background: #ffffff; /* Wit */
                 --border-color: #dee2e6; /* Lichtgrijze rand */
                 --hover-color: #e2e6ea; /* Zeer lichte grijs bij hover */
+                --dynamic-word-tint: #00A3A3; /* Lichtere turquoise voor dynamische woorden */
 
                 /* Button colors - Light Mode */
                 --premium-button-color: #FF8C00; /* Diep oranje/goud */
@@ -267,13 +269,44 @@
         #hero h1 {
             font-size: 4.5em; /* Grotere titel */
             margin-bottom: 25px;
-            color: var(--accent-color);
+            color: var(--dynamic-word-tint); /* Changed to dynamic-word-tint for consistency */
             text-shadow: 0 0 15px rgba(0, 139, 139, 0.7); /* Sterkere schaduw */
             font-weight: 700;
+            position: relative; /* Belangrijk voor positionering van dynamic-word */
 
             @media (prefers-color-scheme: light) {
                 text-shadow: 0 0 15px rgba(0, 139, 139, 0.4);
             }
+        }
+
+        #hero h1 .dynamic-word-container {
+            display: inline-block;
+            position: relative;
+            height: 1.2em; /* Ensure enough height for words to slide */
+            overflow: hidden; /* Hide overflowing words */
+            vertical-align: middle; /* Align with surrounding text */
+            /* Width will be set by JS */
+        }
+
+        #hero h1 .dynamic-word {
+            color: var(--dynamic-word-tint);
+            position: absolute;
+            top: -0.05em; /* Adjusted to move slightly up */
+            right: 0; /* Align to the right of the container */
+            width: 100%; /* Take full width of container */
+            text-align: right; /* Ensure text is right-aligned within its absolute container */
+            opacity: 0;
+            transform: translateY(100%); /* Start below visible area */
+            transition: opacity 1.0s ease-in-out, transform 1.0s ease-in-out; /* Langere, soepelere animatie */
+        }
+
+        #hero h1 .dynamic-word.active {
+            opacity: 1;
+            transform: translateY(0); /* Slide into view */
+        }
+
+        #hero h1 .underline-text {
+            text-decoration: underline;
         }
 
         #hero p {
@@ -284,6 +317,10 @@
             max-width: 850px; /* Breder */
             margin-left: auto;
             margin-right: auto;
+        }
+
+        #hero p strong {
+            font-size: 1.1em; /* StatHulp iets groter maken */
         }
 
         .cta-button {
@@ -353,7 +390,7 @@
             font-size: 4.5em; /* Grotere iconen */
             color: var(--accent-color);
             margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(0, 139, 139, 0.5); /* Sterkere schaduw */
+            text-shadow: 0 0 10px rgba(0, 139, 139, 0.5);
 
             @media (prefers-color-scheme: light) {
                 text-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
@@ -363,7 +400,7 @@
         .feature-item h3 {
             margin-bottom: 18px;
             color: var(--heading-color);
-            font-size: 1.6em; /* Groter font */
+            font-size: 1.6em;
             font-weight: 600;
         }
 
@@ -590,13 +627,18 @@
             }
         }
 
-        .pricing-item:hover {
-            transform: translateY(-18px); /* Meer lift */
-            border-color: var(--accent-color);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            background-color: var(--hover-color);
-            cursor: pointer;
+        /* Disable hover transform on mobile/touch devices */
+        @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+            .pricing-item:hover {
+                transform: translateY(0); /* Reset transform on hover for touch devices */
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Keep original shadow */
+            }
+            .pricing-item.premium-item:hover {
+                transform: translateY(0) scale(1); /* Reset transform for premium item */
+                box-shadow: 0 0 25px var(--premium-glow-color); /* Keep original glow */
+            }
         }
+
 
         .pricing-item i {
             font-size: 3em; /* Grotere iconen */
@@ -735,7 +777,7 @@
         }
 
         .pricing-item.premium-item:hover {
-            transform: translateY(-25px) scale(1.07); /* Meer lift en schaal */
+            /* Removed transform for no shift on hover */
             box-shadow: 0 0 50px var(--premium-glow-color), 0 20px 40px rgba(0, 0, 0, 0.5); /* Nog sterkere glow en diepere schaduw */
         }
 
@@ -841,7 +883,7 @@
              box-shadow: 0 10px 25px rgba(0, 139, 139, 0.55);
 
             @media (prefers-color-scheme: light) {
-                box-shadow: 0 10px 25px rgba(0, 139, 139, 0.4);
+                box_shadow: 0 10px 25px rgba(0, 139, 139, 0.4);
             }
         }
 
@@ -987,12 +1029,12 @@
             }
         }
 
-        .begeleider-item:hover {
-            transform: translateY(-18px);
-            border-color: var(--accent-color);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            background-color: var(--hover-color);
-            cursor: pointer;
+        /* Disable hover transform on mobile/touch devices */
+        @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+            .begeleider-item:hover {
+                transform: translateY(0); /* Reset transform on hover for touch devices */
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Keep original shadow */
+            }
         }
 
         .begeleider-item i {
@@ -1321,6 +1363,81 @@
             text-align: center;
             margin-top: 60px;
         }
+
+        /* Cookie Consent Banner Styles */
+        #cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-background);
+            color: var(--text-color);
+            padding: 20px 25px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1001;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        #cookie-consent-banner p {
+            margin: 0;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        #cookie-consent-banner .more-info-link {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .cookie-buttons button {
+            background-color: var(--accent-color);
+            color: var(--card-background);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .cookie-buttons button:hover {
+            background-color: #00A3A3;
+            transform: translateY(-2px);
+        }
+
+        #decline-cookies {
+            background-color: var(--border-color);
+            color: var(--text-color);
+        }
+
+        #decline-cookies:hover {
+            background-color: #3a5778;
+            color: var(--heading-color);
+        }
+
+        @media (max-width: 600px) {
+            #cookie-consent-banner {
+                padding: 15px;
+            }
+            .cookie-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            .cookie-buttons button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1351,8 +1468,8 @@
     <main>
         <section id="hero">
             <div class="container">
-                <h1 class="animate-on-scroll fade-in-up">Statistiek hoeft <span style="text-decoration: underline;">GEEN</span> nachtmerrie te zijn.</h1>
-                <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Ontdek hoe <strong>StatHulp</strong> je helpt om complexe statistiek te doorgronden en je academische doelen te bereiken. Jouw succes begint hier!</p>
+                <h1 class="animate-on-scroll fade-in-up">Statistiek hoeft <span class="underline-text">GEEN</span> <span class="dynamic-word-container"></span> te zijn.</h1>
+                <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Zet studiestress om in zelfvertrouwen. Met <strong>StatHulp</strong> beheers je complexe statistiek en behaal je moeiteloos je academische doelen.</p>
                 <a href="https://cal.com/stathulp-itul5g/15min" class="cta-button animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">Plan jouw gratis intakegesprek</a>
             </div>
         </section>
@@ -1367,29 +1484,29 @@
                         <p>Wij bieden gerichte hulp bij Statistiek voor Psychologen 1, 2, 3 en 4, en ondersteunen je ook bij andere psychologievakken. Onze begeleiders begrijpen jouw specifieke leerbehoeften.</p>
                     </div>
                     <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
+                        <i class="fas fa-users"></i>
+                        <h3>Ook Groepslessen & Studiecoaching</h3>
+                        <p>Naast persoonlijke 1-op-1 sessies, bieden we ook voordelige groepslessen en gespecialiseerde studiecoaching aan. Flexibele opties voor elke leerstijl en elk budget.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
                         <i class="fas fa-user-friends"></i>
                         <h3>Begeleiding door Studenten voor Studenten</h3>
                         <p>Ervaar bijles van oudere ervaren studenten die jouw uitdagingen begrijpen en je effectief kunnen helpen. Wij spreken jouw taal!</p>
                     </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
                         <i class="fas fa-university"></i>
                         <h3>Dichtbij de Bron: Actuele Leerstof & Professoren</h3>
                         <p>Onze begeleiders staan in nauw contact met de professoren en de meest recente leerstof, zodat je altijd de meest relevante en up-to-date hulp krijgt.</p>
                     </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
+                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">
                         <i class="fas fa-lightbulb"></i>
                         <h3>Heldere Didactiek</h3>
                         <p>Complexe concepten worden eenvoudig en begrijpelijk uitgelegd, afgestemd op jouw leertempo en -stijl. Geen onnodige jargon, wel helderheid.</p>
                     </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">
+                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.5s;">
                         <i class="fas fa-smile-beam"></i>
                         <h3>Positieve Motivatie</h3>
                         <p>Een stimulerende en positieve sfeer tijdens elke sessie om je zelfvertrouwen te boosten. Wij geloven in jouw potentieel!</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.5s;">
-                        <i class="fas fa-hands-helping"></i>
-                        <h3>Volledige Betrokkenheid</h3>
-                        <p>Geen 'automatische piloot', maar maximale persoonlijke aandacht en betrokkenheid bij jouw unieke studietraject. Jouw succes is onze missie.</p>
                     </div>
                 </div>
             </div>
@@ -1463,18 +1580,18 @@
                             </ul>
                             <a href="#" class="select-button" data-package-name="1u-pakket">Meer Info</a>
                         </div>
-                        <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.1s;" data-package-name="5-uur pakket">
+                        <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.1s;" data-package-name="4-uur pakket">
                              <i class="fas fa-book-open"></i>
-                            <h3>5-uur pakket</h3>
+                            <h3>4-uur pakket</h3>
                             <div class="price">€34<small>/uur</small></div>
                              <ul>
-                                <li><b><u>5 sessies (€34/uur)</u></b></li>
+                                <li><b><u>4 sessies (€34/uur)</u></b></li>
                                 <li>Doorlopende begeleiding</li>
                                 <li>Hulp bij specifieke vragen</li>
                                 <li>Online of fysiek (+€5/sessie)</li>
                                 <li>Vragen via e-mail</li>
                             </ul>
-                            <a href="#" class="select-button" data-package-name="5-uur pakket">Meer Info</a>
+                            <a href="#" class="select-button" data-package-name="4-uur pakket">Meer Info</a>
                         </div>
                         <div class="pricing-item animate-on-scroll scale-in premium-item" style="transition-delay: 0.2s;" data-package-name="10-uur pakket">
                             <i class="fas fa-star"></i>
@@ -1971,7 +2088,7 @@
 
             gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
             window.addEventListener('resize', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
-            window.addEventListener('load', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
+            // No need to call updateArrowVisibility on load here, as reorderPricingItems handles scroll for pricing grid
         };
 
         // Setup for Pricing Carousel (scrolls to end/start)
@@ -2006,8 +2123,8 @@
                 <p>Het <strong>1u-pakket</strong> is ontworpen voor studenten die behoefte hebben aan snelle, gerichte ondersteuning bij specifieke statistiekvragen. Of het nu gaat om een lastige formule, een onbegrijpelijke grafiek, of een korte vraag over SPSS of RStudio, deze intensieve 1-op-1 sessie van 60 minuten biedt direct helderheid.</p>
                 <p>Deze flexibele optie is ideaal voor wie af en toe een korte, intensieve boost nodig heeft zonder zich vast te leggen op een langer traject. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij die nodig hebt. Neem de controle over die ene vraag die je dwarszit en zet de volgende stap naar inzicht.</p>
             `,
-            "5-uur pakket": `
-                <p>Met het <strong>5-uur pakket</strong> investeer je in doorlopende begeleiding en gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 5 sessies van elk 60 minuten, wat neerkomt op een voordelige prijs per uur. Het is ontworpen voor studenten die de leerstof consistent willen bijhouden en dieper willen ingaan op complexere onderwerpen.</p>
+            "4-uur pakket": `
+                <p>Met het <strong>4-uur pakket</strong> investeer je in doorlopende begeleiding en gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 4 sessies van elk 60 minuten, wat neerkomt op een voordelige prijs per uur. Het is ontworpen voor studenten die de leerstof consistent willen bijhouden en dieper willen ingaan op complexere onderwerpen.</p>
                 <p>De structuur van dit pakket helpt je om gestaag aan je kennis en zelfvertrouwen te bouwen. Je ontvangt regelmatige ondersteuning die je helpt de materie echt te doorgronden, waardoor je je academische doelen met meer gemak bereikt. Kies voor de zekerheid van doorlopende, betaalbare hulp.</p>
             `,
             "10-uur pakket": `
@@ -2015,7 +2132,7 @@
                 <p>Dit premium pakket omvat uitgebreide hulp bij al je statistiekvragen, prioriteitssupport via e-mail en chat, en gerichte examenvoorbereiding. We duiken samen diep in de materie, verfijnen je begrip en zorgen ervoor dat je met het volste vertrouwen je tentamens tegemoet gaat. Dit is een investering in jouw academische succes.</p>
             `,
             "Groepsles (2-5 personen)": `
-                <p>De <strong>Groepsles (2-5 personen)</strong> biedt een slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor een aantrekkelijke prijs per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is ideaal als je liever samen leert, discussieert en elkaar motiveert.</p>
+                <p>De <strong>Groepsles (2-5 personen)</strong> biedt een slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor een aantrekkelijke prijs per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is ideaal als je liever samen leert, discussieert en elkaar motiveert.
                 <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe waardevol en leerzaam statistiek kan zijn als het samen aanpakt.</p>
             `,
             "Studiecoaching": `
@@ -2115,8 +2232,8 @@
             if (!pricingGrid) return;
 
             const allPricingItems = Array.from(pricingGrid.children);
-            const originalOrder = ["1u-pakket", "5-uur pakket", "10-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
-            const desiredOrderMobile = ["10-uur pakket", "1u-pakket", "5-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
+            const originalOrder = ["1u-pakket", "4-uur pakket", "10-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
+            const desiredOrderMobile = ["10-uur pakket", "1u-pakket", "4-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
 
             let currentOrderNames = [];
             allPricingItems.forEach(item => {
@@ -2151,8 +2268,142 @@
             }
         }
 
+        // Dynamic Word Animation - NEW APPROACH
+        const dynamicWordContainer = document.querySelector('.dynamic-word-container');
+        const words = ['probleem', 'buisvak', 'moeilijkheid', 'hinderpaal', 'mislukking', 'gedoe', 'tijdsverspilling', 'onmogelijkheid'];
+        let wordIndex = 0;
+        let currentWordElement = null; // Will be set after initial setup
+
+        // Function to calculate the maximum width needed for the dynamic word container
+        function calculateMaxWordWidth() {
+            let maxWidth = 0;
+            const tempSpan = document.createElement('span');
+            // Apply the same styles that affect width to the temporary span
+            tempSpan.style.position = 'absolute';
+            tempSpan.style.visibility = 'hidden';
+            tempSpan.style.whiteSpace = 'nowrap';
+            // Match the font styles of the h1 to get accurate measurements
+            tempSpan.style.fontSize = getComputedStyle(document.querySelector('#hero h1')).fontSize;
+            tempSpan.style.fontWeight = getComputedStyle(document.querySelector('#hero h1')).fontWeight;
+            tempSpan.style.fontFamily = getComputedStyle(document.querySelector('#hero h1')).fontFamily;
+            tempSpan.style.color = 'var(--dynamic-word-tint)'; // Match color for accurate measurement
+
+            document.body.appendChild(tempSpan);
+
+            words.forEach(word => {
+                tempSpan.textContent = word;
+                const wordWidth = tempSpan.offsetWidth;
+                if (wordWidth > maxWidth) {
+                    maxWidth = wordWidth;
+                }
+            });
+
+            document.body.removeChild(tempSpan);
+            return maxWidth;
+        }
+
+        let maxCalculatedWidth = 0;
+
+        function initializeDynamicWord() {
+            maxCalculatedWidth = calculateMaxWordWidth();
+            // Add a small buffer for the "1 spatie verwijderd is voor de 'te'" requirement
+            // Estimate 0.8em for a character width, based on current font size.
+            const h1FontSize = parseFloat(getComputedStyle(document.querySelector('#hero h1')).fontSize);
+            const bufferWidth = h1FontSize * 0.8;
+            dynamicWordContainer.style.width = `${maxCalculatedWidth + bufferWidth}px`;
+
+            // Create and append the first word
+            currentWordElement = document.createElement('span');
+            currentWordElement.classList.add('dynamic-word');
+            currentWordElement.textContent = words[wordIndex]; // words[0] is "probleem"
+            dynamicWordContainer.appendChild(currentWordElement);
+
+            // Trigger initial animation
+            setTimeout(() => {
+                currentWordElement.classList.add('active');
+                currentWordElement.style.transform = 'translateY(0)';
+            }, 50); // Small delay to ensure CSS is applied before transition
+        }
+
+
+        function animateWordChange() {
+            // Fade out and slide up current word
+            currentWordElement.classList.remove('active');
+            currentWordElement.style.transform = 'translateY(-100%)'; // Slide up
+
+            setTimeout(() => {
+                // Remove old word, prepare for new
+                currentWordElement.remove();
+
+                wordIndex = (wordIndex + 1) % words.length;
+                const newWordElement = document.createElement('span');
+                newWordElement.classList.add('dynamic-word');
+                newWordElement.textContent = words[wordIndex];
+                dynamicWordContainer.appendChild(newWordElement);
+
+                // Force reflow to ensure transition plays
+                void newWordElement.offsetWidth;
+
+                // Slide in new word
+                newWordElement.classList.add('active');
+                newWordElement.style.transform = 'translateY(0)'; // Slide in from bottom
+
+                currentWordElement = newWordElement;
+            }, 1000); // This delay should match the transition duration for a smooth overlap
+        }
+
+        // Call initialization on DOMContentLoaded
+        window.addEventListener('DOMContentLoaded', () => {
+            reorderPricingItems();
+            checkCookieConsent(); // Check cookie consent on load
+            initializeDynamicWord(); // Initialize the dynamic word animation
+            setInterval(animateWordChange, 4000); // Start the animation loop
+        });
+
+        // Also recalculate width on resize to handle responsiveness
+        window.addEventListener('resize', () => {
+            reorderPricingItems();
+            // Recalculate and apply width on resize
+            maxCalculatedWidth = calculateMaxWordWidth();
+            const h1FontSize = parseFloat(getComputedStyle(document.querySelector('#hero h1')).fontSize);
+            const bufferWidth = h1FontSize * 0.8;
+            dynamicWordContainer.style.width = `${maxCalculatedWidth + bufferWidth}px`;
+        });
+
+
+        // Cookie Consent Banner Logic
+        const cookieConsentBanner = document.getElementById('cookie-consent-banner');
+        const acceptCookiesBtn = document.getElementById('accept-cookies');
+        const declineCookiesBtn = document.getElementById('decline-cookies'); // Corrected line
+
+        // Check if consent has been given
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (consent === 'accepted') {
+                cookieConsentBanner.style.display = 'none';
+            } else {
+                cookieConsentBanner.style.display = 'flex'; // Ensure it's visible by default
+            }
+        }
+
+        // Handle acceptance
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieConsentBanner.style.display = 'none';
+        });
+
+        // Handle decline (optional, but good practice to hide if declined)
+        declineCookiesBtn.addEventListener('click', () => { // Corrected line
+            localStorage.setItem('cookieConsent', 'declined'); // Or just hide without storing
+            cookieConsentBanner.style.display = 'none';
+            // Optionally, disable non-essential cookies here if you had any
+        });
+
         // Call on load and resize
-        window.addEventListener('DOMContentLoaded', reorderPricingItems);
+        window.addEventListener('DOMContentLoaded', () => {
+            reorderPricingItems();
+            checkCookieConsent(); // Check cookie consent on load
+        });
         window.addEventListener('resize', reorderPricingItems);
     </script>
 
