@@ -12,43 +12,43 @@
             box-sizing: border-box;
         }
 
-        /* CSS Variabelen voor Donkere Modus (Standaard) */
+        /* CSS Variabelen voor Lichte Modus (Standaard) */
         :root {
-            --background-color: #0a192f; /* Diepblauw */
-            --text-color: #aeb8d0; /* Zacht grijsblauw */
-            --heading-color: #ffffff; /* Wit */
+            --background-color: #f0f2f5; /* Zeer lichtgrijs */
+            --text-color: #495057; /* Donkergrijs */
+            --heading-color: #212529; /* Nog donkerder grijs */
             --accent-color: #008B8B; /* Rijke turquoise */
-            --card-background: #112240; /* Donkerder blauw voor kaarten */
-            --border-color: #233554; /* Subtiele rand */
-            --hover-color: #1c3350; /* Donkerder blauw bij hover */
-            --dynamic-word-tint: #40BFBF; /* Lichtere turquoise voor dynamische woorden */
+            --card-background: #ffffff; /* Wit */
+            --border-color: #dee2e6; /* Lichtgrijze rand */
+            --hover-color: #e2e6ea; /* Zeer lichte grijs bij hover */
+            --dynamic-word-tint: #00A3A3; /* Lichtere turquoise voor dynamische woorden */
 
-            /* Button colors - Dark Mode */
+            /* Button colors - Light Mode */
             --premium-button-color: #FF8C00; /* Diep oranje/goud */
             --light-accent-color: #40BFBF; /* Lichtere turquoise voor groep */
 
             /* Premium Glow Color */
-            --premium-glow-color: rgba(255, 140, 0, 0.5); /* Transparante diep oranje */
+            --premium-glow-color: rgba(255, 140, 0, 0.3); /* Transparante diep oranje */
         }
 
-        /* CSS Variabelen voor Lichte Modus (Systeemvoorkeur) */
-        @media (prefers-color-scheme: light) {
+        /* CSS Variabelen voor Donkere Modus (Systeemvoorkeur) */
+        @media (prefers-color-scheme: dark) {
             :root {
-                --background-color: #f0f2f5; /* Zeer lichtgrijs */
-                --text-color: #495057; /* Donkergrijs */
-                --heading-color: #212529; /* Nog donkerder grijs */
+                --background-color: #0a192f; /* Diepblauw */
+                --text-color: #aeb8d0; /* Zacht grijsblauw */
+                --heading-color: #ffffff; /* Wit */
                 --accent-color: #008B8B; /* Rijke turquoise */
-                --card-background: #ffffff; /* Wit */
-                --border-color: #dee2e6; /* Lichtgrijze rand */
-                --hover-color: #e2e6ea; /* Zeer lichte grijs bij hover */
-                --dynamic-word-tint: #00A3A3; /* Lichtere turquoise voor dynamische woorden */
+                --card-background: #112240; /* Donkerder blauw voor kaarten */
+                --border-color: #233554; /* Subtiele rand */
+                --hover-color: #1c3350; /* Donkerder blauw bij hover */
+                --dynamic-word-tint: #40BFBF; /* Lichtere turquoise voor dynamische woorden */
 
-                /* Button colors - Light Mode */
+                /* Button colors - Dark Mode */
                 --premium-button-color: #FF8C00; /* Diep oranje/goud */
                 --light-accent-color: #40BFBF; /* Lichtere turquoise voor groep */
 
                 /* Premium Glow Color */
-                --premium-glow-color: rgba(255, 140, 0, 0.3); /* Transparante diep oranje */
+                --premium-glow-color: rgba(255, 140, 0, 0.5); /* Transparante diep oranje */
             }
         }
 
@@ -120,19 +120,19 @@
 
         /* Header */
         header {
-            background-color: rgba(10, 25, 47, 0.95); /* Iets minder transparant */
+            background-color: rgba(255, 255, 255, 0.95); /* Light mode default */
             padding: 18px 0; /* Iets meer padding */
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Diepere schaduw */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Diepere schaduw */
             backdrop-filter: blur(8px); /* Sterkere blur */
 
-            @media (prefers-color-scheme: light) {
-                background-color: rgba(255, 255, 255, 0.95);
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            @media (prefers-color-scheme: dark) {
+                background-color: rgba(10, 25, 47, 0.95);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             }
         }
 
@@ -220,12 +220,12 @@
         /* Mobiele Navigatie */
         @media (max-width: 768px) {
             nav ul {
-                background-color: rgba(10, 25, 47, 0.98); /* Nog minder transparant */
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Diepere schaduw */
+                background-color: rgba(255, 255, 255, 0.98); /* Light mode default */
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Diepere schaduw */
 
-                @media (prefers-color-scheme: light) {
-                    background-color: rgba(255, 255, 255, 0.98);
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                @media (prefers-color-scheme: dark) {
+                    background-color: rgba(10, 25, 47, 0.98);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
                 }
 
                 display: none;
@@ -270,12 +270,12 @@
             font-size: 4.5em; /* Grotere titel */
             margin-bottom: 25px;
             color: var(--dynamic-word-tint); /* Changed to dynamic-word-tint for consistency */
-            text-shadow: 0 0 15px rgba(0, 139, 139, 0.7); /* Sterkere schaduw */
+            text-shadow: 0 0 15px rgba(0, 139, 139, 0.4); /* Sterkere schaduw */
             font-weight: 700;
             position: relative; /* Belangrijk voor positionering van dynamic-word */
 
-            @media (prefers-color-scheme: light) {
-                text-shadow: 0 0 15px rgba(0, 139, 139, 0.4);
+            @media (prefers-color-scheme: dark) {
+                text-shadow: 0 0 15px rgba(0, 139, 139, 0.7);
             }
         }
 
@@ -292,17 +292,15 @@
             color: var(--dynamic-word-tint);
             position: absolute;
             top: -0.05em; /* Adjusted to move slightly up */
-            right: 0; /* Align to the right of the container */
-            width: 100%; /* Take full width of container */
-            text-align: right; /* Ensure text is right-aligned within its absolute container */
+            left: 50%; /* Centered horizontally */
+            transform: translateX(-50%) translateY(100%); /* Start below visible area, centered */
             opacity: 0;
-            transform: translateY(100%); /* Start below visible area */
             transition: opacity 1.0s ease-in-out, transform 1.0s ease-in-out; /* Langere, soepelere animatie */
         }
 
         #hero h1 .dynamic-word.active {
             opacity: 1;
-            transform: translateY(0); /* Slide into view */
+            transform: translateX(-50%) translateY(0); /* Slide into view, centered */
         }
 
         #hero h1 .underline-text {
@@ -332,20 +330,20 @@
             font-size: 1.4em; /* Groter font */
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0, 139, 139, 0.4); /* Diepere schaduw */
+            box-shadow: 0 6px 20px rgba(0, 139, 139, 0.25); /* Diepere schaduw */
 
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 6px 20px rgba(0, 139, 139, 0.25);
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 6px 20px rgba(0, 139, 139, 0.4);
             }
         }
 
         .cta-button:hover {
             background-color: #00A3A3; /* Iets lichtere accentkleur bij hover */
             transform: translateY(-7px); /* Meer lift */
-            box-shadow: 0 10px 25px rgba(0, 139, 139, 0.6); /* Nog diepere schaduw */
+            box-shadow: 0 10px 25px rgba(0, 139, 139, 0.4); /* Nog diepere schaduw */
 
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 10px 25px rgba(0, 139, 139, 0.4);
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 10px 25px rgba(0, 139, 139, 0.6);
             }
         }
 
@@ -370,12 +368,12 @@
             padding: 45px; /* Meer padding */
             border-radius: 12px; /* Iets meer afgerond */
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Diepere schaduw */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Diepere schaduw */
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             border: 1px solid var(--border-color);
 
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
             }
         }
 
@@ -390,10 +388,10 @@
             font-size: 4.5em; /* Grotere iconen */
             color: var(--accent-color);
             margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(0, 139, 139, 0.5);
+            text-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
 
-            @media (prefers-color-scheme: light) {
-                text-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
+            @media (prefers-color-scheme: dark) {
+                text-shadow: 0 0 10px rgba(0, 139, 139, 0.5);
             }
         }
 
@@ -433,14 +431,14 @@
             text-align: center;
             padding: 35px; /* Meer padding */
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             border: 1px solid var(--border-color);
             background-color: var(--card-background);
             position: relative;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease; /* Soepelere animatie */
 
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
             }
         }
 
@@ -481,10 +479,10 @@
             font-size: 4.5em; /* Grotere iconen */
             color: var(--accent-color);
             margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(0, 139, 139, 0.5);
+            text-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
 
-            @media (prefers-color-scheme: light) {
-                text-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
+            @media (prefers-color-scheme: dark) {
+                text-shadow: 0 0 10px rgba(0, 139, 139, 0.5);
             }
         }
 
@@ -517,11 +515,11 @@
             text-align: left;
             font-style: italic;
             border-left: 6px solid var(--accent-color); /* Dikkere rand */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Diepere schaduw */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Diepere schaduw */
             border: 1px solid var(--border-color);
 
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
             }
         }
 
@@ -586,20 +584,20 @@
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
 
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
             }
         }
 
         .scroll-arrow:hover {
             background-color: #00A3A3; /* Iets lichtere accentkleur */
             transform: translateY(-50%) scale(1.08); /* Meer schaal */
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 18px rgba(0, 139, 139, 0.25);
 
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 18px rgba(0, 139, 139, 0.25);
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
             }
         }
 
@@ -619,1793 +617,4 @@
             border-radius: 12px;
             text-align: center;
             border: 2px solid var(--border-color); /* Duidelijkere rand */
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        /* Disable hover transform on mobile/touch devices */
-        @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-            .pricing-item:hover {
-                transform: translateY(0); /* Reset transform on hover for touch devices */
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Keep original shadow */
-            }
-            .pricing-item.premium-item:hover {
-                transform: translateY(0) scale(1); /* Reset transform for premium item */
-                box-shadow: 0 0 25px var(--premium-glow-color); /* Keep original glow */
-            }
-        }
-
-
-        .pricing-item i {
-            font-size: 3em; /* Grotere iconen */
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 139, 139, 0.5);
-
-            @media (prefers-color-scheme: light) {
-                text-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
-            }
-        }
-
-        .pricing-item h3 {
-            font-size: 1.6em;
-            margin-bottom: 10px;
-            color: var(--heading-color);
-            font-weight: 600;
-        }
-
-        .price {
-            font-size: 2.5em; /* Grotere prijs */
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        .price small {
-            font-size: 0.5em; /* Iets groter */
-            color: var(--text-color);
-        }
-
-        .pricing-item ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .pricing-item ul li {
-            margin-bottom: 10px;
-            padding-left: 25px; /* Meer padding */
-            position: relative;
-            font-size: 1em; /* Iets groter */
-        }
-
-        .pricing-item ul li::before {
-            content: "\f00c";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-            top: 3px; /* Aangepaste positie */
-        }
-
-        .pricing-item ul li:first-child {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-
-        .pricing-item .select-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--card-background);
-            padding: 15px 25px; /* Meer padding */
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.1em; /* Groter font */
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 139, 139, 0.3);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 5px 15px rgba(0, 139, 139, 0.2);
-            }
-        }
-
-        .pricing-item .select-button:hover {
-            background-color: #00A3A3; /* Iets lichtere accentkleur */
-            transform: translateY(-5px); /* Meer lift */
-            box-shadow: 0 8px 20px rgba(0, 139, 139, 0.5);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 20px rgba(0, 139, 139, 0.4);
-            }
-        }
-
-        /* Specifieke knopstijlen */
-        .pricing-item .select-button.premium-button {
-            background-color: var(--premium-button-color);
-            color: var(--card-background);
-            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4); /* Sterkere schaduw */
-        }
-
-        .pricing-item .select-button.premium-button:hover {
-            background-color: #CC7000; /* Iets donkerder oranje */
-            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.6);
-        }
-
-        .pricing-item .select-button.group-button {
-            background-color: var(--light-accent-color);
-            color: var(--background-color);
-            box-shadow: 0 5px 15px rgba(64, 191, 191, 0.3);
-        }
-
-        .pricing-item .select-button.group-button:hover {
-            background-color: var(--accent-color);
-            color: var(--card-background);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 139, 139, 0.5);
-        }
-
-        /* Study Coaching button now matches group button */
-        .pricing-item .select-button.study-coaching-button {
-            background-color: var(--light-accent-color);
-            color: var(--background-color);
-            box-shadow: 0 5px 15px rgba(64, 191, 191, 0.3);
-        }
-
-        .pricing-item .select-button.study-coaching-button:hover {
-            background-color: var(--accent-color);
-            color: var(--card-background);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 139, 139, 0.5);
-        }
-
-        /* Premium Item Glow */
-        .pricing-item.premium-item {
-            position: relative;
-            z-index: 2;
-            border-color: var(--premium-button-color);
-            box-shadow: 0 0 25px var(--premium-glow-color); /* Sterkere initiële glow */
-            transition: all 0.5s ease-in-out; /* Vloeiendere overgang */
-        }
-
-        .pricing-item.premium-item:hover {
-            /* Removed transform for no shift on hover */
-            box-shadow: 0 0 50px var(--premium-glow-color), 0 20px 40px rgba(0, 0, 0, 0.5); /* Nog sterkere glow en diepere schaduw */
-        }
-
-
-        /* Contact Sectie */
-        #contact {
-            background-color: var(--card-background);
-        }
-        #contact .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
-            align-items: flex-start;
-            justify-content: center;
-        }
-
-        #contact h2 {
-            width: 100%;
-            margin-bottom: 45px;
-        }
-
-        .contact-form {
-            flex: 1 100%;
-            max-width: 750px; /* Iets breder */
-            margin: 0 auto;
-        }
-
-        .contact-form form {
-            background-color: var(--background-color);
-            padding: 45px; /* Meer padding */
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-            border: 1px solid var(--border-color);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 12px;
-            font-weight: bold;
-            color: var(--heading-color);
-            font-size: 1.15em;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 18px; /* Meer padding */
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px; /* Meer afgerond */
-            background-color: var(--card-background);
-            color: var(--text-color);
-            box-sizing: border-box;
-            font-size: 1.05em;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-            @media (prefers-color-scheme: light) {
-                background-color: var(--card-background);
-            }
-        }
-
-         .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(0, 139, 139, 0.7); /* Sterkere schaduw */
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 0 10px rgba(0, 139, 139, 0.4);
-            }
-        }
-
-
-        .contact-form button,
-        .contact-form .cta-button-small {
-            background-color: var(--accent-color);
-            color: var(--card-background);
-            padding: 18px 30px; /* Meer padding */
-            border: none;
-            border-radius: 8px; /* Minder afgerond */
-            cursor: pointer;
-            font-size: 1.25em; /* Groter font */
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 6px 18px rgba(0, 139, 139, 0.35);
-            margin-right: 20px; /* Meer ruimte */
-            display: inline-block;
-            text-align: center;
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 6px 18px rgba(0, 139, 139, 0.2);
-            }
-        }
-
-        .contact-form button:hover,
-        .contact-form .cta-button-small:hover {
-            background-color: #00A3A3;
-             transform: translateY(-5px);
-             box-shadow: 0 10px 25px rgba(0, 139, 139, 0.55);
-
-            @media (prefers-color-scheme: light) {
-                box_shadow: 0 10px 25px rgba(0, 139, 139, 0.4);
-            }
-        }
-
-
-        /* Terug naar boven knop */
-        #back-to-top {
-            display: none;
-            position: fixed;
-            bottom: 40px; /* Hoger */
-            right: 40px;
-            z-index: 99;
-            border: none;
-            outline: none;
-            background-color: var(--accent-color);
-            color: var(--card-background);
-            cursor: pointer;
-            width: 60px; /* Vaste breedte */
-            height: 60px; /* Vaste hoogte */
-            border-radius: 50%; /* Zorgt ervoor dat de knop rond is */
-            font-size: 1.4em;
-            display: flex; /* Gebruik flexbox om icoon te centreren */
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        #back-to-top:hover {
-            background-color: #00A3A3;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-            }
-        }
-
-        /* Scroll Animaties Stijlen (Initiële staat) */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(40px); /* Meer initiële translateY */
-            transition: opacity 0.9s ease-out, transform 0.9s ease-out; /* Langere, soepelere animatie */
-        }
-
-        /* Specifieke animaties */
-        .fade-in-up {
-            transform: translateY(40px); /* Meer initiële translateY */
-        }
-        .slide-in-left {
-            transform: translateX(-60px);
-        }
-        .slide-in-right {
-            transform: translateX(60px);
-        }
-        .scale-in {
-            transform: scale(0.85); /* Kleinere initiële schaal */
-        }
-
-        /* Zichtbaar status voor animaties */
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0) translateX(0) scale(1);
-        }
-
-        /* Begeleiders Section */
-        #begeleiders {
-            background-color: var(--background-color);
-        }
-
-        #begeleiders .begeleiders-carousel-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            max-width: 100%;
-        }
-
-        #begeleiders .begeleiders-grid {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-            gap: 30px; /* Meer ruimte */
-            padding-bottom: 25px;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            justify-content: flex-start;
-        }
-
-        #begeleiders .begeleiders-grid::-webkit-scrollbar {
-            display: none;
-        }
-
-        #begeleiders .scroll-arrow {
-            background-color: var(--accent-color);
-            color: var(--card-background);
-            border: none;
-            border-radius: 50%;
-            width: 50px; /* Groter */
-            height: 50px;
-            font-size: 1.6em; /* Groter */
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        #begeleiders .scroll-arrow:hover {
-            background-color: #00A3A3;
-            transform: translateY(-50%) scale(1.1); /* Meer schaal */
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
-            }
-        }
-
-        .begeleider-item {
-            flex: 0 0 auto;
-            min-width: 300px; /* Grotere min-width */
-            max-width: 350px;
-            background-color: var(--card-background);
-            padding: 35px; /* Meer padding */
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid var(--border-color);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        /* Disable hover transform on mobile/touch devices */
-        @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-            .begeleider-item:hover {
-                transform: translateY(0); /* Reset transform on hover for touch devices */
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Keep original shadow */
-            }
-        }
-
-        .begeleider-item i {
-            font-size: 4.5em;
-            color: var(--accent-color);
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(0, 139, 139, 0.5);
-
-            @media (prefers-color-scheme: light) {
-                text-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
-            }
-        }
-
-        .begeleider-item h3 {
-            font-size: 1.7em; /* Groter font */
-            margin-bottom: 12px;
-            color: var(--heading-color);
-            font-weight: 600;
-        }
-
-        .begeleider-item p {
-            font-size: 1.05em;
-            color: var(--text-color);
-        }
-
-        /* Responsieve Aanpassingen */
-        @media (max-width: 992px) {
-            #hero h1 {
-                font-size: 3.5em;
-            }
-            #hero p {
-                font-size: 1.3em; /* Aangepast voor mobiel */
-            }
-            h2 {
-                font-size: 2.2em;
-            }
-            section {
-                padding: 80px 0;
-            }
-             .pricing-item h3 {
-                font-size: 1.6em;
-            }
-            .price {
-                font-size: 2.5em;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header .container {
-                 flex-wrap: wrap;
-            }
-             .logo {
-                flex-basis: auto;
-             }
-            nav {
-                 flex-basis: 100%;
-                 order: 1;
-                 margin-top: 15px; /* Meer marge */
-            }
-             nav ul {
-                top: 85px; /* Aangepaste positie */
-             }
-
-            #hero {
-                padding: 120px 20px 80px; /* Meer compact op mobiel */
-                min-height: 70vh; /* Minder hoogte op mobiel */
-            }
-            #hero h1 {
-                font-size: 2.8em; /* Kleinere titel */
-            }
-            #hero p {
-                font-size: 1.1em; /* Kleinere paragraaf */
-            }
-            .cta-button {
-                padding: 18px 35px;
-                font-size: 1.2em;
-            }
-            h2 {
-                font-size: 2em;
-                margin-bottom: 40px;
-            }
-             h2::after {
-                bottom: -12px;
-             }
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            .process-steps {
-                flex-direction: column;
-                align-items: center;
-            }
-            .step-item {
-                min-width: auto;
-                max-width: 100%;
-            }
-             .contact-form {
-                flex: 1 100%;
-            }
-             #contact .container {
-                gap: 40px;
-             }
-            .pricing-grid,
-            #begeleiders .begeleiders-grid {
-                overflow-x: scroll;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: x mandatory;
-            }
-            .pricing-item,
-            .begeleider-item {
-                scroll-snap-align: start;
-            }
-            /* Hide arrows on mobile */
-            .pricing-carousel-wrapper .scroll-arrow,
-            #begeleiders .scroll-arrow {
-                display: none;
-            }
-            section {
-                padding: 70px 0; /* Minder padding op mobiel */
-            }
-
-            /* Mobiele vaste CTA knop */
-            #mobile-cta-button {
-                display: block; /* Toon op mobiel */
-            }
-        }
-
-        @media (max-width: 480px) {
-            #hero h1 {
-                font-size: 2.2em;
-            }
-            #hero p {
-                font-size: 0.9em; /* Aangepast voor mobiel */
-            }
-             .cta-button {
-                padding: 15px 30px;
-                font-size: 1.1em;
-            }
-             h2 {
-                font-size: 1.8em;
-             }
-            .pricing-item {
-                padding: 20px 10px; /* Smaller padding on mobile */
-                min-width: 180px; /* Smaller min-width for mobile */
-                max-width: 200px; /* Max width to ensure it doesn't get too big */
-            }
-            .pricing-item i {
-                font-size: 2.2em; /* Smaller icons */
-            }
-            .pricing-item h3 {
-                font-size: 1.2em; /* Smaller font */
-            }
-            .price {
-                font-size: 2em; /* Smaller price */
-            }
-             .price small {
-                font-size: 0.4em; /* Smaller price unit */
-             }
-             .pricing-item ul {
-                margin-bottom: 15px; /* Less margin */
-             }
-             .pricing-item ul li {
-                 margin-bottom: 8px; /* Less margin */
-                 padding-left: 20px;
-                 font-size: 0.85em; /* Smaller font */
-             }
-             .pricing-item ul li::before {
-                 top: 2px;
-             }
-             .pricing-item .select-button {
-                 padding: 10px 18px; /* Smaller button */
-                 font-size: 0.9em; /* Smaller font */
-             }
-             .contact-form form {
-                 padding: 35px;
-             }
-             .contact-form input, .contact-form textarea {
-                 padding: 15px;
-                 margin-bottom: 25px;
-             }
-             /* Stack contact form buttons vertically */
-             .contact-form button,
-             .contact-form .cta-button-small {
-                 display: block;
-                 width: 100%;
-                 margin-right: 0;
-                 margin-bottom: 15px; /* Add space between stacked buttons */
-                 box-sizing: border-box; /* Include padding/border in width */
-             }
-             .contact-form .cta-button-small:last-child {
-                margin-bottom: 0; /* No margin for the last button */
-             }
-
-             #back-to-top {
-                 bottom: 30px;
-                 right: 30px;
-                 width: 50px; /* Kleinere vaste breedte */
-                 height: 50px; /* Kleinere vaste hoogte */
-                 padding: 0; /* Geen padding, breedte/hoogte bepalen grootte */
-                 font-size: 1.2em;
-             }
-
-             /* Mobiele vaste CTA knop - kleinere aanpassingen */
-            #mobile-cta-button {
-                padding: 15px 25px;
-                font-size: 1.1em;
-                bottom: 15px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: calc(100% - 40px);
-            }
-
-            /* Mobile specific adjustments for feature-item */
-            .feature-item {
-                padding: 30px; /* Smaller padding */
-                font-size: 0.9em; /* Smaller text */
-            }
-            .feature-item i {
-                font-size: 3.5em; /* Smaller icons */
-            }
-            .feature-item h3 {
-                font-size: 1.4em; /* Smaller heading */
-            }
-
-            /* Mobile specific adjustments for begeleider-item */
-            .begeleider-item {
-                padding: 25px; /* Smaller padding */
-                min-width: 220px; /* Smaller min-width */
-                max-width: 280px; /* Smaller max-width */
-            }
-            .begeleider-item i {
-                font-size: 3.5em; /* Smaller icons */
-            }
-            .begeleider-item h3 {
-                font-size: 1.4em; /* Smaller heading */
-            }
-            .begeleider-item p {
-                font-size: 0.9em; /* Smaller text */
-            }
-
-            /* Mobile specific adjustments for selected-package-info */
-            #selected-package-info {
-                padding: 30px 15px; /* Smaller padding */
-                max-width: calc(100% - 40px); /* Ensure it fits within viewport with margins */
-                margin-left: 20px; /* Add left margin */
-                margin-right: 20px; /* Add right margin */
-            }
-            #selected-package-info h2 {
-                font-size: 2.2em; /* Smaller heading */
-            }
-            #selected-package-info #detailPackageDescription {
-                font-size: 1em; /* Smaller text */
-                padding: 0 10px; /* Adjust inner padding */
-            }
-            #selected-package-info .cta-button {
-                padding: 15px 25px; /* Smaller button */
-                font-size: 1.1em; /* Smaller font */
-            }
-        }
-
-        /* FAQ Sectie Stijlen from Code landingspage.docx */
-        #faq {
-            background-color: var(--background-color);
-            padding: 100px 0;
-        }
-
-        #faq .faq-item {
-            background-color: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-
-            @media (prefers-color-scheme: light) {
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            }
-        }
-
-        #faq .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 30px;
-            cursor: pointer;
-            background-color: var(--card-background);
-            color: var(--heading-color);
-            font-size: 1.3em;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        #faq .faq-question:hover {
-            background-color: var(--hover-color);
-        }
-
-        #faq .faq-question i {
-            font-size: 1em;
-            color: var(--accent-color);
-            transition: transform 0.3s ease;
-        }
-
-        #faq .faq-question.active i {
-            transform: rotate(180deg);
-        }
-
-        #faq .faq-answer {
-            padding: 0 30px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-            color: var(--text-color);
-            font-size: 1.1em;
-        }
-
-        #faq .faq-answer.open {
-            max-height: 500px; /* This is a fixed value, might be an issue with very long answers */
-            padding: 20px 30px 30px;
-        }
-
-        #faq .faq-answer p {
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        #faq .faq-button-wrapper {
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        /* Cookie Consent Banner Styles */
-        #cookie-consent-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--card-background);
-            color: var(--text-color);
-            padding: 20px 25px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            z-index: 1001;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        #cookie-consent-banner p {
-            margin: 0;
-            font-size: 0.95em;
-            line-height: 1.4;
-        }
-
-        #cookie-consent-banner .more-info-link {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
-
-        .cookie-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .cookie-buttons button {
-            background-color: var(--accent-color);
-            color: var(--card-background);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .cookie-buttons button:hover {
-            background-color: #00A3A3;
-            transform: translateY(-2px);
-        }
-
-        #decline-cookies {
-            background-color: var(--border-color);
-            color: var(--text-color);
-        }
-
-        #decline-cookies:hover {
-            background-color: #3a5778;
-            color: var(--heading-color);
-        }
-
-        @media (max-width: 600px) {
-            #cookie-consent-banner {
-                padding: 15px;
-            }
-            .cookie-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-            .cookie-buttons button {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="#"><img src="files/logo.png" alt="StatHulp Logo"></a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#features">Over Ons</a></li>
-                    <li><a href="#proces">Proces</a></li>
-                    <li><a href="#prijzen">Prijzen</a></li>
-                    <li><a href="#begeleiders">Onze Experts</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </nav>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section id="hero">
-            <div class="container">
-                <h1 class="animate-on-scroll fade-in-up">Statistiek hoeft <span class="underline-text">GEEN</span> <span class="dynamic-word-container"></span> te zijn.</h1>
-                <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Zet studiestress om in zelfvertrouwen. Met <strong>StatHulp</strong> beheers je complexe statistiek en behaal je moeiteloos je academische doelen.</p>
-                <a href="https://cal.com/stathulp-itul5g/15min" class="cta-button animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">Plan jouw gratis intakegesprek</a>
-            </div>
-        </section>
-
-        <section id="features">
-            <div class="container">
-                <h2 class="animate-on-scroll fade-in-up">Over Ons</h2>
-                <div class="features-grid">
-                    <div class="feature-item animate-on-scroll fade-in-up">
-                        <i class="fas fa-user-graduate"></i>
-                        <h3>Voor Psychologiestudenten</h3>
-                        <p>Wij bieden gerichte hulp bij Statistiek voor Psychologen 1, 2, 3 en 4, en ondersteunen je ook bij andere psychologievakken. Onze begeleiders begrijpen jouw specifieke leerbehoeften.</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
-                        <i class="fas fa-users"></i>
-                        <h3>Ook Groepslessen & Studiecoaching</h3>
-                        <p>Naast persoonlijke 1-op-1 sessies, bieden we ook voordelige groepslessen en gespecialiseerde studiecoaching aan. Flexibele opties voor elke leerstijl en elk budget.</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
-                        <i class="fas fa-user-friends"></i>
-                        <h3>Begeleiding door Studenten voor Studenten</h3>
-                        <p>Ervaar bijles van oudere ervaren studenten die jouw uitdagingen begrijpen en je effectief kunnen helpen. Wij spreken jouw taal!</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
-                        <i class="fas fa-university"></i>
-                        <h3>Dichtbij de Bron: Actuele Leerstof & Professoren</h3>
-                        <p>Onze begeleiders staan in nauw contact met de professoren en de meest recente leerstof, zodat je altijd de meest relevante en up-to-date hulp krijgt.</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>Heldere Didactiek</h3>
-                        <p>Complexe concepten worden eenvoudig en begrijpelijk uitgelegd, afgestemd op jouw leertempo en -stijl. Geen onnodige jargon, wel helderheid.</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.5s;">
-                        <i class="fas fa-smile-beam"></i>
-                        <h3>Positieve Motivatie</h3>
-                        <p>Een stimulerende en positieve sfeer tijdens elke sessie om je zelfvertrouwen te boosten. Wij geloven in jouw potentieel!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="proces">
-            <div class="container">
-                <h2 class="animate-on-scroll fade-in-up">Hoe Werkt StatHulp?</h2>
-                <div class="process-steps">
-                    <div class="step-item animate-on-scroll fade-in-up">
-                        <div class="step-number">1</div>
-                        <div class="icon">
-                            <i class="fas fa-calendar-check"></i>
-                            </div>
-                        <h3>Gratis Intakegesprek</h3>
-                        <p>Zet de eerste stap naar succes! Plan een vrijblijvend intakegesprek en bespreek jouw uitdagingen met een expert.</p>
-                    </div>
-                    <div class="step-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
-                         <div class="step-number">2</div>
-                         <div class="icon">
-                            <i class="fas fa-route"></i>
-                            </div>
-                        <h3>Persoonlijk Leertraject</h3>
-                        <p>Ontvang een op maat gemaakt plan, perfect afgestemd op jouw unieke leerbehoeften. Jouw weg naar inzicht!</p>
-                    </div>
-                    <div class="step-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
-                         <div class="step-number">3</div>
-                         <div class="icon">
-                            <i class="fas fa-graduation-cap"></i>
-                            </div>
-                        <h3>Zelfverzekerd Slagen</h3>
-                        <p>Behaal je doelen met vertrouwen en excelleer in je statistiekvakken. Wij helpen je erbij!</p> </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonials">
-            <div class="container">
-                <h2 class="animate-on-scroll fade-in-up">Wat Studenten Zeggen</h2>
-                <div class="testimonial-item animate-on-scroll slide-in-left">
-                    <p>"StatHulp heeft mijn statistiekstress enorm verminderd. De uitleg was helder en de persoonlijke aanpak werkte perfect! Een absolute aanrader voor elke psychologiestudent."</p>
-                    <div class="author">- Lisa V., Psychologiestudent</div>
-                </div>
-                 <div class="testimonial-item animate-on-scroll slide-in-right" style="transition-delay: 0.1s;">
-                    <p>"Dankzij de hulp met SPSS en RStudio kon ik mijn opdrachten veel sneller en beter afronden. De begeleiding was top, ik voel me nu veel zelfverzekerder!"</p>
-                    <div class="author">- Mark K., Psychologiestudent</div>
-                </div>
-                 <div class="testimonial-item animate-on-scroll slide-in-left" style="transition-delay: 0.2s;">
-                    <p>"Eindelijk statistiek begrepen! De docent nam echt de tijd en paste de uitleg aan mijn niveau aan. Ik ben zo blij dat ik StatHulp heb gevonden."</p>
-                    <div class="author">- Sophie R., Psychologiestudent</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="prijzen">
-            <div class="container">
-                <h2 class="animate-on-scroll fade-in-up">Onze Pakketten</h2>
-                <div class="pricing-carousel-wrapper">
-                    <button class="scroll-arrow left" id="scrollLeftBtn"><i class="fas fa-chevron-left"></i></button>
-                    <div class="pricing-grid" id="pricingGrid">
-                        <div class="pricing-item animate-on-scroll scale-in" data-package-name="1u-pakket">
-                            <i class="fas fa-user"></i>
-                            <h3>1u-pakket</h3>
-                            <div class="price">€39<small>/uur</small></div>
-                            <ul>
-                                <li><b><u>1-op-1 sessie (60 min)</u></b></li>
-                                <li>Hulp bij specifieke vragen</li>
-                                <li>Geschikt voor losse problemen</li>
-                                <li>Online of fysiek (+€5/sessie)</li>
-                                <li>Vragen via e-mail</li>
-                            </ul>
-                            <a href="#" class="select-button" data-package-name="1u-pakket">Meer Info</a>
-                        </div>
-                        <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.1s;" data-package-name="4-uur pakket">
-                             <i class="fas fa-book-open"></i>
-                            <h3>4-uur pakket</h3>
-                            <div class="price">€34<small>/uur</small></div>
-                             <ul>
-                                <li><b><u>4 sessies (€34/uur)</u></b></li>
-                                <li>Doorlopende begeleiding</li>
-                                <li>Hulp bij specifieke vragen</li>
-                                <li>Online of fysiek (+€5/sessie)</li>
-                                <li>Vragen via e-mail</li>
-                            </ul>
-                            <a href="#" class="select-button" data-package-name="4-uur pakket">Meer Info</a>
-                        </div>
-                        <div class="pricing-item animate-on-scroll scale-in premium-item" style="transition-delay: 0.2s;" data-package-name="10-uur pakket">
-                            <i class="fas fa-star"></i>
-                            <h3>10-uur pakket</h3>
-                            <div class="price">€29<small>/uur</small></div>
-                             <ul>
-                                <li><b><u>10 sessies (€29/uur)</u></b></li>
-                                <li>Intensieve begeleiding</li>
-                                <li>Hulp bij specifieke vragen</li>
-                                <li>Online of fysiek (+€5/sessie)</li>
-                                <li>Prioriteit support (e-mail/chat)</li>
-                                <li>Examenvoorbereiding</li>
-                            </ul>
-                            <a href="#" class="select-button premium-button" data-package-name="10-uur pakket">Meer Info</a>
-                        </div>
-                        <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.3s;" data-package-name="Groepsles (2-5 personen)">
-                            <i class="fas fa-user-friends"></i>
-                            <h3>Groepsles (2-5 pers.)</h3>
-                            <div class="price">€24<small>pp/uur</small></div>
-                            <ul>
-                                <li><b><u>Begeleiding voor 2-5 studenten</u></b></li>
-                                <li>Voordelig samen leren</li>
-                                <li>Hulp bij specifieke vragen</li>
-                                <li>Online of fysiek (+€5/sessie)</li>
-                                <li>Flexibele planning</li>
-                            </ul>
-                            <a href="#" class="select-button group-button" data-package-name="Groepsles (2-5 personen)">Meer Info</a>
-                        </div>
-                         <div class="pricing-item animate-on-scroll scale-in" style="transition-delay: 0.4s;" data-package-name="Studiecoaching">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h3>Studiecoaching</h3>
-                            <div class="price">€59<small>/sessie</small></div>
-                            <ul>
-                                <li><b><u>Hulp met studiemethoden</u></b></li>
-                                <li>Sessie duur: 2 uur</li>
-                                <li>Examenplanning opstellen</li>
-                                <li>Examentypes aanpakken</li>
-                                <li>Focus op strategie, niet inhoud</li>
-                                <li>Exclusief online beschikbaar</li>
-                            </ul>
-                            <a href="#" class="select-button study-coaching-button" data-package-name="Studiecoaching">Meer Info</a>
-                        </div>
-                    </div>
-                    <button class="scroll-arrow right" id="scrollRightBtn"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <section id="selected-package-info" class="container" style="padding: 40px 0;">
-            <h2 id="detailPackageTitle" class="animate-on-scroll fade-in-up">Pakket Informatie</h2>
-            <div id="detailPackageDescription" class="animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
-                <p>Selecteer een pakket hierboven om meer details te zien en direct een intakegesprek te boeken! Jouw academische succes is dichterbij dan je denkt.</p>
-            </div>
-            <a href="https://cal.com/stathulp-itul5g/15min" class="cta-button animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Boek Nu Jouw Intakegesprek</a>
-        </section>
-
-        <section id="begeleiders" style="padding-top: 80px; padding-bottom: 100px;">
-            <div class="container">
-                <h2 class="animate-on-scroll fade-in-up">Ontmoet Onze Experts</h2>
-                <div class="begeleiders-carousel-wrapper">
-                    <button class="scroll-arrow left" id="scrollBegeleidersLeftBtn"><i class="fas fa-chevron-left"></i></button>
-                    <div class="begeleiders-grid" id="begeleidersGrid">
-                        <div class="begeleider-item animate-on-scroll fade-in-up">
-                            <i class="fas fa-user-graduate"></i>
-                            <h3>Dr. Elias De Vries</h3>
-                            <p>Elias is een ervaren statisticus met een passie voor het vereenvoudigen van complexe materie. Zijn specialiteit ligt in regressieanalyse en multivariate statistiek.</p>
-                        </div>
-                        <div class="begeleider-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
-                            <i class="fas fa-user-tie"></i>
-                            <h3>Prof. Lena Mertens</h3>
-                            <p>Lena combineert haar diepgaande kennis van psychologie met statistische expertise. Ze helpt studenten graag met methodologie en onderzoeksdesign.</p>
-                        </div>
-                        <div class="begeleider-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
-                            <i class="fas fa-user-alt"></i>
-                            <h3>Sarah Janssen</h3>
-                            <p>Sarah is gespecialiseerd in SPSS en RStudio en helpt studenten met praktische data-analyse. Ze legt de focus op heldere interpretatie van resultaten.</p>
-                        </div>
-                        <div class="begeleider-item animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
-                            <i class="fas fa-user-secret"></i>
-                            <h3>Tom Van Dijk</h3>
-                            <p>Tom heeft een achtergrond in cognitieve psychologie en is expert in experimenteel design en de bijbehorende statistiek. Hij maakt abstracte concepten tastbaar.</p>
-                        </div>
-                        <div class="begeleider-item animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">
-                            <i class="fas fa-user-md"></i>
-                            <h3>Dr. Kim Peeters</h3>
-                            <p>Kim richt zich op de klinische psychologie en de toepassing van statistiek in diagnostiek en behandelingsevaluatie. Ze biedt gerichte begeleiding voor specifieke vraagstukken.</p>
-                        </div>
-                        <div class="begeleider-item animate-on-scroll fade-in-up" style="transition-delay: 0.5s;">
-                            <i class="fas fa-user-astronaut"></i>
-                            <h3>Max Vermeulen</h3>
-                            <p>Max is onze studiecoach die je helpt met het ontwikkelen van effectieve studiestrategieën, examenplanning en het overwinnen van studiestress, specifiek voor psychologievakken.</p>
-                        </div>
-                    </div>
-                    <button class="scroll-arrow right" id="scrollBegeleidersRightBtn"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" style="padding-top: 80px;">
-            <div class="container">
-                <h2 class="animate-on-scroll fade-in-up">Neem Contact Op</h2>
-                <div class="contact-form animate-on-scroll fade-in-up">
-                    <form action="https://submit-form.com/Kq5jXJsUA" method="post" id="contactForm">
-                        <p style="color: var(--text-color); font-size: 0.9em; margin-bottom: 20px;">
-                            Heb je vragen of wil je meer weten over onze begeleiding? Vul het formulier in of plan direct een gratis intakegesprek!
-                        </p>
-                        <label for="name">Naam:</label>
-                        <input type="text" id="name" name="name" required>
-
-                        <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" required>
-
-                        <label for="message">Bericht:</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
-
-                        <button type="submit">Verstuur Bericht</button>
-                        <a href="https://cal.com/stathulp-itul5g/15min" class="cta-button-small">Plan Gratis Intakegesprek</a>
-                        <div id="formSubmissionMessage" style="margin-top: 15px; font-weight: bold;"></div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section id="recruitment" class="animate-on-scroll fade-in-up">
-            <div class="container">
-                <h2>Word Bijlesgever bij StatHulp!</h2>
-                <p>Ben jij een gemotiveerde student met een passie voor statistiek en psychologie? Wil je andere studenten helpen slagen en je eigen kennis verdiepen? Stuur je motivatiebrief en CV naar <a href="mailto:stathulp@gmail.com" class="email-link">stathulp@gmail.com</a>. We streven ernaar je zo snel mogelijk te antwoorden!</p>
-            </div>
-        </section>
-
-        <section id="faq">
-            <div class="container">
-                <h2 class="animate-on-scroll fade-in-up">Veelgestelde Vragen</h2>
-                <div class="faq-list">
-                    <div class="faq-item animate-on-scroll fade-in-up">
-                        <div class="faq-question">
-                            <span>Wat is StatHulp precies?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>StatHulp biedt gespecialiseerde 1-op-1 bijles en studiecoaching in statistiek en psychologie, specifiek afgestemd op de behoeften van psychologiestudenten. Ons doel is om complexe materie begrijpelijk te maken en je te helpen excelleren in je studies.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.05s;">
-                        <div class="faq-question">
-                            <span>Voor wie is StatHulp bedoeld?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>StatHulp is er voor alle psychologiestudenten die worstelen met statistiek, methodologie, of andere psychologievakken. Of je nu specifieke hulp nodig hebt met een opdracht, je voorbereidt op een examen, of je studiemethode wilt verbeteren, wij staan voor je klaar.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
-                        <div class="faq-question">
-                            <span>Hoe werkt de gratis intake?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Tijdens een vrijblijvend intakegesprek bespreken we jouw specifieke uitdagingen, leertraject en doelen. Dit helpt ons om een gepersonaliseerd plan op te stellen dat perfect aansluit bij jouw behoeften. Het is de ideale manier om kennis te maken en te zien hoe StatHulp jou kan helpen.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.15s;">
-                        <div class="faq-question">
-                            <span>Kan ik zowel online als fysiek les krijgen?</span>
-                            <i class="fas fa fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Absoluut! Wij bieden zowel flexibele online lessen aan via videobellen, als fysieke bijlessen bij jou thuis of op kot in Leuven. Voor fysieke lessen geldt een kleine toeslag van €5 per sessie om de reiskosten te dekken. De keuze is aan jou, afhankelijk van wat het beste past bij jouw situatie.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
-                        <div class="faq-question">
-                            <span>Welke software wordt er gebruikt tijdens de statistieklessen?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Onze begeleiders zijn ervaren in het werken met de meest gangbare statistische softwarepakketten die binnen de psychologie worden gebruikt, zoals SPSS en RStudio. We passen onze uitleg aan op de software die jij nodig hebt voor je studie of onderzoek.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.25s;">
-                        <div class="faq-question">
-                            <span>Hoeveel sessies heb ik nodig?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Het aantal benodigde sessies is volledig afhankelijk van jouw persoonlijke doelen en de complexiteit van de materie. Tijdens het intakegesprek kunnen we een inschatting maken en een passend pakket adviseren. We streven altijd naar efficiënte en effectieve begeleiding.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
-                        <div class="faq-question">
-                            <span>Kan ik ook hulp krijgen bij mijn bachelor- of masterproef?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Jazeker! Veel studenten ervaren uitdagingen bij het statistische deel van hun scriptie. Wij kunnen je begeleiden bij data-analyse, interpretatie van resultaten, en het correct rapporteren ervan, zodat je scriptie op een solide basis staat.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.35s;">
-                        <div class="faq-question">
-                            <span>Wat als ik een les moet verplaatsen of annuleren?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Wij begrijpen dat je studentenleven druk kan zijn. Je kunt een geplande sessie kosteloos verplaatsen of annuleren tot 24 uur voor aanvang. Neem hiervoor tijdig contact met ons op.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">
-                        <div class="faq-question">
-                            <span>Bieden jullie ook hulp bij specifieke psychologievakken buiten statistiek?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Hoewel onze hoofdfocus op statistiek ligt, hebben onze begeleiders ook expertise in andere psychologiegerelateerde vakken. Neem contact op om te bespreken of we je kunnen helpen met jouw specifieke vak.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.45s;">
-                        <div class="faq-question">
-                            <span>Wat is het verschil tussen bijles en studiecoaching?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Bijles richt zich op de inhoudelijke uitleg van specifieke leerstof (bijv. statistische concepten). Studiecoaching daarentegen focust op het verbeteren van je studiemethoden, planning, examentypes en algemene aanpak van je vakken, zonder diep in de inhoud te duiken.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.5s;">
-                        <div class="faq-question">
-                            <span>Hoe lang duurt een sessie?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Een standaard 1-op-1 bijlessessie duurt 60 minuten. De duur van groepssessies en studiecoachingsessies kan variëren, afhankelijk van het gekozen pakket en de specifieke afspraken.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.55s;">
-                        <div class="faq-question">
-                            <span>Hoe kan ik betalen?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Betalingen verlopen eenvoudig en veilig na elke sessie of maandelijks, afhankelijk van het gekozen pakket. Meer details over de betaalmethoden worden tijdens het intakegesprek besproken.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.6s;">
-                        <div class="faq-question">
-                            <span>Leren uit fouten is het allerbelangrijkste bij het leerproces. Hoe helpt StatHulp hierbij?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Bij StatHulp omarmen we fouten als essentiële leermomenten. Net zoals je leert fietsen door te vallen, leer je statistiek door oefeningen te maken en je fouten te begrijpen. Onze lesgevers zijn getraind om jouw specifieke valkuilen snel te herkennen en je gericht te begeleiden. Door samen die tekortkomingen weg te werken, ontwikkel je snel inzicht en leer je hoe je fouten in de toekomst kunt vermijden, waardoor je vlotter met de leerstof overweg kunt.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.65s;">
-                        <div class="faq-question">
-                            <span>Hoe verwerk ik een vak zoals statistiek of psychologie efficiënt?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Het efficiënt verwerken van een vak vraagt expertise: waar leg je de focus? Wat is cruciaal en wat minder? Hoe hangen de verschillende onderdelen van de leerstof samen? Onze experts wijzen je direct de weg, waardoor je enorm veel tijd bespaart. Je leert niet alleen uit hun kennis, maar ook uit de valkuilen die zij eerder al tegenkwamen. Een begeleider van StatHulp helpt je sneller diepgaand inzicht in het vak te krijgen.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.7s;">
-                        <div class="faq-question">
-                            <span>Hoe kan ik leerstof beter memoriseren?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Memoriseren is een persoonlijke reis, waarbij de ene student visueel sterker is en de andere auditief. Toch zijn er vier universele pijlers die we je leren toepassen: structuur, herhaling, visualisatie en controle. We begeleiden je bij het structureel aanpakken van leerstof, het inplannen van effectieve herhalingen, het leggen van verbanden tussen concepten, en het controleren van je begrip. Zo ontwikkel je je eigen, meest effectieve memorisatiestrategie.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item animate-on-scroll fade-in-up" style="transition-delay: 0.75s;">
-                        <div class="faq-question">
-                            <span>Hoe weet ik of ik op het juiste studieniveau zit?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Om te zorgen dat je op het verwachte niveau studeert, integreren we "stepstones" in je traject. Dit zijn korte checkpoints of tests die we samen doorlopen om je voortgang nauwlettend te volgen. Dit geeft je direct houvast en motivatie, en stelt je in staat om te controleren of je op de goede weg bent. Het is een effectieve manier om te garanderen dat je de leerstof niet alleen begrijpt, maar ook beheerst op het niveau dat van je verwacht wordt.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-button-wrapper animate-on-scroll fade-in-up">
-                    <a href="https://cal.com/stathulp-itul5g/15min" class="cta-button">Nog een vraag? Neem contact op!</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <button id="back-to-top" title="Ga naar boven"><i class="fas fa-arrow-up"></i></button>
-
-    <a href="https://cal.com/stathulp-itul5g/15min" id="mobile-cta-button">Plan intakegesprek</a>
-
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="privacybeleid.html" target="_blank">Privacybeleid</a>
-                <a href="cookieverklaring.html" target="_blank">Cookieverklaring</a>
-                <a href="terms-conditions.html" target="_blank">Algemene Voorwaarden</a>
-            </div>
-            <p>&copy; 2024 StatHulp. Alle rechten voorbehouden.</p>
-        </div>
-    </footer>
-
-    <div id="cookie-consent-banner">
-        <p>Wij gebruiken cookies om je ervaring op onze website te verbeteren en om te analyseren hoe onze site wordt gebruikt. Door verder te gaan, ga je akkoord met ons <a href="cookieverklaring.html" class="more-info-link" target="_blank">cookiebeleid</a>.</p>
-        <div class="cookie-buttons">
-            <button id="accept-cookies">Accepteren</button>
-            <button id="decline-cookies">Weigeren</button>
-        </div>
-    </div>
-
-    <script src="cookie-consent.js"></script>
-    <script>
-        // JavaScript voor Navigatie Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('nav ul');
-
-        hamburger.addEventListener('click', () => {
-            navUl.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-
-        // Sluit navigatie wanneer op een link wordt geklikt (voor mobiel)
-        document.querySelectorAll('nav ul li a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navUl.classList.contains('active')) {
-                    navUl.classList.remove('active');
-                    hamburger.classList.remove('active');
-                }
-            });
-        });
-
-
-        // JavaScript voor Terug naar Boven Knop en Mobiele CTA Knop
-        const backToTopButton = document.getElementById('back-to-top');
-        const mobileCtaButton = document.getElementById('mobile-cta-button');
-
-        window.addEventListener('scroll', () => {
-            // Logica voor Terug naar Boven Knop
-            if (window.scrollY > 400) { // Toon knop na 400px naar beneden scrollen
-                backToTopButton.style.display = 'flex'; // Changed to flex to center content
-            } else {
-                backToTopButton.style.display = 'none';
-            }
-
-            // Logica voor Mobiele CTA Knop (alleen op mobiel)
-            const isMobile = window.innerWidth <= 768; // Controleer of het een mobiel scherm is
-            if (isMobile) {
-                if (window.scrollY > 200) { // Toon knop na 200px naar beneden scrollen
-                    mobileCtaButton.classList.add('show');
-                } else {
-                    mobileCtaButton.classList.remove('show');
-                }
-            } else {
-                mobileCtaButton.classList.remove('show'); // Verberg op desktop
-            }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // Vloeiend scrollen
-            });
-        });
-
-        // JavaScript voor Scroll Animaties
-        const animateElements = document.querySelectorAll('.animate-on-scroll');
-        const processStepItems = document.querySelectorAll('#proces .step-item'); // Selecteer de processtappen
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    // Voeg de rotate-on-scroll klasse toe als het een processtap is
-                    if (entry.target.classList.contains('step-item')) {
-                        entry.target.classList.add('rotate-on-scroll');
-                    }
-                } else {
-                    // Optioneel: Verwijder klasse wanneer uit beeld als animatie moet herhalen
-                    // entry.target.classList.remove('is-visible');
-                    // Verwijder de rotate-on-scroll klasse als het een processtap is
-                    if (entry.target.classList.contains('step-item')) {
-                        entry.target.classList.remove('rotate-on-scroll');
-                    }
-                }
-            });
-        }, {
-            threshold: 0.1, // Trigger wanneer 10% van het element zichtbaar is
-            rootMargin: "0px 0px -50px 0px" // Aanpassen wanneer element in beeld wordt beschouwd
-        });
-
-        animateElements.forEach(element => {
-            observer.observe(element);
-        });
-
-
-         // Vloeiend scrollen voor navigatielinks
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                const headerHeight = document.querySelector('header').offsetHeight; // Dynamisch de header hoogte ophalen
-                const offset = headerHeight + 10; // Offset van headerhoogte + 10px extra padding
-
-                if (targetElement) {
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - offset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-
-                 // Sluit mobiele navigatie indien open
-                 if (navUl.classList.contains('active')) {
-                    navUl.classList.remove('active');
-                    hamburger.classList.remove('active');
-                }
-            });
-        });
-
-        // Logo klikt om naar boven te scrollen
-        document.querySelector('.logo a').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // JavaScript voor Carrousel Pijlen (Algemeen)
-        const setupCarousel = (gridElement, leftBtn, rightBtn, itemSelector, scrollType = 'end', scrollAmount = 1) => {
-            if (!gridElement || !leftBtn || !rightBtn) return;
-
-            const scrollLogic = (direction) => {
-                if (scrollType === 'end') {
-                    if (direction === 'right') {
-                        const totalWidth = gridElement.scrollWidth;
-                        const visibleWidth = gridElement.clientWidth;
-                        gridElement.scrollTo({
-                            left: totalWidth - visibleWidth,
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        gridElement.scrollTo({
-                            left: 0,
-                            behavior: 'smooth'
-                        });
-                    }
-                } else if (scrollType === 'items') {
-                    const item = gridElement.querySelector(itemSelector);
-                    if (!item) return;
-                    const itemWidth = item.offsetWidth;
-                    // Dynamically determine gap based on computed style or hardcode if consistent
-                    // For simplicity, hardcoding based on current CSS values.
-                    let gap = 0;
-                    if (itemSelector === '.pricing-item') {
-                        gap = 20;
-                    } else if (itemSelector === '.begeleider-item') {
-                        gap = 30;
-                    }
-
-                    const scrollDistance = (itemWidth + gap) * scrollAmount;
-
-                    if (direction === 'right') {
-                        gridElement.scrollBy({
-                            left: scrollDistance,
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        gridElement.scrollBy({
-                            left: -scrollDistance,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            };
-
-            rightBtn.addEventListener('click', () => scrollLogic('right'));
-            leftBtn.addEventListener('click', () => scrollLogic('left'));
-
-            const updateArrowVisibility = (grid, leftB, rightB) => {
-                const isMobile = window.innerWidth <= 768;
-                if (isMobile) {
-                    leftB.style.display = 'none';
-                    rightB.style.display = 'none';
-                } else {
-                    leftB.style.display = grid.scrollLeft > 0 ? 'block' : 'none';
-                    rightB.style.display = (grid.scrollLeft + grid.clientWidth) < (grid.scrollWidth - 5) ? 'block' : 'none';
-                }
-            };
-
-            gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
-            window.addEventListener('resize', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
-            // No need to call updateArrowVisibility on load here, as reorderPricingItems handles scroll for pricing grid
-        };
-
-        // Setup for Pricing Carousel (scrolls to end/start)
-        setupCarousel(
-            document.getElementById('pricingGrid'),
-            document.getElementById('scrollLeftBtn'),
-            document.getElementById('scrollRightBtn'),
-            '.pricing-item',
-            'end'
-        );
-
-        // Setup for Begeleiders Carousel (scrolls by 2 items)
-        setupCarousel(
-            document.getElementById('begeleidersGrid'),
-            document.getElementById('scrollBegeleidersLeftBtn'),
-            document.getElementById('scrollBegeleidersRightBtn'),
-            '.begeleider-item',
-            'items',
-            2
-        );
-
-
-        // JavaScript voor Dynamische Pakket Detail Sectie
-        const selectedPackageInfoSection = document.getElementById('selected-package-info');
-        const detailPackageTitle = document.getElementById('detailPackageTitle');
-        const detailPackageDescription = document.getElementById('detailPackageDescription');
-        const selectButtons = document.querySelectorAll('.select-button');
-
-        // Hardcoded pakketbeschrijvingen
-        const packageDescriptions = {
-            "1u-pakket": `
-                <p>Het <strong>1u-pakket</strong> is ontworpen voor studenten die behoefte hebben aan snelle, gerichte ondersteuning bij specifieke statistiekvragen. Of het nu gaat om een lastige formule, een onbegrijpelijke grafiek, of een korte vraag over SPSS of RStudio, deze intensieve 1-op-1 sessie van 60 minuten biedt direct helderheid.</p>
-                <p>Deze flexibele optie is ideaal voor wie af en toe een korte, intensieve boost nodig heeft zonder zich vast te leggen op een langer traject. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij die nodig hebt. Neem de controle over die ene vraag die je dwarszit en zet de volgende stap naar inzicht.</p>
-            `,
-            "4-uur pakket": `
-                <p>Met het <strong>4-uur pakket</strong> investeer je in doorlopende begeleiding en gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 4 sessies van elk 60 minuten, wat neerkomt op een voordelige prijs per uur. Het is ontworpen voor studenten die de leerstof consistent willen bijhouden en dieper willen ingaan op complexere onderwerpen.</p>
-                <p>De structuur van dit pakket helpt je om gestaag aan je kennis en zelfvertrouwen te bouwen. Je ontvangt regelmatige ondersteuning die je helpt de materie echt te doorgronden, waardoor je je academische doelen met meer gemak bereikt. Kies voor de zekerheid van doorlopende, betaalbare hulp.</p>
-            `,
-            "10-uur pakket": `
-                <p>Het <strong>10-uur pakket</strong> is de meest complete keuze voor de ambitieuze psychologiestudent die intensieve begeleiding zoekt en maximale slaagkansen wil benutten. Met 10 sessies van elk 60 minuten profiteer je van de meest voordelige uurprijs en de meest diepgaande ondersteuning die StatHulp biedt.</p>
-                <p>Dit premium pakket omvat uitgebreide hulp bij al je statistiekvragen, prioriteitssupport via e-mail en chat, en gerichte examenvoorbereiding. We duiken samen diep in de materie, verfijnen je begrip en zorgen ervoor dat je met het volste vertrouwen je tentamens tegemoet gaat. Dit is een investering in jouw academische succes.</p>
-            `,
-            "Groepsles (2-5 personen)": `
-                <p>De <strong>Groepsles (2-5 personen)</strong> biedt een slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor een aantrekkelijke prijs per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is ideaal als je liever samen leert, discussieert en elkaar motiveert.
-                <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe waardevol en leerzaam statistiek kan zijn als het samen aanpakt.</p>
-            `,
-            "Studiecoaching": `
-                <p>Met <strong>Studiecoaching</strong> richt je je op het optimaliseren van je studiemethoden en examenstrategieën, specifiek voor psychologievakken. Een sessie duurt <strong>2 uur</strong> en focust niet op inhoudelijke bijles, maar op hoe je leert, plant en presteert. Dit pakket is exclusief online beschikbaar.</p>
-                <p>Onze studiecoaches helpen je met het opstellen van een realistische examenplanning, het aanpakken van verschillende examentypes, en het ontwikkelen van effectieve memorisatiestrategieën. Dit is dé manier om je studie-efficiëntie te maximaliseren en studiestress te verminderen. Zet de volgende stap in je academische ontwikkeling en ontdek hoe je slimmer kunt studeren, niet harder.</p>
-            `
-        };
-
-        // Event listeners voor "Meer Info" knoppen
-        selectButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const packageName = e.target.dataset.packageName;
-                detailPackageTitle.textContent = packageName;
-                detailPackageDescription.innerHTML = packageDescriptions[packageName] || '<p style="text-align: center;">Geen informatie beschikbaar voor dit pakket.</p>';
-
-                // Toon de sectie en scroll ernaartoe
-                selectedPackageInfoSection.classList.add('visible');
-                selectedPackageInfoSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-
-        // Contact Formulier Verzending met Fetch API
-        const contactForm = document.getElementById('contactForm');
-        const formSubmissionMessage = document.getElementById('formSubmissionMessage');
-
-        if (contactForm) {
-            contactForm.addEventListener('submit', async function(e) {
-                e.preventDefault(); // Voorkom de standaard formulierverzending
-
-                formSubmissionMessage.style.color = 'var(--text-color)';
-                formSubmissionMessage.textContent = 'Bericht wordt verzonden...';
-
-                const formData = new FormData(contactForm);
-                const formProps = Object.fromEntries(formData);
-
-                try {
-                    const response = await fetch('https://submit-form.com/Kq5jXJsUA', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(formProps)
-                    });
-
-                    if (response.ok) {
-                        formSubmissionMessage.style.color = 'var(--accent-color)';
-                        formSubmissionMessage.textContent = 'Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.';
-                        contactForm.reset(); // Leeg het formulier
-                    } else {
-                        formSubmissionMessage.style.color = 'red';
-                        formSubmissionMessage.textContent = 'Er is een fout opgetreden bij het verzenden van je bericht. Probeer het later opnieuw.';
-                        console.error('Formspark submission error:', response.statusText);
-                    }
-                } catch (error) {
-                    formSubmissionMessage.style.color = 'red';
-                    formSubmissionMessage.textContent = 'Er is een netwerkfout opgetreden. Controleer uw internetverbinding.';
-                    console.error("Error fetching LLM response:", error);
-                }
-
-                // Verberg het bericht na een paar seconden
-                setTimeout(() => {
-                    formSubmissionMessage.textContent = '';
-                }, 7000);
-            });
-        }
-
-
-        // FAQ Accordion Logica (from Code landingspage.docx)
-        const faqQuestions = document.querySelectorAll('.faq-question');
-
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('i');
-
-                // Sluit alle andere open antwoorden
-                faqQuestions.forEach(otherQuestion => {
-                    if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
-                        otherQuestion.classList.remove('active');
-                        otherQuestion.nextElementSibling.classList.remove('open');
-                        otherQuestion.querySelector('i').classList.remove('active');
-                    }
-                });
-
-                // Wissel huidig antwoord
-                question.classList.toggle('active');
-                answer.classList.toggle('open');
-                icon.classList.toggle('active');
-            });
-        });
-
-        // Function to reorder pricing items for mobile and ensure scroll position
-        function reorderPricingItems() {
-            const pricingGrid = document.getElementById('pricingGrid');
-            if (!pricingGrid) return;
-
-            const allPricingItems = Array.from(pricingGrid.children);
-            const originalOrder = ["1u-pakket", "4-uur pakket", "10-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
-            const desiredOrderMobile = ["10-uur pakket", "1u-pakket", "4-uur pakket", "Groepsles (2-5 personen)", "Studiecoaching"];
-
-            let currentOrderNames = [];
-            allPricingItems.forEach(item => {
-                currentOrderNames.push(item.dataset.packageName);
-            });
-
-            const isMobile = window.innerWidth <= 768;
-            let targetOrder = isMobile ? desiredOrderMobile : originalOrder;
-
-            const orderMatches = currentOrderNames.length === targetOrder.length &&
-                                 currentOrderNames.every((value, index) => value === targetOrder[index]);
-
-            if (!orderMatches) {
-                const sortedItems = [];
-                targetOrder.forEach(packageName => {
-                    const item = allPricingItems.find(i => i.dataset.packageName === packageName);
-                    if (item) {
-                        sortedItems.push(item);
-                    }
-                });
-
-                pricingGrid.innerHTML = '';
-                sortedItems.forEach(item => pricingGrid.appendChild(item));
-
-                // Scroll to the beginning if on mobile after reordering
-                if (isMobile) {
-                    pricingGrid.scrollTo({
-                        left: 0,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        }
-
-        // Dynamic Word Animation - NEW APPROACH
-        const dynamicWordContainer = document.querySelector('.dynamic-word-container');
-        const words = ['probleem', 'buisvak', 'moeilijkheid', 'hinderpaal', 'mislukking', 'gedoe', 'tijdsverspilling', 'onmogelijkheid'];
-        let wordIndex = 0;
-        let currentWordElement = null; // Will be set after initial setup
-
-        // Function to calculate the maximum width needed for the dynamic word container
-        function calculateMaxWordWidth() {
-            let maxWidth = 0;
-            const tempSpan = document.createElement('span');
-            // Apply the same styles that affect width to the temporary span
-            tempSpan.style.position = 'absolute';
-            tempSpan.style.visibility = 'hidden';
-            tempSpan.style.whiteSpace = 'nowrap';
-            // Match the font styles of the h1 to get accurate measurements
-            tempSpan.style.fontSize = getComputedStyle(document.querySelector('#hero h1')).fontSize;
-            tempSpan.style.fontWeight = getComputedStyle(document.querySelector('#hero h1')).fontWeight;
-            tempSpan.style.fontFamily = getComputedStyle(document.querySelector('#hero h1')).fontFamily;
-            tempSpan.style.color = 'var(--dynamic-word-tint)'; // Match color for accurate measurement
-
-            document.body.appendChild(tempSpan);
-
-            words.forEach(word => {
-                tempSpan.textContent = word;
-                const wordWidth = tempSpan.offsetWidth;
-                if (wordWidth > maxWidth) {
-                    maxWidth = wordWidth;
-                }
-            });
-
-            document.body.removeChild(tempSpan);
-            return maxWidth;
-        }
-
-        let maxCalculatedWidth = 0;
-
-        function initializeDynamicWord() {
-            maxCalculatedWidth = calculateMaxWordWidth();
-            // Add a small buffer for the "1 spatie verwijderd is voor de 'te'" requirement
-            // Estimate 0.8em for a character width, based on current font size.
-            const h1FontSize = parseFloat(getComputedStyle(document.querySelector('#hero h1')).fontSize);
-            const bufferWidth = h1FontSize * 0.8;
-            dynamicWordContainer.style.width = `${maxCalculatedWidth + bufferWidth}px`;
-
-            // Create and append the first word
-            currentWordElement = document.createElement('span');
-            currentWordElement.classList.add('dynamic-word');
-            currentWordElement.textContent = words[wordIndex]; // words[0] is "probleem"
-            dynamicWordContainer.appendChild(currentWordElement);
-
-            // Trigger initial animation
-            setTimeout(() => {
-                currentWordElement.classList.add('active');
-                currentWordElement.style.transform = 'translateY(0)';
-            }, 50); // Small delay to ensure CSS is applied before transition
-        }
-
-
-        function animateWordChange() {
-            // Fade out and slide up current word
-            currentWordElement.classList.remove('active');
-            currentWordElement.style.transform = 'translateY(-100%)'; // Slide up
-
-            setTimeout(() => {
-                // Remove old word, prepare for new
-                currentWordElement.remove();
-
-                wordIndex = (wordIndex + 1) % words.length;
-                const newWordElement = document.createElement('span');
-                newWordElement.classList.add('dynamic-word');
-                newWordElement.textContent = words[wordIndex];
-                dynamicWordContainer.appendChild(newWordElement);
-
-                // Force reflow to ensure transition plays
-                void newWordElement.offsetWidth;
-
-                // Slide in new word
-                newWordElement.classList.add('active');
-                newWordElement.style.transform = 'translateY(0)'; // Slide in from bottom
-
-                currentWordElement = newWordElement;
-            }, 1000); // This delay should match the transition duration for a smooth overlap
-        }
-
-        // Call initialization on DOMContentLoaded
-        window.addEventListener('DOMContentLoaded', () => {
-            reorderPricingItems();
-            checkCookieConsent(); // Check cookie consent on load
-            initializeDynamicWord(); // Initialize the dynamic word animation
-            setInterval(animateWordChange, 4000); // Start the animation loop
-        });
-
-        // Also recalculate width on resize to handle responsiveness
-        window.addEventListener('resize', () => {
-            reorderPricingItems();
-            // Recalculate and apply width on resize
-            maxCalculatedWidth = calculateMaxWordWidth();
-            const h1FontSize = parseFloat(getComputedStyle(document.querySelector('#hero h1')).fontSize);
-            const bufferWidth = h1FontSize * 0.8;
-            dynamicWordContainer.style.width = `${maxCalculatedWidth + bufferWidth}px`;
-        });
-
-
-        // Cookie Consent Banner Logic
-        const cookieConsentBanner = document.getElementById('cookie-consent-banner');
-        const acceptCookiesBtn = document.getElementById('accept-cookies');
-        const declineCookiesBtn = document.getElementById('decline-cookies'); // Corrected line
-
-        // Check if consent has been given
-        function checkCookieConsent() {
-            const consent = localStorage.getItem('cookieConsent');
-            if (consent === 'accepted') {
-                cookieConsentBanner.style.display = 'none';
-            } else {
-                cookieConsentBanner.style.display = 'flex'; // Ensure it's visible by default
-            }
-        }
-
-        // Handle acceptance
-        acceptCookiesBtn.addEventListener('click', () => {
-            localStorage.setItem('cookieConsent', 'accepted');
-            cookieConsentBanner.style.display = 'none';
-        });
-
-        // Handle decline (optional, but good practice to hide if declined)
-        declineCookiesBtn.addEventListener('click', () => { // Corrected line
-            localStorage.setItem('cookieConsent', 'declined'); // Or just hide without storing
-            cookieConsentBanner.style.display = 'none';
-            // Optionally, disable non-essential cookies here if you had any
-        });
-
-        // Call on load and resize
-        window.addEventListener('DOMContentLoaded', () => {
-            reorderPricingItems();
-            checkCookieConsent(); // Check cookie consent on load
-        });
-        window.addEventListener('resize', reorderPricingItems);
-    </script>
-
-</body>
-</html>
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0
