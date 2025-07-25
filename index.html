@@ -146,13 +146,13 @@
             align-items: center;
         }
 
-        .logo {
+        .logo-and-text {
             display: flex;
             align-items: center;
             cursor: pointer;
         }
 
-        .logo img {
+        .logo-and-text img {
             height: 70px; /* Iets kleiner logo */
             width: auto;
             filter: drop_shadow(0 0 8px rgba(0, 139, 139, 0.6)); /* Sterkere schaduw */
@@ -165,20 +165,24 @@
             font-weight: 700;
             color: var(--heading-color);
             margin-left: 15px; /* Ruimte tussen logo en tekst */
-            text-shadow: 0 0 5px rgba(0, 139, 139, 0.1); /* Subtiele schaduw */
+            text-shadow: 0 0 5px rgba(0, 139, 139, 0.05); /* Subtiele schaduw */
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
         html[data-theme="dark"] .logo-text {
-            text-shadow: 0 0 7px rgba(0, 139, 139, 0.2);
+            text-shadow: 0 0 7px rgba(0, 139, 139, 0.1);
         }
-        .logo:hover .logo-text {
+        .logo-and-text:hover .logo-text {
             color: var(--accent-color);
-            text-shadow: 0 0 10px rgba(0, 139, 139, 0.4);
+            text-shadow: 0 0 10px rgba(0, 139, 139, 0.2);
         }
-        html[data-theme="dark"] .logo:hover .logo-text {
-            text-shadow: 0 0 15px rgba(0, 139, 139, 0.6);
+        html[data-theme="dark"] .logo-and-text:hover .logo-text {
+            text-shadow: 0 0 15px rgba(0, 139, 139, 0.4);
         }
 
+        .header-right-controls {
+            display: flex;
+            align-items: center;
+        }
 
         nav ul {
             list-style: none;
@@ -238,6 +242,7 @@
             flex-direction: column;
             cursor: pointer;
             padding: 10px;
+            margin-left: 20px; /* Ruimte tussen toggles en hamburger */
             span {
                 height: 3px;
                 width: 28px; /* Iets breder */
@@ -262,18 +267,43 @@
 
         /* Mobiele Navigatie */
         @media (max-width: 768px) {
+            header .container {
+                flex-wrap: wrap;
+                justify-content: center; /* Center items in the header row */
+            }
+
+            .logo-and-text {
+                flex-grow: 1; /* Allow it to take available space */
+                justify-content: center; /* Center logo and text on mobile */
+                width: auto; /* Reset width */
+                margin-right: auto; /* Push controls to the right */
+                margin-left: auto; /* Push controls to the left */
+            }
+
+            .header-right-controls {
+                margin-left: auto; /* Push to the right */
+                margin-right: 0; /* No right margin */
+                order: 2; /* Ensure it's on the right side */
+            }
+
+            nav {
+                display: none; /* Hide desktop nav */
+                flex-basis: 100%; /* Take full width when active */
+                order: 3; /* Below the header row */
+                margin-top: 15px;
+            }
+
             nav ul {
                 background-color: rgba(255, 255, 255, 0.98); /* Light mode default */
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Diepere schaduw */
-
-                display: none;
+                display: none; /* Hidden by default for mobile nav */
                 flex-direction: column;
                 position: absolute;
-                top: 80px; /* Aangepaste positie */
+                top: 80px; /* Position below header */
                 left: 0;
                 width: 100%;
                 text-align: center;
-                padding: 25px 0; /* Meer padding */
+                padding: 25px 0;
             }
 
             html[data-theme="dark"] nav ul {
@@ -282,19 +312,20 @@
             }
 
             nav ul.active {
-                display: flex;
+                display: flex; /* Show when active */
             }
 
             nav ul li {
-                margin: 18px 0; /* Meer ruimte */
+                margin: 18px 0;
             }
 
             .hamburger {
-                display: flex;
+                display: flex; /* Show hamburger on mobile */
             }
 
             .toggle-button {
-                margin: 10px auto; /* Centreer de toggles in mobiele nav */
+                margin-left: 10px; /* Smaller margin for toggles on mobile */
+                margin-right: 0;
             }
 
             .logo-text {
@@ -347,7 +378,7 @@
             border-radius: 8px; /* Afgeronde hoeken voor kader */
             background-color: var(--dynamic-word-background); /* Lichte achtergrondkleur voor kader */
             box-shadow: 0 2px 8px rgba(0, 163, 163, 0.1); /* Subtiele schaduw voor kader */
-            text-align: right; /* Align word to the right within its container */
+            text-align: right; /* Default to right align for desktop */
             /* Width will be set by JS */
         }
 
@@ -355,7 +386,7 @@
             color: var(--dynamic-word-tint);
             position: absolute;
             top: -0.05em; /* Adjusted to move slightly up */
-            right: 0; /* Align to the right */
+            right: 0; /* Align to the right for desktop */
             transform: translateY(100%); /* Start below visible area */
             opacity: 0;
             transition: opacity 1.0s ease-in-out, transform 1.0s ease-in-out; /* Langere, soepelere animatie */
@@ -365,6 +396,20 @@
         #hero h1 .dynamic-word.active {
             opacity: 1;
             transform: translateY(0); /* Slide into view */
+        }
+
+        @media (max-width: 768px) {
+            #hero h1 .dynamic-word-container {
+                text-align: center; /* Center align on mobile */
+            }
+            #hero h1 .dynamic-word {
+                left: 50%; /* Center on mobile */
+                right: auto; /* Override right alignment */
+                transform: translateX(-50%) translateY(100%); /* Center horizontally, start below */
+            }
+            #hero h1 .dynamic-word.active {
+                transform: translateX(-50%) translateY(0); /* Center horizontally, slide into view */
+            }
         }
 
         #hero h1 .underline-text {
@@ -1038,21 +1083,6 @@
         }
 
         @media (max-width: 768px) {
-            header .container {
-                 flex-wrap: wrap;
-            }
-             .logo {
-                flex-basis: auto;
-             }
-            nav {
-                 flex-basis: 100%;
-                 order: 1;
-                 margin-top: 15px; /* Meer marge */
-            }
-             nav ul {
-                top: 85px; /* Aangepaste positie */
-             }
-
             #hero {
                 padding: 120px 20px 80px; /* Meer compact op mobiel */
                 min-height: 70vh; /* Minder hoogte op mobiel */
@@ -1384,9 +1414,22 @@
 
     <header>
         <div class="container">
-            <div class="logo">
+            <div class="logo-and-text">
                 <a href="#"><img src="files/logo.png" alt="StatHulp Logo"></a>
                 <span class="logo-text" data-key="stathulpName">StatHulp</span>
+            </div>
+            <div class="header-right-controls">
+                <button id="theme-toggle" class="toggle-button" aria-label="Toggle light/dark mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button id="language-toggle" class="toggle-button" aria-label="Toggle language">
+                    <i class="fas fa-globe"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
             <nav>
                 <ul>
@@ -1395,23 +1438,8 @@
                     <li><a href="#prijzen" data-key="navPricing">Prijzen</a></li>
                     <li><a href="#contact" data-key="navContact">Contact</a></li>
                     <li><a href="#faq" data-key="navFAQ">FAQ</a></li>
-                    <li>
-                        <button id="theme-toggle" class="toggle-button" aria-label="Toggle light/dark mode">
-                            <i class="fas fa-sun"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <button id="language-toggle" class="toggle-button" aria-label="Toggle language">
-                            <i class="fas fa-globe"></i>
-                        </button>
-                    </li>
                 </ul>
             </nav>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </header>
 
@@ -2053,7 +2081,7 @@
                 package4Feature3: "Help with specific questions",
                 package4Feature4: "Online or physical (+$5/session)",
                 package4Feature5: "Flexible scheduling",
-                package5Title: "Study Coaching",
+                package5Title: "Studiecoaching",
                 package5Feature1: "<b><u>Help with study methods</u></b>",
                 package5Feature2: "Session duration: 2 hours",
                 package5Feature3: "Create exam schedule",
@@ -2104,7 +2132,7 @@
                 faq15Question: "How can I better memorize study material?",
                 faq15Answer: "Memorization is a personal journey, where one student is more visually oriented and another more auditorily. Nevertheless, there are four universal pillars we teach you to apply: structure, repetition, visualization, and control. We guide you in structurally approaching study material, the planning of effective repetitions, making connections between concepts, and checking your understanding. This way, you develop your own, most effective memorization strategy.",
                 faq16Question: "How do I know if I'm at the right study level?",
-                faq16Answer: "To ensure you are studying at the expected level, we integrate \"stepstones\" into your trajectory. These are short checkpoints or tests that we go through together to closely monitor your progress. This gives you immediate guidance and motivation, and allows you to check if you are on the right track. It is an effective way to ensure that you not only understand the material but also master it at the level expected of you.",
+                faq16Answer: "To ensure you are studying at the expected level, we integrate \"stepstones\" into your trajectory. This are short checkpoints or tests that we go through together to closely monitor your progress. This gives you immediate guidance and motivation, and allows you to check if you are on the right track. It is an effective way to ensure that you not only understand the material but also master it at the level expected of you.",
                 faqCta: "Still have a question? Contact us!",
                 mobileCta: "Schedule intake",
                 privacyPolicy: "Privacy Policy",
@@ -2273,7 +2301,12 @@
 
             setTimeout(() => {
                 currentWordElement.classList.add('active');
-                currentWordElement.style.transform = 'translateY(0)'; // No translateX needed with right:0
+                // Apply transform based on current screen width
+                if (window.innerWidth <= 768) {
+                    currentWordElement.style.transform = 'translateX(-50%) translateY(0)';
+                } else {
+                    currentWordElement.style.transform = 'translateY(0)'; // No translateX for right:0
+                }
             }, 50);
         }
 
@@ -2286,8 +2319,13 @@
                 return;
             }
 
+            // Apply transform based on current screen width for fading out
+            if (window.innerWidth <= 768) {
+                currentWordElement.style.transform = 'translateX(-50%) translateY(-100%)';
+            } else {
+                currentWordElement.style.transform = 'translateY(-100%)';
+            }
             currentWordElement.classList.remove('active');
-            currentWordElement.style.transform = 'translateY(-100%)'; // Slide up
 
             setTimeout(() => {
                 currentWordElement.remove();
@@ -2301,8 +2339,12 @@
                 void newWordElement.offsetWidth; // Force reflow
 
                 newWordElement.classList.add('active');
-                newWordElement.style.transform = 'translateY(0)'; // Slide in from bottom
-
+                // Apply transform based on current screen width for sliding in
+                if (window.innerWidth <= 768) {
+                    newWordElement.style.transform = 'translateX(-50%) translateY(0)';
+                } else {
+                    newWordElement.style.transform = 'translateY(0)';
+                }
                 currentWordElement = newWordElement;
             }, 1000); // Matches CSS transition duration
         }
@@ -2349,6 +2391,14 @@
             // Recalculate and apply width on resize
             maxCalculatedWidth = calculateMaxWordWidth();
             dynamicWordContainer.style.width = `${maxCalculatedWidth}px`;
+            // Re-apply correct positioning for dynamic word based on new window size
+            if (currentWordElement) {
+                if (window.innerWidth <= 768) {
+                    currentWordElement.style.transform = currentWordElement.classList.contains('active') ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(100%)';
+                } else {
+                    currentWordElement.style.transform = currentWordElement.classList.contains('active') ? 'translateY(0)' : 'translateY(100%)';
+                }
+            }
         });
 
 
@@ -2463,7 +2513,7 @@
         });
 
         // Logo klikt om naar boven te scrollen
-        document.querySelector('.logo a').addEventListener('click', function(e) {
+        document.querySelector('.logo-and-text a').addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({
                 top: 0,
@@ -2521,7 +2571,7 @@
             rightBtn.addEventListener('click', () => scrollLogic('right'));
             leftBtn.addEventListener('click', () => scrollLogic('left'));
 
-            const updateArrowVisibility = (grid, leftB, rightB) => {
+            const updateArrowVisibility = (grid, leftB, rightB) => { // Changed rightB to rightBtn here
                 const isMobile = window.innerWidth <= 768;
                 if (isMobile) {
                     leftB.style.display = 'none';
@@ -2532,8 +2582,8 @@
                 }
             };
 
-            gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightB));
-            window.addEventListener('resize', () => updateArrowVisibility(gridElement, leftBtn, rightB));
+            gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightBtn)); // Changed rightB to rightBtn here
+            window.addEventListener('resize', () => updateArrowVisibility(gridElement, leftBtn, rightBtn)); // Changed rightB to rightBtn here
             // No need to call updateArrowVisibility on load here, as reorderPricingItems handles scroll for pricing grid
         };
 
@@ -2628,7 +2678,7 @@
                     if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
                         otherQuestion.classList.remove('active');
                         otherQuestion.nextElementSibling.classList.remove('open');
-                        otherQuestion.nextElementSibling.style.maxHeight = '0'; // Explicitly set to 0
+                        otherQuestion.nextElementSibling.style.maxHeight = '0px'; // Explicitly set to 0
                         otherQuestion.querySelector('i').classList.remove('active');
                     }
                 });
@@ -2639,9 +2689,10 @@
                 icon.classList.toggle('active');
 
                 if (answer.classList.contains('open')) {
-                    answer.style.maxHeight = answer.scrollHeight + 'px'; // Set max-height to actual scrollHeight
+                    // Set max-height to scrollHeight + a small buffer (e.g., 20px) to ensure all content and padding is visible
+                    answer.style.maxHeight = (answer.scrollHeight + 20) + 'px';
                 } else {
-                    answer.style.maxHeight = '0';
+                    answer.style.maxHeight = '0px';
                 }
             });
         });
