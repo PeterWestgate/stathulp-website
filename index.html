@@ -159,6 +159,26 @@
             border-radius: 10px; /* Minder afgerond */
         }
 
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em; /* Passend bij de h1, maar iets kleiner */
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-left: 15px; /* Ruimte tussen logo en tekst */
+            text-shadow: 0 0 5px rgba(0, 139, 139, 0.1); /* Subtiele schaduw */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        html[data-theme="dark"] .logo-text {
+            text-shadow: 0 0 7px rgba(0, 139, 139, 0.2);
+        }
+        .logo:hover .logo-text {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 139, 139, 0.4);
+        }
+        html[data-theme="dark"] .logo:hover .logo-text {
+            text-shadow: 0 0 15px rgba(0, 139, 139, 0.6);
+        }
+
 
         nav ul {
             list-style: none;
@@ -276,6 +296,11 @@
             .toggle-button {
                 margin: 10px auto; /* Centreer de toggles in mobiele nav */
             }
+
+            .logo-text {
+                font-size: 1.8em; /* Iets kleiner op mobiel */
+                margin-left: 10px;
+            }
         }
 
         /* Hero Sectie */
@@ -297,7 +322,7 @@
             font-size: 4.5em; /* Grotere titel */
             margin-bottom: 25px;
             color: var(--dynamic-word-tint); /* Changed to dynamic-word-tint for consistency */
-            text-shadow: 0 0 5px rgba(0, 139, 139, 0.1); /* Nog minder schaduw */
+            text-shadow: 0 0 5px rgba(0, 139, 139, 0.05); /* Nog minder schaduw */
             font-weight: 700;
             position: relative; /* Belangrijk voor positionering van dynamic-word */
             display: inline-block; /* Zorgt dat de achtergrond om de tekst heen zit */
@@ -309,7 +334,7 @@
         }
 
         html[data-theme="dark"] #hero h1 {
-            text-shadow: 0 0 7px rgba(0, 139, 139, 0.2); /* Nog minder schaduw in donkere modus */
+            text-shadow: 0 0 7px rgba(0, 139, 139, 0.1); /* Nog minder schaduw in donkere modus */
         }
 
         #hero h1 .dynamic-word-container {
@@ -322,6 +347,7 @@
             border-radius: 8px; /* Afgeronde hoeken voor kader */
             background-color: var(--dynamic-word-background); /* Lichte achtergrondkleur voor kader */
             box-shadow: 0 2px 8px rgba(0, 163, 163, 0.1); /* Subtiele schaduw voor kader */
+            text-align: right; /* Align word to the right within its container */
             /* Width will be set by JS */
         }
 
@@ -329,8 +355,8 @@
             color: var(--dynamic-word-tint);
             position: absolute;
             top: -0.05em; /* Adjusted to move slightly up */
-            left: 50%; /* Centered horizontally */
-            transform: translateX(-50%) translateY(100%); /* Start below visible area, centered */
+            right: 0; /* Align to the right */
+            transform: translateY(100%); /* Start below visible area */
             opacity: 0;
             transition: opacity 1.0s ease-in-out, transform 1.0s ease-in-out; /* Langere, soepelere animatie */
             white-space: nowrap; /* Ensure word stays on one line */
@@ -338,7 +364,7 @@
 
         #hero h1 .dynamic-word.active {
             opacity: 1;
-            transform: translateX(-50%) translateY(0); /* Slide into view, centered */
+            transform: translateY(0); /* Slide into view */
         }
 
         #hero h1 .underline-text {
@@ -426,11 +452,11 @@
             font-size: 4.5em; /* Grotere iconen */
             color: var(--accent-color);
             margin-bottom: 30px;
-            text-shadow: 0 0 5px rgba(0, 139, 139, 0.1); /* Nog minder schaduw */
+            text-shadow: 0 0 5px rgba(0, 139, 139, 0.05); /* Nog minder schaduw */
         }
 
         html[data-theme="dark"] .feature-item i {
-            text-shadow: 0 0 7px rgba(0, 139, 139, 0.2); /* Nog minder schaduw in donkere modus */
+            text-shadow: 0 0 7px rgba(0, 139, 139, 0.1); /* Nog minder schaduw in donkere modus */
         }
 
         .feature-item h3 {
@@ -517,11 +543,11 @@
             font-size: 4.5em; /* Grotere iconen */
             color: var(--accent-color);
             margin-bottom: 25px;
-            text-shadow: 0 0 5px rgba(0, 139, 139, 0.1); /* Nog minder schaduw */
+            text-shadow: 0 0 5px rgba(0, 139, 139, 0.05); /* Nog minder schaduw */
         }
 
         html[data-theme="dark"] .step-item .icon {
-            text-shadow: 0 0 7px rgba(0, 139, 139, 0.2); /* Nog minder schaduw in donkere modus */
+            text-shadow: 0 0 7px rgba(0, 139, 139, 0.1); /* Nog minder schaduw in donkere modus */
         }
 
         .step-item h3 {
@@ -683,11 +709,11 @@
             font-size: 3em; /* Grotere iconen */
             color: var(--accent-color);
             margin-bottom: 20px;
-            text-shadow: 0 0 5px rgba(0, 139, 139, 0.1); /* Nog minder schaduw */
+            text-shadow: 0 0 5px rgba(0, 139, 139, 0.05); /* Nog minder schaduw */
         }
 
         html[data-theme="dark"] .pricing-item i {
-            text-shadow: 0 0 7px rgba(0, 139, 139, 0.2); /* Nog minder schaduw in donkere modus */
+            text-shadow: 0 0 7px rgba(0, 139, 139, 0.1); /* Nog minder schaduw in donkere modus */
         }
 
         .pricing-item h3 {
@@ -1110,7 +1136,7 @@
                 font-size: 2.2em; /* Smaller icons */
             }
             .pricing-item h3 {
-                font-size: 1.2em; /* Smaller font */
+                font-size: 1.2em; /* Smaller heading */
             }
             .price {
                 font-size: 2em; /* Smaller price */
@@ -1260,7 +1286,7 @@
         }
 
         #faq .faq-answer.open {
-            max-height: 500px; /* This is a fixed value, might be an issue with very long answers */
+            /* max-height will be set dynamically by JS */
             padding: 20px 30px 30px;
         }
 
@@ -1348,6 +1374,10 @@
                 width: 100%;
             }
         }
+
+        footer p {
+            font-size: 0.95em; /* Ensure copyright text is visible */
+        }
     </style>
 </head>
 <body>
@@ -1356,6 +1386,7 @@
         <div class="container">
             <div class="logo">
                 <a href="#"><img src="files/logo.png" alt="StatHulp Logo"></a>
+                <span class="logo-text" data-key="stathulpName">StatHulp</span>
             </div>
             <nav>
                 <ul>
@@ -1799,6 +1830,7 @@
         const translations = {
             nl: {
                 pageTitle: "StatHulp - Statistiek hoeft GEEN nachtmerrie te zijn",
+                stathulpName: "StatHulp", // Added for the logo text
                 navAboutUs: "Over Ons",
                 navProcess: "Proces",
                 navPricing: "Prijzen",
@@ -1953,6 +1985,7 @@
             },
             en: {
                 pageTitle: "StatHulp - Statistics doesn't have to be a nightmare",
+                stathulpName: "StatHulp", // Added for the logo text
                 navAboutUs: "About Us",
                 navProcess: "Process",
                 navPricing: "Pricing",
@@ -2154,14 +2187,27 @@
             if (currentPackageNameElement) {
                 const currentPackageName = currentPackageNameElement.textContent;
                 // Find the original NL package name from the translation object
-                const originalNlPackageName = Object.keys(translations.nl).find(key => translations.nl[key] === currentPackageName);
+                // This is a bit tricky if the display name is translated.
+                // Better to store the original package name in a data attribute
+                // For now, let's assume the data-package-name is the key.
+                const selectedPackageDataName = currentPackageNameElement.dataset.packageName ||
+                                                Object.keys(translations.nl).find(key => translations.nl[key] === currentPackageName);
 
-                if (originalNlPackageName && translations[lang][originalNlPackageName + '-desc']) {
-                    detailPackageDescription.innerHTML = translations[lang][originalNlPackageName + '-desc'];
+
+                if (selectedPackageDataName && translations[lang][selectedPackageDataName + '-desc']) {
+                    detailPackageDescription.innerHTML = translations[lang][selectedPackageDataName + '-desc'];
                 } else {
-                    // If no specific package is selected, show default text
+                     // If no specific package is selected, show default text
                     detailPackageDescription.innerHTML = translations[lang].packageInfoDefaultText;
                 }
+            }
+
+            // Update contact form messages if they are currently displayed
+            const formMsg = document.getElementById('formSubmissionMessage');
+            if (formMsg && formMsg.textContent) {
+                // This part needs more robust handling if messages are complex
+                // For now, just clear it or set a default if it was an error
+                formMsg.textContent = '';
             }
         }
 
@@ -2194,8 +2240,9 @@
 
             document.body.appendChild(tempSpan);
 
-            const wordsToMeasure = translations.nl.dynamicWords.concat(translations.en.dynamicWords); // Measure all words from both languages
-            wordsToMeasure.forEach(word => {
+            // Measure all words from both languages to get the absolute max width
+            const allWords = new Set([...translations.nl.dynamicWords, ...translations.en.dynamicWords]);
+            allWords.forEach(word => {
                 tempSpan.textContent = word;
                 const wordWidth = tempSpan.offsetWidth;
                 if (wordWidth > maxWidth) {
@@ -2214,6 +2261,11 @@
             dynamicWordContainer.style.width = `${maxCalculatedWidth}px`;
 
             const words = getDynamicWordsForCurrentLang();
+            if (words.length === 0) { // Handle case where dynamicWords might be empty
+                dynamicWordContainer.innerHTML = '';
+                return;
+            }
+
             currentWordElement = document.createElement('span');
             currentWordElement.classList.add('dynamic-word');
             currentWordElement.textContent = words[wordIndex];
@@ -2221,16 +2273,21 @@
 
             setTimeout(() => {
                 currentWordElement.classList.add('active');
-                currentWordElement.style.transform = 'translateX(-50%) translateY(0)';
+                currentWordElement.style.transform = 'translateY(0)'; // No translateX needed with right:0
             }, 50);
         }
 
         function animateWordChange() {
             const words = getDynamicWordsForCurrentLang();
-            if (!currentWordElement || words.length === 0) return; // Guard against empty word list
+            if (!currentWordElement || words.length === 0) {
+                // If words list becomes empty or currentWordElement is null, stop animation
+                clearInterval(dynamicWordInterval);
+                dynamicWordContainer.innerHTML = '';
+                return;
+            }
 
             currentWordElement.classList.remove('active');
-            currentWordElement.style.transform = 'translateX(-50%) translateY(-100%)';
+            currentWordElement.style.transform = 'translateY(-100%)'; // Slide up
 
             setTimeout(() => {
                 currentWordElement.remove();
@@ -2244,7 +2301,7 @@
                 void newWordElement.offsetWidth; // Force reflow
 
                 newWordElement.classList.add('active');
-                newWordElement.style.transform = 'translateX(-50%) translateY(0)';
+                newWordElement.style.transform = 'translateY(0)'; // Slide in from bottom
 
                 currentWordElement = newWordElement;
             }, 1000); // Matches CSS transition duration
@@ -2475,7 +2532,7 @@
                 }
             };
 
-            gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
+            gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightB));
             window.addEventListener('resize', () => updateArrowVisibility(gridElement, leftBtn, rightB));
             // No need to call updateArrowVisibility on load here, as reorderPricingItems handles scroll for pricing grid
         };
@@ -2488,6 +2545,106 @@
             '.pricing-item',
             'end'
         );
+
+        // JavaScript voor Dynamische Pakket Detail Sectie
+        const selectedPackageInfoSection = document.getElementById('selected-package-info');
+        const detailPackageTitle = document.getElementById('detailPackageTitle');
+        const detailPackageDescription = document.getElementById('detailPackageDescription');
+        const selectButtons = document.querySelectorAll('.select-button');
+
+        // Event listeners voor "Meer Info" knoppen
+        selectButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const packageName = e.target.dataset.packageName;
+                const currentLang = htmlElement.getAttribute('data-lang');
+
+                detailPackageTitle.textContent = translations[currentLang][packageName + 'Title'] || packageName; // Use translated title
+                detailPackageDescription.innerHTML = translations[currentLang][packageName + '-desc'] || `<p style="text-align: center;">${translations[currentLang]['packageInfoDefaultText']}</p>`;
+
+                // Toon de sectie en scroll ernaartoe
+                selectedPackageInfoSection.classList.add('visible');
+                selectedPackageInfoSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Contact Formulier Verzending met Fetch API
+        const contactForm = document.getElementById('contactForm');
+        const formSubmissionMessage = document.getElementById('formSubmissionMessage');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault(); // Voorkom de standaard formulierverzending
+
+                formSubmissionMessage.style.color = 'var(--text-color)';
+                formSubmissionMessage.textContent = 'Bericht wordt verzonden...'; // This should also be translatable
+
+                const formData = new FormData(contactForm);
+                const formProps = Object.fromEntries(formData);
+
+                try {
+                    const response = await fetch('https://submit-form.com/Kq5jXJsUA', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formProps)
+                    });
+
+                    if (response.ok) {
+                        formSubmissionMessage.style.color = 'var(--accent-color)';
+                        formSubmissionMessage.textContent = 'Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.'; // Translatable
+                        contactForm.reset(); // Leeg het formulier
+                    } else {
+                        formSubmissionMessage.style.color = 'red';
+                        formSubmissionMessage.textContent = 'Er is een fout opgetreden bij het verzenden van je bericht. Probeer het later opnieuw.'; // Translatable
+                        console.error('Formspark submission error:', response.statusText);
+                    }
+                } catch (error) {
+                    formSubmissionMessage.style.color = 'red';
+                    formSubmissionMessage.textContent = 'Er is een netwerkfout opgetreden. Controleer uw internetverbinding.'; // Translatable
+                    console.error("Error fetching LLM response:", error);
+                }
+
+                // Verberg het bericht na een paar seconden
+                setTimeout(() => {
+                    formSubmissionMessage.textContent = '';
+                }, 7000);
+            });
+        }
+
+
+        // FAQ Accordion Logica
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+
+                // Sluit alle andere open antwoorden
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
+                        otherQuestion.classList.remove('active');
+                        otherQuestion.nextElementSibling.classList.remove('open');
+                        otherQuestion.nextElementSibling.style.maxHeight = '0'; // Explicitly set to 0
+                        otherQuestion.querySelector('i').classList.remove('active');
+                    }
+                });
+
+                // Wissel huidig antwoord
+                question.classList.toggle('active');
+                answer.classList.toggle('open');
+                icon.classList.toggle('active');
+
+                if (answer.classList.contains('open')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px'; // Set max-height to actual scrollHeight
+                } else {
+                    answer.style.maxHeight = '0';
+                }
+            });
+        });
 
         // Function to reorder pricing items for mobile and ensure scroll position
         function reorderPricingItems() {
