@@ -268,22 +268,21 @@
         /* Mobiele Navigatie */
         @media (max-width: 768px) {
             header .container {
-                flex-wrap: wrap;
-                justify-content: center; /* Center items in the header row */
+                flex-wrap: nowrap; /* Prevent wrapping on mobile header */
+                justify-content: space-between; /* Space between logo-and-text and controls */
             }
 
             .logo-and-text {
-                flex-grow: 1; /* Allow it to take available space */
-                justify-content: center; /* Center logo and text on mobile */
-                width: auto; /* Reset width */
-                margin-right: auto; /* Push controls to the right */
-                margin-left: auto; /* Push controls to the left */
+                flex-grow: 0; /* Don't grow */
+                justify-content: flex-start; /* Keep left aligned */
+                margin-left: 0; /* Remove auto margins */
+                margin-right: 0;
             }
 
             .header-right-controls {
                 margin-left: auto; /* Push to the right */
                 margin-right: 0; /* No right margin */
-                order: 2; /* Ensure it's on the right side */
+                order: 0; /* Keep default order */
             }
 
             nav {
@@ -1405,8 +1404,36 @@
             }
         }
 
+        footer {
+            padding: 30px 0;
+            background-color: var(--card-background);
+            border-top: 1px solid var(--border-color);
+            text-align: center; /* Center footer content */
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        footer .footer-links a {
+            color: var(--text-color); /* Ensure links are visible */
+            font-size: 0.9em;
+        }
+
         footer p {
-            font-size: 0.95em; /* Ensure copyright text is visible */
+            font-size: 1.0em; /* Slightly larger font for copyright */
+            color: var(--text-color); /* Explicitly set color */
+            margin: 0; /* Remove default paragraph margin */
         }
     </style>
 </head>
@@ -2128,11 +2155,11 @@
                 faq13Question: "Learning from mistakes is the most important part of the learning process. How does StatHulp help with this?",
                 faq13Answer: "At StatHulp, we embrace mistakes as essential learning moments. Just as you learn to cycle by falling, you learn statistics by doing exercises and understanding your mistakes. Our instructors are trained to quickly identify your specific pitfalls and guide you effectively. By working together to eliminate these shortcomings, you quickly develop insight and learn how to avoid mistakes in the future, allowing you to handle the material more smoothly.",
                 faq14Question: "How do I process a subject like statistics or psychology efficiently?",
-                faq14Answer: "Efficiently processing a subject requires expertise: where do you focus? What is crucial and what is less so? How do the different parts of the curriculum relate to each other? Our experts will guide you directly, saving you a tremendous amount of time. You learn not only from their knowledge but also from the pitfalls they encountered earlier. A StatHulp tutor helps you gain deeper insight into the subject faster.",
+                faq14Answer: "Efficiently processing a subject requires expertise: where leg je de focus? What is crucial and what is less so? How do the different parts of the curriculum relate to each other? Our experts will guide you directly, saving you a tremendous amount of time. You learn not only from their knowledge but also from the pitfalls they encountered earlier. A StatHulp tutor helps you gain deeper insight into the subject faster.",
                 faq15Question: "How can I better memorize study material?",
                 faq15Answer: "Memorization is a personal journey, where one student is more visually oriented and another more auditorily. Nevertheless, there are four universal pillars we teach you to apply: structure, repetition, visualization, and control. We guide you in structurally approaching study material, the planning of effective repetitions, making connections between concepts, and checking your understanding. This way, you develop your own, most effective memorization strategy.",
                 faq16Question: "How do I know if I'm at the right study level?",
-                faq16Answer: "To ensure you are studying at the expected level, we integrate \"stepstones\" into your trajectory. This are short checkpoints or tests that we go through together to closely monitor your progress. This gives you immediate guidance and motivation, and allows you to check if you are on the right track. It is an effective way to ensure that you not only understand the material but also master it at the level expected of you.",
+                faq16Answer: "To ensure you are studying at the expected level, we integrate \"stepstones\" into your trajectory. These are short checkpoints or tests that we go through together to closely monitor your progress. This gives you immediate guidance and motivation, and allows you to check if you are on the right track. It is an effective way to ensure that you not only understand the material but also master it at the level expected of you.",
                 faqCta: "Still have a question? Contact us!",
                 mobileCta: "Schedule intake",
                 privacyPolicy: "Privacy Policy",
@@ -2571,7 +2598,7 @@
             rightBtn.addEventListener('click', () => scrollLogic('right'));
             leftBtn.addEventListener('click', () => scrollLogic('left'));
 
-            const updateArrowVisibility = (grid, leftB, rightB) => { // Changed rightB to rightBtn here
+            const updateArrowVisibility = (grid, leftB, rightB) => {
                 const isMobile = window.innerWidth <= 768;
                 if (isMobile) {
                     leftB.style.display = 'none';
@@ -2582,8 +2609,8 @@
                 }
             };
 
-            gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightBtn)); // Changed rightB to rightBtn here
-            window.addEventListener('resize', () => updateArrowVisibility(gridElement, leftBtn, rightBtn)); // Changed rightB to rightBtn here
+            gridElement.addEventListener('scroll', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
+            window.addEventListener('resize', () => updateArrowVisibility(gridElement, leftBtn, rightBtn));
             // No need to call updateArrowVisibility on load here, as reorderPricingItems handles scroll for pricing grid
         };
 
