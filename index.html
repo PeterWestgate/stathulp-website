@@ -303,6 +303,7 @@
                 width: 100%;
                 text-align: center;
                 padding: 25px 0;
+                z-index: 1001; /* Zorg dat het menu boven andere content ligt */
             }
 
             html[data-theme="dark"] nav ul {
@@ -322,9 +323,15 @@
                 display: flex; /* Show hamburger on mobile */
             }
 
-            .toggle-button {
-                margin-left: 10px; /* Smaller margin for toggles on mobile */
-                margin-right: 0;
+            /* Toggles in mobiele navigatie */
+            nav ul li.mobile-only-toggle {
+                display: flex; /* Toon de toggles in het mobiele menu */
+                justify-content: center;
+                align-items: center;
+                margin: 10px 0;
+            }
+            nav ul li.mobile-only-toggle .toggle-button {
+                margin: 0 10px; /* Ruimte tussen de toggles */
             }
 
             .logo-text {
@@ -332,6 +339,14 @@
                 margin-left: 10px;
             }
         }
+
+        /* Desktop specifieke styling voor toggles */
+        @media (min-width: 769px) {
+            nav ul li.mobile-only-toggle {
+                display: none; /* Verberg de toggles op desktop */
+            }
+        }
+
 
         /* Hero Sectie */
         #hero {
@@ -1446,12 +1461,6 @@
                 <span class="logo-text" data-key="stathulpName">StatHulp</span>
             </div>
             <div class="header-right-controls">
-                <button id="theme-toggle" class="toggle-button" aria-label="Toggle light/dark mode">
-                    <i class="fas fa-sun"></i>
-                </button>
-                <button id="language-toggle" class="toggle-button" aria-label="Toggle language">
-                    <i class="fas fa-globe"></i>
-                </button>
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -1465,6 +1474,16 @@
                     <li><a href="#prijzen" data-key="navPricing">Prijzen</a></li>
                     <li><a href="#contact" data-key="navContact">Contact</a></li>
                     <li><a href="#faq" data-key="navFAQ">FAQ</a></li>
+                    <li class="mobile-only-toggle">
+                        <button id="theme-toggle" class="toggle-button" aria-label="Toggle light/dark mode">
+                            <i class="fas fa-sun"></i>
+                        </button>
+                    </li>
+                    <li class="mobile-only-toggle">
+                        <button id="language-toggle" class="toggle-button" aria-label="Toggle language">
+                            <i class="fas fa-globe"></i>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -2007,161 +2026,6 @@
                 faq16Answer: "Om te zorgen dat je op het verwachte niveau studeert, integreren we \"stepstones\" in je traject. Dit zijn korte checkpoints of tests die we samen doorlopen om je voortgang nauwlettend te volgen. Dit geeft je direct houvast en motivatie, en stelt je in staat om te controleren of je op de goede weg bent. Het is een effectieve manier om te garanderen dat je de leerstof niet alleen begrijpt, maar ook beheerst op het niveau dat van je verwacht wordt.",
                 faqCta: "Nog een vraag? Neem contact op!",
                 mobileCta: "Plan intakegesprek",
-                privacyPolicy: "Privacybeleid",
-                cookieStatement: "Cookieverklaring",
-                termsAndConditions: "Algemene Voorwaarden",
-                copyrightText: "&copy; 2025 StatHulp. Alle rechten voorbehouden.",
-                cookieConsentText: "Wij gebruiken cookies om je ervaring op onze website te verbeteren en om te analyseren hoe onze site wordt gebruikt. Door verder te gaan, ga je akkoord met ons <a href=\"cookieverklaring.html\" class=\"more-info-link\" target=\"_blank\">cookiebeleid</a>.",
-                cookiePolicyLink: "cookiebeleid",
-                acceptCookiesBtn: "Accepteren",
-                declineCookiesBtn: "Weigeren",
-                dynamicWords: ['probleem', 'buisvak', 'moeilijkheid', 'hinderpaal', 'gedoe'], // Updated list
-                // Package descriptions (need to be updated for English)
-                "1u-pakket-desc": `
-                    <p>Het <strong>1u-pakket</strong> is ontworpen voor studenten die behoefte hebben aan snelle, gerichte ondersteuning bij specifieke statistiekvragen. Of het nu gaat om een lastige formule, een onbegrijpelijke grafiek, of een korte vraag over SPSS of RStudio, deze intensieve 1-op-1 sessie van 60 minuten biedt direct helderheid.</p>
-                    <p>Deze flexibele optie is ideaal voor wie af en toe een korte, intensieve boost nodig heeft zonder zich vast te leggen op een langer traject. Je krijgt persoonlijke aandacht en duidelijke antwoorden, precies wanneer jij die nodig hebt. Neem de controle over die ene vraag die je dwarszit en zet de volgende stap naar inzicht.</p>
-                `,
-                "4-uur pakket-desc": `
-                    <p>Met het <strong>4-uur pakket</strong> investeer je in doorlopende begeleiding en gestage vooruitgang in je statistiekvaardigheden. Dit pakket omvat 4 sessies van elk 60 minuten, wat neerkomt op een voordelige prijs per uur. Het is ontworpen voor studenten die de leerstof consistent willen bijhouden en dieper willen ingaan op complexere onderwerpen.</p>
-                    <p>De structuur van dit pakket helpt je om gestaag aan je kennis en zelfvertrouwen te bouwen. Je ontvangt regelmatige ondersteuning die je helpt de materie echt te doorgronden, waardoor je je academische doelen met meer gemak bereikt. Kies voor de zekerheid van doorlopende, betaalbare hulp.</p>
-                `,
-                "10-uur pakket-desc": `
-                    <p>Het <strong>10-uur pakket</strong> is de meest complete keuze voor de ambitieuze psychologiestudent die intensieve begeleiding zoekt en maximale slaagkansen wil benutten. Met 10 sessies van elk 60 minuten profiteer je van de meest voordelige uurprijs en de meest diepgaande ondersteuning die StatHulp biedt.</p>
-                    <p>Dit premium pakket omvat uitgebreide hulp bij al je statistiekvragen, prioriteitssupport via e-mail en chat, en gerichte examenvoorbereiding. We duiken samen diep in de materie, verfijnen je begrip en zorgen ervoor dat je met het volste vertrouwen je tentamens tegemoet gaat. Dit is een investering in jouw academische succes.</p>
-                `,
-                "Groepsles (2-5 personen)-desc": `
-                    <p>De <strong>Groepsles (2-5 personen)</strong> biedt een slimme en voordelige manier om samen met medestudenten statistiek te leren. Voor een aantrekkelijke prijs per persoon per uur geniet je van kwalitatieve begeleiding in een interactieve groepssetting. Dit pakket is ideaal als je liever samen leert, discussieert en elkaar motiveert.
-                    <p>Samen leren kan enorm stimulerend zijn, en onze begeleiders zorgen ervoor dat iedereen in de groep de aandacht krijgt die nodig is. Je profiteert van de collectieve vragen en inzichten, wat het leerproces dynamischer en effectiever maakt. Verzamel je studiegenoten, plan jullie groepsles en ontdek hoe waardevol en leerzaam statistiek kan zijn als het samen aanpakt.</p>
-                `,
-                "Studiecoaching-desc": `
-                    <p>Met <strong>Studiecoaching</strong> richt je je op het optimaliseren van je studiemethoden en examenstrategieën, specifiek voor psychologievakken. Een sessie duurt <strong>2 uur</strong> en focust niet op inhoudelijke bijles, maar op hoe je leert, plant en presteert. Dit pakket is exclusief online beschikbaar.</p>
-                    <p>Onze studiecoaches helpen je met het opstellen van een realistische examenplanning, het aanpakken van verschillende examentypes, en het ontwikkelen van effectieve memorisatiestrategieën. Dit is dé manier om je studie-efficiëntie te maximaliseren en studiestress te verminderen. Zet de volgende stap in je academische ontwikkeling en ontdek hoe je slimmer kunt studeren, niet harder.</p>
-                `
-            },
-            en: {
-                pageTitle: "StatHulp - Statistics doesn't have to be a nightmare",
-                stathulpName: "StatHulp", // Added for the logo text
-                navAboutUs: "About Us",
-                navProcess: "Process",
-                navPricing: "Pricing",
-                navContact: "Contact",
-                navFAQ: "FAQ",
-                heroTitlePart1: "Statistics doesn't have to be",
-                heroTitlePart2: "A",
-                heroTitlePart3: ".",
-                heroSubtitle: "Transform study stress into confidence. With <strong>StatHulp</strong>, you'll master complex statistics and effortlessly achieve your academic goals.",
-                heroCta: "Schedule your free intake session",
-                featuresTitle: "About Us",
-                feature1Title: "For Psychology Students",
-                feature1Text: "We offer targeted help with Statistics for Psychologists 1, 2, 3, and 4, and also support you with other psychology courses. Our tutors understand your specific learning needs.",
-                feature2Title: "Also Group Classes & Study Coaching",
-                feature2Text: "In addition to personal 1-on-1 sessions, we also offer affordable group classes and specialized study coaching. Flexible options for every learning style and budget.",
-                feature3Title: "Tutoring by Students for Students",
-                feature3Text: "Experience tutoring from experienced older students who understand your challenges and can effectively help you. We speak your language!",
-                feature4Title: "Close to the Source: Current Curriculum & Professors",
-                feature4Text: "Our tutors are in close contact with the professors and the latest curriculum, so you always receive the most relevant and up-to-date help.",
-                feature5Title: "Clear Didactics",
-                feature5Text: "Complex concepts are explained simply and understandably, tailored to your learning pace and style. No unnecessary jargon, just clarity.",
-                feature6Title: "Positive Motivation",
-                feature6Text: "A stimulating and positive atmosphere during each session to boost your confidence. We believe in your potential!",
-                processTitle: "How Does StatHulp Work?",
-                process1Title: "Free Intake Session",
-                process1Text: "Take the first step towards success! Schedule a no-obligation intake session and discuss your challenges with an expert.",
-                process2Title: "Personalized Learning Path",
-                process2Text: "Receive a customized plan, perfectly tailored to your unique learning needs. Your path to insight!",
-                process3Title: "Confident Success",
-                process3Text: "Achieve your goals with confidence and excel in your statistics courses. We'll help you get there!",
-                testimonialsTitle: "What Students Say",
-                testimonial1Text: "\"StatHulp greatly reduced my statistics stress. The explanations were clear and the personal approach worked perfectly! Absolutely recommended for every psychology student.\"",
-                testimonial1Author: "- Lisa V., Psychology Student",
-                testimonial2Text: "\"Thanks to the help with SPSS and RStudio, I was able to complete my assignments much faster and better. The guidance was top-notch, I now feel much more confident!\"",
-                testimonial2Author: "- Mark K., Psychology Student",
-                testimonial3Text: "\"Finally understood statistics! The tutor really took their time and adapted the explanation to my level. I'm so glad I found StatHulp.\"",
-                testimonial3Author: "- Sophie R., Psychology Student",
-                pricingTitle: "Our Packages",
-                perHourText: "/hour",
-                perPersonPerHourText: "pp/hour",
-                perSessionText: "/session",
-                moreInfoButton: "More Info",
-                package1Title: "1-hour Package",
-                package1Feature1: "<b><u>1-on-1 session (60 min)</u></b>",
-                package1Feature2: "Help with specific questions",
-                package1Feature3: "Suitable for isolated problems",
-                package1Feature4: "Online or physical (+$5/session)",
-                package1Feature5: "Questions via email",
-                package2Title: "4-hour Package",
-                package2Feature1: "<b><u>4 sessions (€34/hour)</u></b>",
-                package2Feature2: "Ongoing guidance",
-                package2Feature3: "Help with specific questions",
-                package2Feature4: "Online or physical (+$5/session)",
-                package2Feature5: "Questions via email",
-                package3Title: "10-hour Package",
-                package3Feature1: "<b><u>10 sessions (€29/hour)</u></b>",
-                package3Feature2: "Intensive guidance",
-                package3Feature3: "Help with specific questions",
-                package3Feature4: "Online or physical (+$5/session)",
-                package3Feature5: "Priority support (email/chat)",
-                package3Feature6: "Exam preparation",
-                package4Title: "Group Class (2-5 people)",
-                package4Feature1: "<b><u>Guidance for 2-5 students</u></b>",
-                package4Feature2: "Affordable group learning",
-                package4Feature3: "Help with specific questions",
-                package4Feature4: "Online or physical (+$5/session)",
-                package4Feature5: "Flexible scheduling",
-                package5Title: "Studiecoaching",
-                package5Feature1: "<b><u>Help with study methods</u></b>",
-                package5Feature2: "Session duration: 2 hours",
-                package5Feature3: "Create exam schedule",
-                package5Feature4: "Address exam types",
-                package5Feature5: "Focus on strategy, not content",
-                package5Feature6: "Exclusively available online",
-                packageInfoTitle: "Package Information",
-                packageInfoDefaultText: "Select a package above to see more details and book a free intake session directly! Your academic success is closer than you think.",
-                bookNowCta: "Book Your Intake Session Now",
-                contactTitle: "Contact Us",
-                contactIntroText: "Do you have questions or want to know more about our guidance? Fill out the form or schedule a free intake session directly!",
-                contactNameLabel: "Name:",
-                contactEmailLabel: "Email:",
-                contactMessageLabel: "Message:",
-                sendMessageButton: "Send Message",
-                planIntakeButton: "Schedule Free Intake Session",
-                recruitmentTitle: "Become a Tutor at StatHulp!",
-                recruitmentText: "Are you a motivated student with a passion for statistics and psychology? Do you want to help other students succeed and deepen your own knowledge? Send your motivation letter and CV to <a href=\"mailto:stathulp@gmail.com\" class=\"email-link\">stathulp@gmail.com</a>. We aim to respond as soon as possible!",
-                faqTitle: "Frequently Asked Questions",
-                faq1Question: "What exactly is StatHulp?",
-                faq1Answer: "StatHulp offers specialized 1-on-1 tutoring and study coaching in statistics and psychology, specifically tailored to the needs of psychology students. Our goal is to make complex material understandable and help you excel in your studies.",
-                faq2Question: "Who is StatHulp for?",
-                faq2Answer: "StatHulp is for all psychology students struggling with statistics, methodology, or other psychology courses. Whether you need specific help with an assignment, are preparing for an exam, or want to improve your study method, we are here for you.",
-                faq3Question: "How does the free intake work?",
-                faq3Answer: "During a no-obligation intake session, we discuss your specific challenges, learning path, and goals. This helps us create a personalized plan that perfectly matches your needs. It's the ideal way to get acquainted and see how StatHulp can help you.",
-                faq4Question: "Can I get lessons online as well as physically?",
-                faq4Answer: "Absolutely! We offer flexible online lessons via video calls, as well as physical tutoring at your home or student accommodation in Leuven. For physical lessons, a small surcharge of €5 per session applies to cover travel costs. The choice is yours, depending on what best suits your situation.",
-                faq5Question: "What software is used during statistics lessons?",
-                faq5Answer: "Our tutors are experienced in working with the most common statistical software packages used in psychology, such as SPSS and RStudio. We adapt our explanations to the software you need for your studies or research.",
-                faq6Question: "How many sessions do I need?",
-                faq6Answer: "The number of sessions needed depends entirely on your personal goals and the complexity of the material. During the intake session, we can make an estimate and recommend a suitable package. We always strive for efficient and effective guidance.",
-                faq7Question: "Can I also get help with my bachelor's or master's thesis?",
-                faq7Answer: "Yes, absolutely! Many students experience challenges with the statistical part of their thesis. We can guide you with data analysis, interpretation of results, and correct reporting, so your thesis stands on a solid foundation.",
-                faq8Question: "What if I need to reschedule or cancel a lesson?",
-                faq8Answer: "We understand that your student life can be busy. You can reschedule or cancel a planned session free of charge up to 24 hours before the start. Please contact us in time for this.",
-                faq9Question: "Do you also offer help with specific psychology courses outside of statistics?",
-                faq9Answer: "While our main focus is on statistics, our tutors also have expertise in other psychology-related subjects. Please contact us to discuss if we can help you with your specific course.",
-                faq10Question: "What is the difference between tutoring and study coaching?",
-                faq10Answer: "Tutoring focuses on the substantive explanation of specific material (e.g., statistical concepts). Study coaching, on the other hand, focuses on improving your study methods, planning, exam types, and general approach to your courses, without delving deep into the content.",
-                faq11Question: "How long does a session last?",
-                faq11Answer: "A standard 1-on-1 tutoring session lasts 60 minutes. The duration of group sessions and study coaching sessions may vary, depending on the chosen package and specific agreements.",
-                faq12Question: "How can I pay?",
-                faq12Answer: "Payments are simple and secure after each session or monthly, depending on the chosen package. More details about payment methods will be discussed during the intake session.",
-                faq13Question: "Learning from mistakes is the most important part of the learning process. How does StatHulp help with this?",
-                faq13Answer: "At StatHulp, we embrace mistakes as essential learning moments. Just as you learn to cycle by falling, you learn statistics by doing exercises and understanding your mistakes. Our instructors are trained to quickly identify your specific pitfalls and guide you effectively. By working together to eliminate these shortcomings, you quickly develop insight and learn how to avoid mistakes in the future, allowing you to handle the material more smoothly.",
-                faq14Question: "How do I process a subject like statistics or psychology efficiently?",
-                faq14Answer: "Efficiently processing a subject requires expertise: where leg je de focus? What is crucial and what is less so? How do the different parts of the curriculum relate to each other? Our experts will guide you directly, saving you a tremendous amount of time. You learn not only from their knowledge but also from the pitfalls they encountered earlier. A StatHulp tutor helps you gain deeper insight into the subject faster.",
-                faq15Question: "How can I better memorize study material?",
-                faq15Answer: "Memorization is a personal journey, where one student is more visually oriented and another more auditorily. Nevertheless, there are four universal pillars we teach you to apply: structure, repetition, visualization, and control. We guide you in structurally approaching study material, the planning of effective repetitions, making connections between concepts, and checking your understanding. This way, you develop your own, most effective memorization strategy.",
-                faq16Question: "How do I know if I'm at the right study level?",
-                faq16Answer: "To ensure you are studying at the expected level, we integrate \"stepstones\" into your trajectory. These are short checkpoints or tests that we go through together to closely monitor your progress. This gives you immediate guidance and motivation, and allows you to check if you are on the right track. It is an effective way to ensure that you not only understand the material but also master it at the level expected of you.",
-                faqCta: "Still have a question? Contact us!",
-                mobileCta: "Schedule intake",
                 privacyPolicy: "Privacy Policy",
                 cookieStatement: "Cookie Statement",
                 termsAndConditions: "Terms and Conditions",
