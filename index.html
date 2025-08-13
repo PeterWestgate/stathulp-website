@@ -1060,6 +1060,24 @@
             #hero h1 {
                 font-size: 2.8em; /* Kleinere titel */
             }
+
+            #hero h1 .dynamic-word-container {
+                display: block;
+                margin: 0.2em auto;
+                width: auto !important;
+                text-align: center;
+            }
+
+            #hero h1 .dynamic-word {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%) translateY(100%);
+            }
+
+            #hero h1 .dynamic-word.active {
+                transform: translateX(-50%) translateY(0);
+            }
+
             #hero p {
                 font-size: 1.1em; /* Kleinere paragraaf */
             }
@@ -2237,6 +2255,7 @@
             tempSpan.style.fontWeight = h1Style.fontWeight;
             tempSpan.style.fontFamily = h1Style.fontFamily;
             tempSpan.style.color = 'var(--dynamic-word-tint)';
+            tempSpan.style.padding = '0 8px'; // Match the container's padding
 
             document.body.appendChild(tempSpan);
 
