@@ -1021,7 +1021,7 @@
                 font-size: 3.5em;
             }
             #hero p {
-                font-size: 1.3em; /* Aangepast voor mobiel */
+                font-size: 1.1em; /* Aangepast voor betere leesbaarheid op tablets */
             }
             h2 {
                 font-size: 2.2em;
@@ -1063,6 +1063,15 @@
             }
             #hero h1 > span {
                 display: block;
+            }
+
+            #hero h1 .dynamic-word-container {
+                margin: 0 auto 10px; /* Center the block, add bottom margin */
+                text-align: center; /* Center the text inside */
+            }
+
+            #hero h1 .dynamic-word {
+                position: static; /* Remove absolute positioning on mobile for centering */
             }
             #hero p {
                 font-size: 1.1em; /* Kleinere paragraaf */
@@ -1281,22 +1290,30 @@
         }
 
         #faq .faq-answer {
-            padding: 0 30px;
+            padding: 0 30px; /* Horizontal padding only */
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            transition: max-height 0.5s ease-out; /* Removed padding transition */
             color: var(--text-color);
             font-size: 1.1em;
         }
 
         #faq .faq-answer.open {
-            /* max-height will be set dynamically by JS */
-            padding: 20px 30px 30px;
+            /* max-height will be set dynamically by JS. No padding here. */
         }
 
         #faq .faq-answer p {
-            margin-top: 0;
-            margin-bottom: 10px;
+            margin: 0 0 10px 0; /* Default margin for paragraphs */
+        }
+
+        /* Add spacing using padding on the first and last paragraph */
+        #faq .faq-answer > p:first-of-type {
+            padding-top: 20px;
+        }
+
+        #faq .faq-answer > p:last-of-type {
+            margin-bottom: 0;
+            padding-bottom: 30px;
         }
 
         #faq .faq-button-wrapper {
@@ -2232,18 +2249,23 @@
 
         function calculateMaxWordWidth() {
             let maxWidth = 0;
+            const h1 = document.querySelector('#hero h1');
+            if (!h1) return 0;
+
             const tempSpan = document.createElement('span');
             tempSpan.style.position = 'absolute';
             tempSpan.style.visibility = 'hidden';
             tempSpan.style.whiteSpace = 'nowrap';
-            const h1Style = getComputedStyle(document.querySelector('#hero h1'));
+
+            // Explicitly copy styles to be safe, even though it should inherit
+            const h1Style = getComputedStyle(h1);
             tempSpan.style.fontSize = h1Style.fontSize;
             tempSpan.style.fontWeight = h1Style.fontWeight;
             tempSpan.style.fontFamily = h1Style.fontFamily;
             tempSpan.style.color = 'var(--dynamic-word-tint)';
             tempSpan.style.padding = '0 8px'; // Match the container's padding
 
-            document.body.appendChild(tempSpan);
+            h1.appendChild(tempSpan);
 
             // Measure all words from both languages to get the absolute max width
             const allWords = new Set([...translations.nl.dynamicWords, ...translations.en.dynamicWords]);
@@ -2255,7 +2277,7 @@
                 }
             });
 
-            document.body.removeChild(tempSpan);
+            h1.removeChild(tempSpan);
             return maxWidth;
         }
 
@@ -2324,7 +2346,10 @@
 
 
         // --- Initial Load Logic ---
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Wait for custom fonts to load before calculating word widths
+            await document.fonts.ready;
+
             // Apply saved theme or default to light
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
@@ -2354,6 +2379,12 @@
             // Recalculate and apply width on resize
             maxCalculatedWidth = calculateMaxWordWidth();
             dynamicWordContainer.style.width = `${maxCalculatedWidth}px`;
+
+            // Adjust body padding for cookie banner on resize
+            if (cookieConsentBanner.style.display !== 'none') {
+                const bannerHeight = cookieConsentBanner.offsetHeight;
+                document.body.style.paddingBottom = `${bannerHeight}px`;
+            }
         });
 
 
@@ -2701,10 +2732,14 @@
         // Check if consent has been given
         function checkCookieConsent() {
             const consent = localStorage.getItem('cookieConsent');
-            if (consent === 'accepted') {
+            // Also check for 'declined' to ensure banner stays hidden
+            if (consent === 'accepted' || consent === 'declined') {
                 cookieConsentBanner.style.display = 'none';
+                document.body.style.paddingBottom = '0';
             } else {
                 cookieConsentBanner.style.display = 'flex'; // Ensure it's visible by default
+                const bannerHeight = cookieConsentBanner.offsetHeight;
+                document.body.style.paddingBottom = `${bannerHeight}px`;
             }
         }
 
@@ -2712,13 +2747,14 @@
         acceptCookiesBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'accepted');
             cookieConsentBanner.style.display = 'none';
+            document.body.style.paddingBottom = '0';
         });
 
-        // Handle decline (optional, but good practice to hide if declined)
+        // Handle decline
         declineCookiesBtn.addEventListener('click', () => {
-            localStorage.setItem('cookieConsent', 'declined'); // Or just hide without storing
+            localStorage.setItem('cookieConsent', 'declined');
             cookieConsentBanner.style.display = 'none';
-            // Optionally, disable non-essential cookies here if you had any
+            document.body.style.paddingBottom = '0';
         });
     </script>
 
